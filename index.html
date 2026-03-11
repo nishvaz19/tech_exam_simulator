@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>SnowPro Exam Simulator</title>
+<title>SnowPro Certification Exam Simulator</title>
 
 <style>
 body{
-font-family:Arial;
-background:#f4f6f8;
-margin:40px;
+font-family: Arial;
+background:#f4f6f9;
+padding:20px;
 }
 
 .container{
 max-width:900px;
 margin:auto;
 background:white;
-padding:30px;
+padding:25px;
 border-radius:10px;
 box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
@@ -24,17 +23,320 @@ h1{
 text-align:center;
 }
 
-.question{
-margin-top:25px;
+#timer{
+font-size:20px;
+font-weight:bold;
+color:#e74c3c;
+text-align:right;
 }
 
-.timer{
+.question{
 font-size:20px;
-color:#d22;
-float:right;
+margin-top:20px;
+}
+
+.options{
+margin-top:10px;
 }
 
 button{
+margin-top:15px;
+padding:10px 15px;
+border:none;
+background:#1f77ff;
+color:white;
+border-radius:6px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0f55d9;
+}
+
+.hint{
+display:none;
+background:#eef6ff;
+padding:10px;
+margin-top:10px;
+border-left:4px solid #1f77ff;
+}
+
+#result{
+font-size:22px;
+text-align:center;
+margin-top:20px;
+}
+
+.progress{
+margin-top:10px;
+font-size:14px;
+color:#555;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>SnowPro Certification Exam Simulator</h1>
+
+<div id="timer">Time: 90:00</div>
+
+<div class="progress" id="progress"></div>
+
+<div class="question" id="question"></div>
+
+<div class="options" id="options"></div>
+
+<button onclick="showHint()">Hint</button>
+
+<div class="hint" id="hint"></div>
+
+<br>
+
+<button onclick="prevQuestion()">Previous</button>
+<button onclick="nextQuestion()">Next</button>
+<button onclick="finishExam()">Finish Exam</button>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+let questionBank = [
+
+{
+question:"What is the Fail-safe retention period in Snowflake?",
+options:["1 day","7 days","30 days","90 days"],
+answer:1,
+hint:"Fail-safe is always fixed and cannot be changed."
+},
+
+{
+question:"What is Snowflake’s key architectural advantage?",
+options:[
+"Shared compute and storage",
+"Separation of compute and storage",
+"Single node architecture",
+"Manual partitioning"
+],
+answer:1,
+hint:"Snowflake allows compute clusters to scale independently."
+},
+
+{
+question:"Which command loads data into Snowflake tables?",
+options:[
+"COPY INTO",
+"INSERT FILE",
+"LOAD TABLE",
+"IMPORT DATA"
+],
+answer:0,
+hint:"This command loads files from stages."
+},
+
+{
+question:"Which Snowflake feature tracks DML changes?",
+options:[
+"Streams",
+"Tasks",
+"Pipes",
+"Stages"
+],
+answer:0,
+hint:"Used with CDC pipelines."
+},
+
+{
+question:"What type of warehouse handles concurrency spikes?",
+options:[
+"Single Cluster",
+"Multi Cluster",
+"Elastic Warehouse",
+"Dynamic Warehouse"
+],
+answer:1,
+hint:"Automatically adds clusters when queries increase."
+},
+
+{
+question:"Result cache lifetime in Snowflake is:",
+options:[
+"1 hour",
+"12 hours",
+"24 hours",
+"48 hours"
+],
+answer:2,
+hint:"Cached results remain available for identical queries."
+},
+
+{
+question:"Which command shows all warehouses?",
+options:[
+"SHOW WAREHOUSES",
+"LIST WAREHOUSES",
+"DESCRIBE WAREHOUSES",
+"GET WAREHOUSES"
+],
+answer:0,
+hint:"Most Snowflake metadata commands start with SHOW."
+},
+
+{
+question:"What data type stores JSON in Snowflake?",
+options:[
+"VARIANT",
+"OBJECT",
+"JSON",
+"ARRAY"
+],
+answer:0,
+hint:"Snowflake's universal semi-structured type."
+},
+
+{
+question:"Which feature provides historical data recovery?",
+options:[
+"Streams",
+"Time Travel",
+"Clustering",
+"Query Cache"
+],
+answer:1,
+hint:"Allows querying past versions of tables."
+},
+
+{
+question:"What does Snowpipe do?",
+options:[
+"Batch processing",
+"Continuous ingestion",
+"Query acceleration",
+"Backup storage"
+],
+answer:1,
+hint:"Used for near real-time loading from cloud storage."
+}
+
+];
+
+// expand question bank automatically to simulate 150 questions
+while(questionBank.length < 150){
+let q = questionBank[questionBank.length % 10];
+questionBank.push(JSON.parse(JSON.stringify(q)));
+}
+
+let currentQuestion = 0;
+let answers = new Array(questionBank.length).fill(null);
+
+function loadQuestion(){
+
+let q = questionBank[currentQuestion];
+
+document.getElementById("question").innerHTML =
+(currentQuestion+1) + ". " + q.question;
+
+document.getElementById("progress").innerHTML =
+"Question " + (currentQuestion+1) + " / " + questionBank.length;
+
+let optionsHTML = "";
+
+q.options.forEach((opt,i)=>{
+
+optionsHTML += `
+<label>
+<input type="radio" name="option" value="${i}"
+${answers[currentQuestion]==i?"checked":""}>
+${opt}
+</label><br>
+`;
+
+});
+
+document.getElementById("options").innerHTML = optionsHTML;
+
+document.getElementById("hint").style.display="none";
+document.getElementById("hint").innerHTML=q.hint;
+
+}
+
+function saveAnswer(){
+let selected = document.querySelector('input[name="option"]:checked');
+if(selected){
+answers[currentQuestion] = parseInt(selected.value);
+}
+}
+
+function nextQuestion(){
+saveAnswer();
+if(currentQuestion < questionBank.length-1){
+currentQuestion++;
+loadQuestion();
+}
+}
+
+function prevQuestion(){
+saveAnswer();
+if(currentQuestion > 0){
+currentQuestion--;
+loadQuestion();
+}
+}
+
+function showHint(){
+document.getElementById("hint").style.display="block";
+}
+
+function finishExam(){
+
+saveAnswer();
+
+let score = 0;
+
+questionBank.forEach((q,i)=>{
+if(answers[i] == q.answer) score++;
+});
+
+let percent = Math.round(score/questionBank.length*100);
+
+document.getElementById("result").innerHTML =
+"Score: " + score + " / " + questionBank.length +
+" ("+percent+"%)";
+
+}
+
+loadQuestion();
+
+/* TIMER */
+
+let totalSeconds = 90*60;
+
+setInterval(function(){
+
+let minutes = Math.floor(totalSeconds/60);
+let seconds = totalSeconds % 60;
+
+document.getElementById("timer").innerHTML =
+"Time: " +
+minutes + ":" + (seconds<10?"0"+seconds:seconds);
+
+totalSeconds--;
+
+if(totalSeconds<=0){
+finishExam();
+}
+
+},1000);
+
+</script>
+
+</body>
+</html>button{
 margin-top:20px;
 padding:10px 20px;
 background:#1f77b4;
