@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SnowPro Exam Simulator</title>
+
+<style>
+body{
+font-family:Arial;
+background:#f4f6f8;
+margin:40px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+h1{
+text-align:center;
+}
+
+.question{
+margin-top:25px;
+}
+
+.timer{
+font-size:20px;
+color:#d22;
+float:right;
+}
+
+button{
+margin-top:20px;
+padding:10px 20px;
+background:#1f77b4;
+color:white;
+border:none;
+border-radius:5px;
+}
+
+.result{
+font-size:22px;
+margin-top:30px;
+font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>SnowPro Core Exam Simulator</h1>
+
+<div class="timer">
+Time Remaining: <span id="time">120:00</span>
+</div>
+
+<div id="quiz"></div>
+
+<button onclick="submitExam()">Submit Exam</button>
+
+<div id="result" class="result"></div>
+
+</div>
+
+<script>
+
+let questions = [
+
+{
+q:"What is Snowflake Fail-safe retention period?",
+options:["1 day","3 days","7 days","30 days"],
+answer:2
+},
+
+{
+q:"Which Snowflake architecture principle allows independent scaling?",
+options:[
+"Shared-nothing architecture",
+"Separation of compute and storage",
+"Elastic partitioning",
+"Distributed caching"
+],
+answer:1
+},
+
+{
+q:"Which layer manages metadata?",
+options:[
+"Storage layer",
+"Cloud Services layer",
+"Compute layer",
+"Network layer"
+],
+answer:1
+},
+
+{
+q:"Which object enables continuous ingestion?",
+options:["Stream","Task","Snowpipe","Stage"],
+answer:2
+},
+
+{
+q:"Which command loads files into Snowflake tables?",
+options:[
+"LOAD DATA",
+"INSERT FILE",
+"COPY INTO",
+"IMPORT"
+],
+answer:2
+}
+
+];
+
+// Duplicate sample questions to reach 100
+while(questions.length < 100){
+questions.push(...questions.slice(0,5));
+}
+
+questions = questions.slice(0,100);
+
+let quiz = document.getElementById("quiz");
+
+questions.forEach((q,i)=>{
+
+let div = document.createElement("div");
+div.className="question";
+
+let html = `<p><b>Q${i+1}. ${q.q}</b></p>`;
+
+q.options.forEach((opt,j)=>{
+html+=`
+<label>
+<input type="radio" name="q${i}" value="${j}">
+${opt}
+</label><br>`;
+});
+
+div.innerHTML = html;
+quiz.appendChild(div);
+
+});
+
+function submitExam(){
+
+let score=0;
+
+questions.forEach((q,i)=>{
+let ans=document.querySelector(`input[name=q${i}]:checked`);
+
+if(ans && parseInt(ans.value)===q.answer){
+score++;
+}
+});
+
+document.getElementById("result").innerHTML =
+"Your Score: "+score+"/100";
+
+}
+
+let time=120*60;
+
+function countdown(){
+
+let minutes=Math.floor(time/60);
+let seconds=time%60;
+
+document.getElementById("time").innerText=
+minutes+":"+(seconds<10?"0":"")+seconds;
+
+time--;
+
+if(time<0){
+submitExam();
+clearInterval(timer);
+}
+
+}
+
+let timer=setInterval(countdown,1000);
+
+</script>
+
+</body>
+</html>
