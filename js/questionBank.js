@@ -2293,6 +2293,158 @@ options:[
 ],
 answer:0,
 explanation:"Warehouse metering history shows compute credit usage."
+},
+
+
+  
+{
+id:201,
+difficulty:"hard",
+category:"architecture",
+question:"Which feature enables multi-region replication of Snowflake databases?",
+options:[
+"Database replication",
+"Secure sharing",
+"External tables",
+"Streams"
+],
+answer:0,
+explanation:"Database replication enables multi-region data replication."
+},
+
+{
+id:202,
+difficulty:"hard",
+category:"architecture",
+question:"Which Snowflake object coordinates disaster recovery between accounts?",
+options:[
+"Failover groups",
+"Replication groups",
+"Backup clusters",
+"Warehouse mirrors"
+],
+answer:0,
+explanation:"Failover groups orchestrate disaster recovery."
+},
+
+{
+id:203,
+difficulty:"medium",
+category:"query_optimization",
+question:"Which Snowflake service improves selective query filtering performance?",
+options:[
+"Search Optimization Service",
+"Query Acceleration Service",
+"Auto Clustering",
+"Materialized Views"
+],
+answer:0,
+explanation:"Search optimization improves selective queries."
+},
+
+{
+id:204,
+difficulty:"hard",
+category:"query_optimization",
+question:"Which scenario benefits most from Search Optimization Service?",
+options:[
+"Point lookup queries",
+"Large table scans",
+"Warehouse scaling",
+"Streams pipelines"
+],
+answer:0,
+explanation:"Search optimization improves point lookups."
+},
+
+{
+id:205,
+difficulty:"medium",
+category:"governance",
+question:"Which Snowflake feature tracks lineage between objects?",
+options:[
+"Object dependencies",
+"Streams",
+"Tasks",
+"Views"
+],
+answer:0,
+explanation:"Object dependencies track lineage."
+},
+
+{
+id:206,
+difficulty:"hard",
+category:"governance",
+question:"Which view records detailed object access events?",
+options:[
+"ACCESS_HISTORY",
+"LOGIN_HISTORY",
+"QUERY_HISTORY",
+"ROLE_HISTORY"
+],
+answer:0,
+explanation:"ACCESS_HISTORY tracks object-level access."
+},
+
+{
+id:207,
+difficulty:"medium",
+category:"streams_tasks",
+question:"A common CDC pipeline pattern in Snowflake is:",
+options:[
+"Stream → Task → Merge",
+"Task → Stream → View",
+"Stage → Stream → Task",
+"View → Task → Table"
+],
+answer:0,
+explanation:"CDC pipelines use streams with tasks executing merges."
+},
+
+{
+id:208,
+difficulty:"hard",
+category:"streams_tasks",
+question:"What prevents tasks from overlapping execution?",
+options:[
+"ALLOW_OVERLAPPING_EXECUTION",
+"WAREHOUSE_LIMIT",
+"STREAM_OFFSET",
+"TASK_POLICY"
+],
+answer:0,
+explanation:"This parameter controls task overlap."
+},
+
+{
+id:209,
+difficulty:"medium",
+category:"cost",
+question:"Which feature scales warehouses automatically under heavy load?",
+options:[
+"Multi-cluster warehouses",
+"Auto clustering",
+"Streams",
+"Stages"
+],
+answer:0,
+explanation:"Multi-cluster warehouses scale compute clusters."
+},
+
+{
+id:210,
+difficulty:"hard",
+category:"cost",
+question:"Which query pattern causes unnecessary compute cost?",
+options:[
+"SELECT *",
+"Column filtering",
+"Partition pruning",
+"Predicate pushdown"
+],
+answer:0,
+explanation:"SELECT * scans unnecessary columns."
 },  
 
 ];
