@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>SnowPro Exam Simulator</title>
+<link rel="stylesheet" href="css/styles.css">
+
+<script src="js/questionBank.js"></script>
+<script src="js/examEngine.js"></script>
+</head>
+
+<body onload="startExam()">
+
+<div class="container">
+
+<h1>SnowPro Exam Simulator</h1>
+
+<div id="timer"></div>
+
+<div id="progress"></div>
+
+<div id="question"></div>
+
+<div id="options"></div>
+
+<button onclick="showHint()">Hint</button>
+<button onclick="flagCurrent()">Flag Question</button>
+
+<div id="hint" class="hint"></div>
+
+<br>
+
+<button onclick="prevQuestion()">Previous</button>
+<button onclick="nextQuestion()">Next</button>
+
+<button onclick="reviewExam()">Review Flagged</button>
+
+<button onclick="submitExam()">Submit Exam</button>
+
+<div id="results"></div>
+
+</div>
+
+</body>
+</html>
