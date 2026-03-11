@@ -2,7 +2,7 @@ let examQuestions = []
 let answers = {}
 let flagged = []
 let current = 0
-const EXAM_SIZE = 100
+const EXAM_SIZE = 280
 
 let examTimer
 let timeRemaining = 60 * 60 // 60 minutes
