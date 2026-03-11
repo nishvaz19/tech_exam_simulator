@@ -3643,7 +3643,605 @@ options:[
 answer:0,
 explanation:"Snowflake uses columnar storage with automatic encoding."
 },
+{
+id:241,
+difficulty:"hard",
+category:"cost_optimization",
+question:"A warehouse runs frequent short queries but remains idle for long periods. What configuration best minimizes cost?",
+options:[
+"Enable AUTO_SUSPEND and AUTO_RESUME",
+"Increase warehouse size",
+"Disable query result caching",
+"Enable multi-cluster scaling"
+],
+answer:0,
+explanation:"Auto suspend/resume reduces cost during idle periods."
+},
 
+{
+id:242,
+difficulty:"hard",
+category:"cost_optimization",
+question:"A team frequently reruns identical queries. Which Snowflake feature minimizes compute usage?",
+options:[
+"Result cache",
+"Materialized views",
+"Search optimization",
+"Query acceleration"
+],
+answer:0,
+explanation:"Result cache returns results without re-executing the query."
+},
+
+{
+id:243,
+difficulty:"medium",
+category:"warehouse_sizing",
+question:"A BI dashboard has many concurrent users running small queries. Which configuration improves performance?",
+options:[
+"Multi-cluster warehouse",
+"Increase micro-partitions",
+"Disable auto suspend",
+"Use external tables"
+],
+answer:0,
+explanation:"Multi-cluster warehouses handle concurrency efficiently."
+},
+
+{
+id:244,
+difficulty:"hard",
+category:"warehouse_sizing",
+question:"Which warehouse scaling policy prioritizes minimizing queuing delays?",
+options:[
+"Standard scaling policy",
+"Economy scaling policy",
+"Auto suspend policy",
+"Query acceleration policy"
+],
+answer:0,
+explanation:"Standard scaling launches clusters faster to avoid queuing."
+},
+
+{
+id:245,
+difficulty:"medium",
+category:"query_tuning",
+question:"A query scans an entire large table but filters on one column. Which technique improves performance?",
+options:[
+"Define a clustering key",
+"Disable caching",
+"Increase warehouse size",
+"Use external stage"
+],
+answer:0,
+explanation:"Clustering improves pruning on filtered columns."
+},
+
+{
+id:246,
+difficulty:"hard",
+category:"query_tuning",
+question:"A query repeatedly aggregates the same large dataset. Which feature improves performance?",
+options:[
+"Materialized views",
+"Streams",
+"Tasks",
+"Search optimization"
+],
+answer:0,
+explanation:"Materialized views store precomputed aggregations."
+},
+
+{
+id:247,
+difficulty:"medium",
+category:"architecture_design",
+question:"A company needs to share data with partners without duplicating storage. Which Snowflake feature should be used?",
+options:[
+"Secure Data Sharing",
+"Database replication",
+"External tables",
+"Streams"
+],
+answer:0,
+explanation:"Secure Data Sharing allows sharing live data without copying it."
+},
+
+{
+id:248,
+difficulty:"hard",
+category:"architecture_design",
+question:"A global company needs disaster recovery across multiple regions. What architecture should be implemented?",
+options:[
+"Failover groups",
+"External stages",
+"Multi-cluster warehouses",
+"Secure views"
+],
+answer:0,
+explanation:"Failover groups support cross-region DR."
+},
+
+{
+id:249,
+difficulty:"medium",
+category:"security_architecture",
+question:"Sensitive customer columns must be hidden from analysts. Which Snowflake feature solves this?",
+options:[
+"Masking policies",
+"Streams",
+"Stages",
+"Tasks"
+],
+answer:0,
+explanation:"Masking policies dynamically mask sensitive column values."
+},
+
+{
+id:250,
+difficulty:"hard",
+category:"security_architecture",
+question:"Access to specific rows should depend on user role. Which feature should be implemented?",
+options:[
+"Row access policies",
+"Secure views",
+"Network policies",
+"Masking policies"
+],
+answer:0,
+explanation:"Row access policies enforce row-level filtering."
+},
+
+{
+id:251,
+difficulty:"medium",
+category:"troubleshooting",
+question:"A query is slow due to scanning many micro-partitions. What should be investigated first?",
+options:[
+"Clustering strategy",
+"Warehouse size",
+"Network policies",
+"External stages"
+],
+answer:0,
+explanation:"Poor clustering can cause excessive partition scanning."
+},
+
+{
+id:252,
+difficulty:"hard",
+category:"troubleshooting",
+question:"Users experience query queuing during peak hours. What is the best solution?",
+options:[
+"Enable multi-cluster warehouses",
+"Disable auto suspend",
+"Use materialized views",
+"Enable search optimization"
+],
+answer:0,
+explanation:"Multi-cluster warehouses reduce query queuing."
+},
+
+{
+id:253,
+difficulty:"medium",
+category:"cost_optimization",
+question:"Which practice reduces compute costs when exploring large datasets?",
+options:[
+"Use LIMIT clauses",
+"Disable pruning",
+"Increase warehouse size",
+"Disable caching"
+],
+answer:0,
+explanation:"LIMIT reduces scanned data during exploration."
+},
+
+{
+id:254,
+difficulty:"hard",
+category:"cost_optimization",
+question:"Which Snowflake feature helps identify queries consuming the most credits?",
+options:[
+"QUERY_HISTORY",
+"LOGIN_HISTORY",
+"ACCESS_HISTORY",
+"SESSION_HISTORY"
+],
+answer:0,
+explanation:"Query history tracks query execution metrics."
+},
+
+{
+id:255,
+difficulty:"medium",
+category:"query_tuning",
+question:"A query retrieves unnecessary columns from a large table. Which optimization helps?",
+options:[
+"Column pruning",
+"Warehouse scaling",
+"Auto clustering",
+"Search optimization"
+],
+answer:0,
+explanation:"Column pruning reduces scanned columns."
+},
+
+{
+id:256,
+difficulty:"hard",
+category:"query_tuning",
+question:"A query repeatedly performs complex joins across large tables. What improves performance?",
+options:[
+"Materialized views",
+"Network policies",
+"External tables",
+"Streams"
+],
+answer:0,
+explanation:"Materialized views precompute joins."
+},
+
+{
+id:257,
+difficulty:"medium",
+category:"architecture_design",
+question:"A company wants separate compute resources for ETL and BI workloads. What should they use?",
+options:[
+"Separate virtual warehouses",
+"Separate accounts",
+"Separate regions",
+"External stages"
+],
+answer:0,
+explanation:"Separate warehouses isolate compute workloads."
+},
+
+{
+id:258,
+difficulty:"hard",
+category:"architecture_design",
+question:"What Snowflake architecture principle enables compute clusters to access shared storage?",
+options:[
+"Multi-cluster shared data architecture",
+"Row-based architecture",
+"Partitioned clusters",
+"OLTP replication"
+],
+answer:0,
+explanation:"Snowflake uses multi-cluster shared data architecture."
+},
+
+{
+id:259,
+difficulty:"medium",
+category:"security_architecture",
+question:"Which policy controls which IP ranges can access Snowflake?",
+options:[
+"Network policies",
+"Masking policies",
+"Row access policies",
+"Task policies"
+],
+answer:0,
+explanation:"Network policies restrict login IP ranges."
+},
+
+{
+id:260,
+difficulty:"hard",
+category:"security_architecture",
+question:"Which Snowflake feature supports secure data exchange between organizations?",
+options:[
+"Snowflake Marketplace",
+"Streams",
+"Tasks",
+"Stages"
+],
+answer:0,
+explanation:"Snowflake Marketplace allows sharing datasets."
+},
+
+{
+id:261,
+difficulty:"medium",
+category:"troubleshooting",
+question:"A query plan shows excessive partition scans. What likely caused this?",
+options:[
+"Poor clustering",
+"Warehouse scaling",
+"Query caching",
+"Stage configuration"
+],
+answer:0,
+explanation:"Poor clustering reduces pruning efficiency."
+},
+
+{
+id:262,
+difficulty:"hard",
+category:"troubleshooting",
+question:"A warehouse experiences long query queues even with large cluster size. What is the best solution?",
+options:[
+"Enable multi-cluster warehouse",
+"Increase micro-partitions",
+"Disable caching",
+"Enable masking"
+],
+answer:0,
+explanation:"Multi-cluster scaling handles concurrency."
+},
+
+{
+id:263,
+difficulty:"medium",
+category:"cost_optimization",
+question:"Which Snowflake feature prevents unnecessary recomputation of identical queries?",
+options:[
+"Result cache",
+"Streams",
+"Stages",
+"Tasks"
+],
+answer:0,
+explanation:"Result caching returns stored results."
+},
+
+{
+id:264,
+difficulty:"hard",
+category:"cost_optimization",
+question:"Which query design practice minimizes scanned data volume?",
+options:[
+"Predicate filtering",
+"SELECT *",
+"Cross joins",
+"Unfiltered scans"
+],
+answer:0,
+explanation:"Predicate filtering reduces scanned rows."
+},
+
+{
+id:265,
+difficulty:"medium",
+category:"warehouse_sizing",
+question:"A data science team runs heavy ML queries occasionally. Which warehouse configuration is most efficient?",
+options:[
+"Use larger warehouse temporarily",
+"Use smallest warehouse always",
+"Disable auto suspend",
+"Use external stages"
+],
+answer:0,
+explanation:"Scaling up temporarily handles heavy workloads."
+},
+
+{
+id:266,
+difficulty:"hard",
+category:"warehouse_sizing",
+question:"Which warehouse policy prioritizes cost savings over query latency?",
+options:[
+"Economy scaling policy",
+"Standard scaling policy",
+"Auto resume policy",
+"Query acceleration policy"
+],
+answer:0,
+explanation:"Economy scaling reduces cluster startup frequency."
+},
+
+{
+id:267,
+difficulty:"medium",
+category:"query_tuning",
+question:"Which feature helps accelerate highly selective queries?",
+options:[
+"Search Optimization Service",
+"Streams",
+"Tasks",
+"Stages"
+],
+answer:0,
+explanation:"Search optimization speeds up selective queries."
+},
+
+{
+id:268,
+difficulty:"hard",
+category:"query_tuning",
+question:"Which Snowflake service accelerates large scan queries automatically?",
+options:[
+"Query Acceleration Service",
+"Search optimization",
+"Auto clustering",
+"Materialized views"
+],
+answer:0,
+explanation:"Query Acceleration Service accelerates large scans."
+},
+
+{
+id:269,
+difficulty:"medium",
+category:"architecture_design",
+question:"Which Snowflake object manages continuous ingestion from cloud storage?",
+options:[
+"Pipe",
+"Task",
+"Stream",
+"View"
+],
+answer:0,
+explanation:"Pipes automate Snowpipe ingestion."
+},
+
+{
+id:270,
+difficulty:"hard",
+category:"architecture_design",
+question:"Which Snowflake feature enables low latency streaming ingestion?",
+options:[
+"Snowpipe Streaming",
+"Streams",
+"Stages",
+"Tasks"
+],
+answer:0,
+explanation:"Snowpipe Streaming supports low latency ingestion."
+},
+
+{
+id:271,
+difficulty:"medium",
+category:"security_architecture",
+question:"Which Snowflake feature tracks detailed object access activity?",
+options:[
+"ACCESS_HISTORY",
+"QUERY_HISTORY",
+"LOGIN_HISTORY",
+"SESSION_HISTORY"
+],
+answer:0,
+explanation:"ACCESS_HISTORY records object-level access."
+},
+
+{
+id:272,
+difficulty:"hard",
+category:"security_architecture",
+question:"Which Snowflake view tracks failed login attempts?",
+options:[
+"LOGIN_HISTORY",
+"QUERY_HISTORY",
+"ACCESS_HISTORY",
+"SESSION_HISTORY"
+],
+answer:0,
+explanation:"LOGIN_HISTORY records login attempts."
+},
+
+{
+id:273,
+difficulty:"medium",
+category:"troubleshooting",
+question:"Which Snowflake view helps diagnose slow queries?",
+options:[
+"QUERY_HISTORY",
+"LOGIN_HISTORY",
+"ACCESS_HISTORY",
+"ROLE_HISTORY"
+],
+answer:0,
+explanation:"Query history contains execution metrics."
+},
+
+{
+id:274,
+difficulty:"hard",
+category:"troubleshooting",
+question:"Which function returns detailed query execution plans?",
+options:[
+"SYSTEM$EXPLAIN_PLAN_JSON",
+"QUERY_HISTORY",
+"SHOW PLAN",
+"PLAN_HISTORY"
+],
+answer:0,
+explanation:"SYSTEM$EXPLAIN_PLAN_JSON returns JSON execution plans."
+},
+
+{
+id:275,
+difficulty:"medium",
+category:"cost_optimization",
+question:"Which Snowflake feature reduces cost by suspending warehouses automatically?",
+options:[
+"AUTO_SUSPEND",
+"Auto clustering",
+"Search optimization",
+"Query acceleration"
+],
+answer:0,
+explanation:"AUTO_SUSPEND stops idle warehouses."
+},
+
+{
+id:276,
+difficulty:"hard",
+category:"cost_optimization",
+question:"Which table shows Snowflake credit usage for each warehouse?",
+options:[
+"WAREHOUSE_METERING_HISTORY",
+"QUERY_HISTORY",
+"ACCESS_HISTORY",
+"LOGIN_HISTORY"
+],
+answer:0,
+explanation:"Warehouse metering history tracks credit usage."
+},
+
+{
+id:277,
+difficulty:"medium",
+category:"architecture_design",
+question:"Which Snowflake feature allows querying external cloud storage data directly?",
+options:[
+"External tables",
+"Streams",
+"Tasks",
+"Materialized views"
+],
+answer:0,
+explanation:"External tables query data stored outside Snowflake."
+},
+
+{
+id:278,
+difficulty:"hard",
+category:"architecture_design",
+question:"Which Snowflake feature supports open table formats like Apache Iceberg?",
+options:[
+"Iceberg tables",
+"Materialized views",
+"Search optimization",
+"Task graphs"
+],
+answer:0,
+explanation:"Iceberg tables support open table formats."
+},
+
+{
+id:279,
+difficulty:"medium",
+category:"security_architecture",
+question:"Which Snowflake role has full administrative privileges?",
+options:[
+"ACCOUNTADMIN",
+"SECURITYADMIN",
+"SYSADMIN",
+"USERADMIN"
+],
+answer:0,
+explanation:"ACCOUNTADMIN has full privileges."
+},
+
+{
+id:280,
+difficulty:"hard",
+category:"security_architecture",
+question:"Which role is responsible for managing users and roles?",
+options:[
+"USERADMIN",
+"ACCOUNTADMIN",
+"SYSADMIN",
+"PUBLIC"
+],
+answer:0,
+explanation:"USERADMIN manages users and roles."
+},
 ];
 
 
