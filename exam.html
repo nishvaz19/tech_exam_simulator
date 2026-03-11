@@ -3,6 +3,9 @@
 
 <head>
 <title>SnowPro Exam Simulator</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <link rel="stylesheet" href="css/styles.css">
 
 <script src="js/questionBank.js"></script>
@@ -11,33 +14,51 @@
 
 <body onload="startExam()">
 
-<div class="container">
+<div class="exam-wrapper">
 
-<h1>SnowPro Exam Simulator</h1>
+<header class="exam-header">
+<h1>SnowPro Certification Simulator</h1>
 
-<div id="timer"></div>
+<div class="exam-meta">
+<div id="timer" class="timer"></div>
+<div id="progress" class="progress"></div>
+</div>
+</header>
 
-<div id="progress"></div>
+<main class="exam-container">
 
-<div id="question"></div>
+<div class="question-card">
 
-<div id="options"></div>
+<div id="question" class="question-text"></div>
 
-<button onclick="showHint()">Hint</button>
-<button onclick="flagCurrent()">Flag Question</button>
+<div id="options" class="options"></div>
 
 <div id="hint" class="hint"></div>
 
-<br>
+</div>
 
+<div class="exam-actions">
+
+<div class="left-actions">
+<button onclick="showHint()">Hint</button>
+<button onclick="flagCurrent()">Flag</button>
+</div>
+
+<div class="nav-actions">
 <button onclick="prevQuestion()">Previous</button>
 <button onclick="nextQuestion()">Next</button>
+</div>
 
+<div class="right-actions">
 <button onclick="reviewExam()">Review Flagged</button>
+<button onclick="submitExam()" class="submit-btn">Submit Exam</button>
+</div>
 
-<button onclick="submitExam()">Submit Exam</button>
+</div>
 
-<div id="results"></div>
+<div id="results" class="results"></div>
+
+</main>
 
 </div>
 
