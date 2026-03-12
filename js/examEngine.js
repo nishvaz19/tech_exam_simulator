@@ -5,7 +5,7 @@ let current = 0
 const EXAM_SIZE = 405 // 305 // 280
 
 let examTimer
-let timeRemaining = 60 * 60 // 60 minutes
+let timeRemaining = 60 * 120 // 120 minutes
 
 function shuffle(array){
 return [...array].sort(()=>Math.random()-0.5)
@@ -13,7 +13,8 @@ return [...array].sort(()=>Math.random()-0.5)
 
 function startExam(){
 
-examQuestions = shuffle(questionBank).slice(0,EXAM_SIZE)
+//examQuestions = shuffle(questionBank).slice(0,EXAM_SIZE)
+examQuestions = questionBank.slice(0,EXAM_SIZE)
 
 startTimer()
 
