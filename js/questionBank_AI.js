@@ -2098,7 +2098,7 @@ RETRIEVAL AUGMENTED GENERATION - RAG (IDs 101 - 200)
    Focus: Model Serving, Quantization, Orchestration, and Scalability
    ====================================================== */
 
-const batch4 = [
+
   {
     id: 151,
     difficulty: "medium",
