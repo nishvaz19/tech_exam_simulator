@@ -28,7 +28,8 @@ function startExam() {
 
     // Use slice or shuffle
     //examQuestions = shuffle(questionBank).slice(0,EXAM_SIZE)
-    examQuestions = questionBank.slice(0, questionBank.length);
+    //examQuestions = questionBank.slice(0, questionBank.length);
+    examQuestions = questionBank;
     window.EXAM_SIZE = examQuestions.length; 
 
     // Reset counters
