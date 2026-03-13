@@ -1,12 +1,13 @@
 /* ======================================================
    GLOBAL STATE
    ====================================================== */
-let fullBank = [];       // Shuffled source data
+let fullBank = [];       // Shuffled/Filtered source data
 let examQuestions = [];  // Questions picked adaptively
 let answers = {};        // User selections {questionIndex: optionIndex}
 let flagged = [];
 let current = 0;
-let EXAM_SIZE = 500;     // Session length
+let EXAM_SIZE = 500;     // Target session length
+let activeExamSize = 0;  // Actual length (adjusted if search results < 500)
 
 let currentDifficulty = "easy"; 
 let usedQuestionIds = new Set(); 
@@ -25,10 +26,31 @@ function startExam() {
         return;
     }
 
-    // 1. Load and Shuffle the entire bank first
-    //fullBank = shuffleArray([...questionBank]);
-    fullBank = questionBank
-    // 2. Reset State
+    // 1. Keyword Filtering Logic
+    const searchInput = document.getElementById("keywordSearch");
+    const keyword = searchInput ? searchInput.value.trim().toLowerCase() : "";
+
+    if (keyword !== "") {
+        // If keyword is NOT blank, focus questions
+        fullBank = questionBank.filter(q => 
+            q.question.toLowerCase().includes(keyword) || 
+            (q.category && q.category.toLowerCase().includes(keyword)) ||
+            (q.explanation && q.explanation.toLowerCase().includes(keyword))
+        );
+        
+        if (fullBank.length === 0) {
+            alert("No questions found for '" + keyword + "'. Loading full bank.");
+            fullBank = [...questionBank];
+        }
+    } else {
+        // DEFAULT: Search is blank, use all questions
+        fullBank = [...questionBank];
+    }
+
+    // 2. Initialize and Shuffle
+    fullBank = shuffleArray(fullBank);
+    
+    // 3. Reset State
     examQuestions = [];
     usedQuestionIds.clear();
     answers = {};
@@ -36,17 +58,17 @@ function startExam() {
     current = 0;
     currentDifficulty = "easy";
     hintPersistent = false; 
+    
+    // 4. Determine session size
+    // If search results are fewer than 500, cap the exam at that number
+    activeExamSize = Math.min(EXAM_SIZE, fullBank.length);
 
-    // 3. Kick off
+    // 5. Kick off
     pickNextAdaptiveQuestion();
     startTimer();
     loadQuestion();
 }
 
-/**
- * SHUFFLE UTILITY
- * Randomizes the order of the bank so difficulty pools are random.
- */
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -67,38 +89,28 @@ function pickNextAdaptiveQuestion() {
         const secondLastCorrect = secondLastIndex >= 0 ? 
             (answers[secondLastIndex] === examQuestions[secondLastIndex].answer) : false;
 
-        // Step Down: 1 Wrong
         if (!lastCorrect) {
             if (currentDifficulty === "hard") currentDifficulty = "medium";
             else if (currentDifficulty === "medium") currentDifficulty = "easy";
         } 
-        // Step Up: 2 Correct
         else if (lastCorrect && secondLastCorrect) {
             if (currentDifficulty === "easy") currentDifficulty = "medium";
             else if (currentDifficulty === "medium") currentDifficulty = "hard";
         }
     }
 
-    // Find available question from shuffled pool matching difficulty
     let pool = fullBank.filter(q => q.difficulty === currentDifficulty && !usedQuestionIds.has(q.id));
-    
-    // Fallback if difficulty exhausted
     if (pool.length === 0) pool = fullBank.filter(q => !usedQuestionIds.has(q.id));
 
     if (pool.length > 0) {
-        const selectedQuestion = pool[0]; // Take first from shuffled bank
+        const selectedQuestion = pool[0]; 
         examQuestions.push(selectedQuestion);
         usedQuestionIds.add(selectedQuestion.id);
     }
 }
 
-/**
- * LIVE SCORE UPDATE
- * Displays H, M, E breakdown and total score
- */
 function updateRunningScore() {
     let stats = { hard: 0, medium: 0, easy: 0, correct: 0, answered: 0 };
-
     examQuestions.forEach((q, i) => {
         if (answers[i] !== undefined) {
             stats.answered++;
@@ -110,7 +122,6 @@ function updateRunningScore() {
             }
         }
     });
-
     const scoreEl = document.getElementById("runningScore");
     if (scoreEl) {
         scoreEl.innerHTML = `H:${stats.hard} M:${stats.medium} E:${stats.easy} | Score: ${stats.correct}/${stats.answered}`;
@@ -125,7 +136,7 @@ function loadQuestion() {
     
     let flagMark = flagged.includes(current) ? " 🚩" : "";
     document.getElementById("progress").innerHTML = 
-        `Question ${current + 1} / ${EXAM_SIZE} [${q.difficulty.toUpperCase()}]${flagMark}`;
+        `Question ${current + 1} / ${activeExamSize} [${q.difficulty.toUpperCase()}]${flagMark}`;
 
     updateRunningScore();
     renderOptions(q);
@@ -157,7 +168,7 @@ function saveAnswer(value) {
 }
 
 /* ======================================================
-   NAVIGATION
+   NAVIGATION & UI
    ====================================================== */
 
 function nextQuestion() {
@@ -166,7 +177,7 @@ function nextQuestion() {
         return;
     }
 
-    if (current < EXAM_SIZE - 1) {
+    if (current < activeExamSize - 1) {
         current++;
         if (!examQuestions[current]) pickNextAdaptiveQuestion();
         loadQuestion();
@@ -201,12 +212,9 @@ function flagCurrent() {
     loadQuestion();
 }
 
-/* ======================================================
-   TIMER & RESULTS
-   ====================================================== */
-
 function startTimer() {
     if (examTimer) clearInterval(examTimer);
+    timeRemaining = 60 * 120; 
     examTimer = setInterval(() => {
         timeRemaining--;
         let mins = Math.floor(timeRemaining / 60);
