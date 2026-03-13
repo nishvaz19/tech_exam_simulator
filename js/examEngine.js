@@ -253,3 +253,16 @@ function saveExamResults(examType, score, total, levelBreakdown) {
     history.push(session);
     localStorage.setItem("exam_history", JSON.stringify(history));
 }
+
+
+const ExamEngine = {
+    // Pass 'questionBank' as an argument so it works for ANY certification file
+    getRandom: (bank, count) => [...bank].sort(() => 0.5 - Math.random()).slice(0, count),
+    
+    getByLevel: (bank, level) => bank.filter(q => q.difficulty === level),
+    
+    getByCategory: (bank, cat) => bank.filter(q => q.category.toLowerCase() === cat.toLowerCase())
+};
+
+// Usage:
+/const myAzureExam = ExamEngine.getRandom(questionBank, 20);
