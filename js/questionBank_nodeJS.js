@@ -3,7 +3,7 @@
    Topics: Event Loop, Buffer, Streams, FS, and Async Patterns
    ====================================================== */
 
-var questionBank = [
+const questionBank = [
   {
     id: 1,
     difficulty: "medium",
@@ -544,13 +544,11 @@ var questionBank = [
     explanation: "--prof generates a v8.log file that can be analyzed to see where the CPU is spending time.",
     hint: "Short for profiler."
   },
-  ];
+  
   /* ======================================================
    NODE.JS CERTIFICATION QUESTION BANK (Batch 2: 51-100)
    Topics: Express, Middleware, Security, Testing, & Clusters
    ====================================================== */
-
-const nodejsBatch2 = [
   {
     id: 51,
     difficulty: "medium",
@@ -1140,17 +1138,12 @@ const nodejsBatch2 = [
     answer: 1,
     explanation: "V8 creates hidden classes to track the shape of objects, allowing it to generate optimized machine code for property access.",
     hint: "V8 optimization technique."
-  }
-];
+  },
 
-// Append to master database
-questionBank.push(...nodejsBatch2);
 /* ======================================================
    NODE.JS CERTIFICATION QUESTION BANK (Batch 3: 101-150)
    Topics: Networking, Databases, GraphQL, and Debugging
    ====================================================== */
-
-const nodejsBatch3 = [
   {
     id: 101,
     difficulty: "medium",
@@ -1790,17 +1783,12 @@ const nodejsBatch3 = [
     answer: 0,
     explanation: "The 'events' module (specifically EventEmitter) is the foundation of Node's async architecture.",
     hint: "Event-driven architecture."
-  }
-];
+  },
 
-// Append to master database
-questionBank.push(...nodejsBatch3);
 /* ======================================================
    NODE.JS CERTIFICATION QUESTION BANK (Batch 4: 151-200)
    Topics: ESM/CommonJS, N-API, WASM, Deployment, & Architecture
    ====================================================== */
-
-const nodejsBatch4 = [
   {
     id: 151,
     difficulty: "hard",
@@ -2472,6 +2460,3 @@ const nodejsBatch4 = [
     hint: "Low-level language."
   }
 ];
-
-// Final update to the master database
-questionBank.push(...nodejsBatch4);
