@@ -6069,3 +6069,1094 @@ const batch8 = [
 
 // Final database update
 questionBank.push(...batch8);
+
+/* ======================================================
+   AZURE MASTER QUESTION BANK (Batch 1 - Renumbered)
+   Topics: Architecture, Security, AI/ML, Analytics, & EUC
+   ====================================================== */
+
+const azureBatch9 = [
+  {
+    id: 401,
+    difficulty: "easy",
+    category: "architecture",
+    question: "Which Azure resource acts as a logical container for resources deployed within an Azure subscription?",
+    options: ["Management Group", "Resource Group", "Availability Set", "Azure Policy"],
+    answer: 1,
+    explanation: "A Resource Group is a container that holds related resources for an Azure solution.",
+    hint: "Logical grouping."
+  },
+  {
+    id: 402,
+    difficulty: "medium",
+    category: "security",
+    question: "Which Azure service provides a central place to manage and store secrets, encryption keys, and certificates?",
+    options: ["Azure Sentinel", "Azure Key Vault", "Azure Dedicated Host", "Azure Information Protection"],
+    answer: 1,
+    explanation: "Azure Key Vault is used to securely store and tightly control access to tokens, passwords, certificates, and API keys.",
+    hint: "Vault for secrets."
+  },
+  {
+    id: 403,
+    difficulty: "hard",
+    category: "ai_ml",
+    question: "Which Azure service allows you to deploy Large Language Models (LLMs) like GPT-4 and integrate them into your applications via an API?",
+    options: ["Azure Machine Learning", "Azure OpenAI Service", "Azure Cognitive Search", "Azure Bot Service"],
+    answer: 1,
+    explanation: "Azure OpenAI Service provides REST API access to OpenAI's powerful language models including the GPT-4 and GPT-35-Turbo series.",
+    hint: "Generative AI on Azure."
+  },
+  {
+    id: 404,
+    difficulty: "medium",
+    category: "analytics",
+    question: "Which service is a limitlessly scalable analytics service that brings together enterprise data warehousing and Big Data analytics?",
+    options: ["Azure SQL Database", "Azure Synapse Analytics", "Azure Data Lake Storage", "Azure Analysis Services"],
+    answer: 1,
+    explanation: "Azure Synapse Analytics is the evolution of Azure SQL Data Warehouse, combining SQL technologies with Spark and Data Integration.",
+    hint: "Enterprise data warehouse."
+  },
+  {
+    id: 405,
+    difficulty: "hard",
+    category: "euc",
+    question: "A company needs to provide a full, cloud-based Windows 10/11 desktop experience to its remote employees. Which service should they use?",
+    options: ["Azure Bastion", "Azure Virtual Desktop (AVD)", "Azure App Service", "Windows 365"],
+    answer: 1,
+    explanation: "Azure Virtual Desktop is a desktop and app virtualization service that runs on the cloud.",
+    hint: "DaaS (Desktop as a Service)."
+  },
+  {
+    id: 406,
+    difficulty: "medium",
+    category: "security",
+    question: "Which Azure identity service is used for managing user access and providing Single Sign-On (SSO) for cloud and on-premises applications?",
+    options: ["Azure Active Directory (now Microsoft Entra ID)", "Azure Bastion", "Azure Security Center", "Azure Policy"],
+    answer: 0,
+    explanation: "Microsoft Entra ID (formerly Azure AD) is the multi-tenant, cloud-based identity and access management service.",
+    hint: "Identity provider."
+  },
+  {
+    id: 407,
+    difficulty: "hard",
+    category: "scenarios",
+    question: "You need to ensure that specific compliance requirements (like HIPAA) are enforced across all resources in your subscription. Which tool should you use?",
+    options: ["Azure Advisor", "Azure Policy", "Azure Blueprints", "Azure Monitor"],
+    answer: 1,
+    explanation: "Azure Policy helps to enforce organizational standards and to assess compliance at-scale.",
+    hint: "Enforcement and compliance."
+  },
+  {
+    id: 408,
+    difficulty: "medium",
+    category: "storage",
+    question: "Which storage tier in Azure Blob Storage is most cost-effective for data that is rarely accessed and can tolerate a retrieval latency of several hours?",
+    options: ["Hot Tier", "Cool Tier", "Archive Tier", "Premium Tier"],
+    answer: 2,
+    explanation: "The Archive tier has the lowest storage costs but higher access costs and retrieval latency.",
+    hint: "Long-term cold storage."
+  },
+  {
+    id: 409,
+    difficulty: "hard",
+    category: "ai_ml",
+    question: "Which Azure Machine Learning feature allows you to build models using a drag-and-drop interface without writing code?",
+    options: ["Azure ML SDK", "Azure ML Designer", "Azure ML Notebooks", "Automated ML (AutoML)"],
+    answer: 1,
+    explanation: "Azure ML Designer provides a visual canvas for building, testing, and deploying machine learning models.",
+    hint: "Visual ML building."
+  },
+  {
+    id: 410,
+    difficulty: "medium",
+    category: "networking",
+    question: "Which service allows you to connect your on-premises network to Azure over a private, dedicated connection that does not go over the public internet?",
+    options: ["Azure VPN Gateway", "Azure ExpressRoute", "Azure Front Door", "Azure Traffic Manager"],
+    answer: 1,
+    explanation: "ExpressRoute provides a private connection between your on-premises infrastructure and Azure datacenters.",
+    hint: "Private dedicated link."
+  },
+  {
+    id: 411,
+    difficulty: "easy",
+    category: "management",
+    question: "Which Azure tool provides recommendations on high availability, security, performance, and cost?",
+    options: ["Azure Monitor", "Azure Advisor", "Azure Service Health", "Azure Cost Management"],
+    answer: 1,
+    explanation: "Azure Advisor analyzes your configurations and usage telemetry to provide personalized best practice recommendations.",
+    hint: "Best practice consultant."
+  },
+  {
+    id: 412,
+    difficulty: "hard",
+    category: "analytics",
+    question: "You need to process real-time streaming data from millions of IoT devices. Which Azure service is designed for high-scale event ingestion?",
+    options: ["Azure Event Hubs", "Azure SQL Database", "Azure Data Factory", "Azure Logic Apps"],
+    answer: 0,
+    explanation: "Event Hubs is a big data streaming platform and event ingestion service capable of receiving millions of events per second.",
+    hint: "Streaming ingestion."
+  },
+  {
+    id: 413,
+    difficulty: "medium",
+    category: "security",
+    question: "Which Azure service is a cloud-native SIEM (Security Information and Event Management) and SOAR (Security Orchestration, Automation, and Response) solution?",
+    options: ["Microsoft Defender for Cloud", "Microsoft Sentinel", "Azure Dedicated HSM", "Azure Firewall"],
+    answer: 1,
+    explanation: "Microsoft Sentinel provides intelligent security analytics and threat intelligence across the enterprise.",
+    hint: "Security Operations Center tool."
+  },
+  {
+    id: 414,
+    difficulty: "hard",
+    category: "databases",
+    question: "Which Azure database service is globally distributed, multi-model, and provides single-digit millisecond latency?",
+    options: ["Azure SQL Database", "Azure Cosmos DB", "Azure Database for PostgreSQL", "Azure Cache for Redis"],
+    answer: 1,
+    explanation: "Cosmos DB is Azure's globally distributed NoSQL database service.",
+    hint: "Global NoSQL."
+  },
+  {
+    id: 415,
+    difficulty: "medium",
+    category: "scenarios",
+    question: "You want to automate the deployment of Azure resources using templates. Which technology is native to Azure for this purpose?",
+    options: ["Terraform", "Ansible", "Azure Resource Manager (ARM) templates", "Azure PowerShell"],
+    answer: 2,
+    explanation: "ARM templates are JSON files that define the infrastructure and configuration for your Azure solution.",
+    hint: "Infrastructure as Code."
+  },
+  {
+    id: 416,
+    difficulty: "easy",
+    category: "compute",
+    question: "Which Azure service allows you to run applications in containers without managing the underlying virtual machines?",
+    options: ["Azure Virtual Machines", "Azure Container Instances (ACI)", "Azure Batch", "Azure App Service"],
+    answer: 1,
+    explanation: "ACI is the fastest and simplest way to run a container in Azure, without having to manage any virtual machines.",
+    hint: "Serverless containers."
+  },
+  {
+    id: 417,
+    difficulty: "hard",
+    category: "security",
+    question: "What is 'Azure Confidential Computing'?",
+    options: ["Encrypting data at rest", "Protecting data while in use by performing computations in a hardware-based Trusted Execution Environment (TEE)", "Using a private VPN", "Keeping your subscription name hidden"],
+    answer: 1,
+    explanation: "Confidential computing protects data in memory from unauthorized access by isolating it during processing.",
+    hint: "Encryption in-use."
+  },
+  {
+    id: 18,
+    difficulty: "medium",
+    category: "governance",
+    question: "Which feature allows you to group multiple Azure subscriptions for unified management, policy, and compliance?",
+    options: ["Resource Groups", "Management Groups", "Subscription Sets", "Azure Organizations"],
+    answer: 1,
+    explanation: "Management groups provide a level of scope above subscriptions to manage them efficiently.",
+    hint: "Hierarchy above subscriptions."
+  },
+  {
+    id: 419,
+    difficulty: "hard",
+    category: "analytics",
+    question: "Which service is a cloud-based ETL and data integration service that allows you to create data-driven workflows (pipelines)?",
+    options: ["Azure Data Lake", "Azure Data Factory (ADF)", "Azure Synapse", "Azure Databricks"],
+    answer: 1,
+    explanation: "ADF is used to orchestrate data movement and transform data at scale.",
+    hint: "Cloud ETL."
+  },
+  {
+    id: 420,
+    difficulty: "medium",
+    category: "euc",
+    question: "What is 'Windows 365' compared to 'Azure Virtual Desktop'?",
+    options: ["Windows 365 is a fixed-price 'Cloud PC' service; AVD is a consumption-based flexible VDI solution", "They are the same service with different names", "Windows 365 is only for Linux", "AVD is for mobile phones only"],
+    answer: 0,
+    explanation: "Windows 365 provides a simple, per-user monthly price for a Cloud PC, whereas AVD offers deep customization and consumption pricing.",
+    hint: "Fixed-price Cloud PC."
+  },
+  {
+    id: 421,
+    difficulty: "hard",
+    category: "ai_ml",
+    question: "Which Azure AI service would you use to extract key-value pairs and table data from documents like invoices and receipts automatically?",
+    options: ["Azure AI Language", "Azure AI Document Intelligence (formerly Form Recognizer)", "Azure AI Vision", "Azure AI Search"],
+    answer: 1,
+    explanation: "Document Intelligence uses machine learning to extract text, key-value pairs, and structures from documents.",
+    hint: "Intelligent OCR."
+  },
+  {
+    id: 422,
+    difficulty: "medium",
+    category: "networking",
+    question: "Which Azure service provides a distributed network of servers that can efficiently deliver web content to users based on their geographic location?",
+    options: ["Azure Front Door", "Azure Content Delivery Network (CDN)", "Azure Traffic Manager", "Azure Application Gateway"],
+    answer: 1,
+    explanation: "Azure CDN stores cached content on edge servers in point-of-presence (POP) locations to minimize latency.",
+    hint: "Edge caching."
+  },
+  {
+    id: 423,
+    difficulty: "hard",
+    category: "security",
+    question: "In the Zero Trust model, which Azure feature allows you to require Multi-Factor Authentication (MFA) based on specific signals like user location or device state?",
+    options: ["Azure Role-Based Access Control (RBAC)", "Microsoft Entra Conditional Access", "Azure Firewall", "Azure Policy"],
+    answer: 1,
+    explanation: "Conditional Access policies are 'if-then' statements: if a user wants to access a resource, then they must complete an action.",
+    hint: "Signals and Enforcements."
+  },
+  {
+    id: 424,
+    difficulty: "easy",
+    category: "billing",
+    question: "Which Azure tool helps you estimate the costs of services before you deploy them?",
+    options: ["Azure Cost Management", "Azure Pricing Calculator", "Azure TCO Calculator", "Azure Advisor"],
+    answer: 1,
+    explanation: "The Pricing Calculator is used for upfront estimation of Azure services.",
+    hint: "Pre-deployment estimation."
+  },
+  {
+    id: 425,
+    difficulty: "medium",
+    category: "scenarios",
+    question: "You need to host a simple web application with automatic scaling and no server management. Which service is most appropriate?",
+    options: ["Azure Virtual Machines", "Azure App Service", "Azure Functions", "Azure Static Web Apps"],
+    answer: 1,
+    explanation: "App Service is a PaaS offering for hosting web applications, REST APIs, and mobile backends.",
+    hint: "Managed web hosting."
+  },
+  {
+    id: 426,
+    difficulty: "hard",
+    category: "scenarios",
+    question: "A company wants to run a large-scale, parallel, and high-performance computing (HPC) batch job in Azure. Which service is best?",
+    options: ["Azure Functions", "Azure Batch", "Azure Logic Apps", "Azure App Service"],
+    answer: 1,
+    explanation: "Azure Batch is designed to run large-scale parallel and high-performance computing applications efficiently.",
+    hint: "Large-scale batch jobs."
+  },
+  {
+    id: 427,
+    difficulty: "medium",
+    category: "management",
+    question: "Which Azure service provides an 'Inventory' and 'Change Tracking' view of your resources, helping you understand which resources exist and how they have changed?",
+    options: ["Azure Monitor", "Azure Resource Graph", "Azure Advisor", "Azure Blueprints"],
+    answer: 1,
+    explanation: "Resource Graph allows you to explore your Azure resources across subscriptions using complex queries.",
+    hint: "Querying resources."
+  },
+  {
+    id: 428,
+    difficulty: "hard",
+    category: "governance",
+    question: "What is an 'Azure Blueprint'?",
+    options: ["A drawing of a data center", "A way to orchestrate the deployment of various resource templates and other artifacts (like RBAC and Policies) into a repeatable set", "A type of virtual machine", "A billing report"],
+    answer: 1,
+    explanation: "Blueprints help architects define a repeatable set of Azure resources that implements and adheres to an organization's standards.",
+    hint: "Repeatable environment setup."
+  },
+  {
+    id: 429,
+    difficulty: "medium",
+    category: "compute",
+    question: "Which service is 'Serverless' and allows you to run small pieces of code (functions) in response to events without worrying about infrastructure?",
+    options: ["Azure App Service", "Azure Functions", "Azure Virtual Machines", "Azure Container Instances"],
+    answer: 1,
+    explanation: "Azure Functions is the event-driven serverless compute platform.",
+    hint: "Code triggered by events."
+  },
+  {
+    id: 430,
+    difficulty: "hard",
+    category: "scenarios",
+    question: "You need to migrate a legacy SQL Server to Azure. You want to keep full control over the Operating System. Which option should you choose?",
+    options: ["Azure SQL Database", "Azure SQL Managed Instance", "SQL Server on Azure Virtual Machines (IaaS)", "Azure Cosmos DB"],
+    answer: 2,
+    explanation: "SQL Server on VM (IaaS) gives you full administrative control over the SQL Server instance and the underlying OS.",
+    hint: "Full OS control."
+  },
+  {
+    id: 431,
+    difficulty: "medium",
+    category: "security",
+    question: "Which service provides a managed Layer 7 load balancer that includes Web Application Firewall (WAF) capabilities to protect web apps?",
+    options: ["Azure Load Balancer", "Azure Application Gateway", "Azure Traffic Manager", "Azure Front Door"],
+    answer: 1,
+    explanation: "Application Gateway is a web traffic load balancer that can include a WAF for protection.",
+    hint: "Layer 7 LB + WAF."
+  },
+  {
+    id: 432,
+    difficulty: "hard",
+    category: "ai_ml",
+    question: "Which Azure service acts as an AI-powered search engine that can crawl your data and provide a searchable index for your custom applications?",
+    options: ["Azure AI Search (formerly Cognitive Search)", "Azure AI Language", "Azure Data Lake", "Azure Synapse"],
+    answer: 0,
+    explanation: "Azure AI Search is a search-as-a-service cloud solution that gives developers APIs and tools for adding a rich search experience.",
+    hint: "Search-as-a-Service."
+  },
+  {
+    id: 433,
+    difficulty: "medium",
+    category: "scenarios",
+    question: "Which Azure service is used to connect, monitor, and manage billions of IoT assets?",
+    options: ["Azure Event Hubs", "Azure IoT Hub", "Azure Stream Analytics", "Azure Logic Apps"],
+    answer: 1,
+    explanation: "IoT Hub is a managed service that acts as a central message hub for bi-directional communication between an IoT application and the devices it manages.",
+    hint: "IoT connectivity."
+  },
+  {
+    id: 434,
+    difficulty: "hard",
+    category: "analytics",
+    question: "A company needs to perform collaborative data science and data engineering using Apache Spark. Which Azure service is the best fit?",
+    options: ["Azure HDInsight", "Azure Databricks", "Azure Synapse Spark Pools", "Azure Data Factory"],
+    answer: 1,
+    explanation: "Azure Databricks is an Apache Spark-based analytics platform optimized for the Microsoft Azure cloud.",
+    hint: "Optimized Spark platform."
+  },
+  {
+    id: 435,
+    difficulty: "easy",
+    category: "networking",
+    question: "What is the basic unit of networking in Azure, where you can launch resources like Virtual Machines?",
+    options: ["Subnet", "Virtual Network (VNet)", "Network Security Group", "Private Link"],
+    answer: 1,
+    explanation: "An Azure Virtual Network (VNet) is a representation of your own network in the cloud.",
+    hint: "Azure private network."
+  },
+  {
+    id: 436,
+    difficulty: "hard",
+    category: "storage",
+    question: "What is 'Azure Data Lake Storage Gen2'?",
+    options: ["A type of SQL database", "A set of capabilities dedicated to big data analytics, built on Azure Blob Storage and providing a hierarchical namespace", "A faster hard drive for VMs", "A backup service"],
+    answer: 1,
+    explanation: "Gen2 combines the power of a hierarchical file system with the scale and cost of Blob storage.",
+    hint: "Hierarchical Big Data storage."
+  },
+  {
+    id: 437,
+    difficulty: "medium",
+    category: "security",
+    question: "Which Azure tool provides a 'Security Score' and gives recommendations to improve your cloud security posture across subscriptions?",
+    options: ["Microsoft Sentinel", "Microsoft Defender for Cloud", "Azure Bastion", "Azure Key Vault"],
+    answer: 1,
+    explanation: "Defender for Cloud (formerly Security Center) provides Cloud Security Posture Management (CSPM).",
+    hint: "Secure Score."
+  },
+  {
+    id: 438,
+    difficulty: "hard",
+    category: "networking",
+    question: "Which service provides a managed RDP/SSH solution that allows you to connect to VMs through your browser and the Azure portal, without exposing public IPs?",
+    options: ["Azure VPN Gateway", "Azure Bastion", "Azure ExpressRoute", "Azure Firewall"],
+    answer: 1,
+    explanation: "Azure Bastion is a service you deploy that lets you connect to a virtual machine using your browser and the Azure portal.",
+    hint: "No-Public-IP RDP."
+  },
+  {
+    id: 439,
+    difficulty: "medium",
+    category: "scenarios",
+    question: "A developer wants to host a static website (HTML, CSS, JS) with integrated serverless APIs (Azure Functions) and built-in CI/CD. Which service is designed for this?",
+    options: ["Azure App Service", "Azure Static Web Apps", "Azure Blob Storage", "Azure Container Instances"],
+    answer: 1,
+    explanation: "Azure Static Web Apps is a service that automatically builds and deploys full stack web apps to Azure from a code repository.",
+    hint: "Frontend + Serverless API."
+  },
+  {
+    id: 440,
+    difficulty: "hard",
+    category: "scenarios",
+    question: "You need to migrate 500 TB of data to Azure, but your internet connection is too slow. Which hardware-based migration tool should you use?",
+    options: ["Azure Data Box", "Azure Data Factory", "Azure Storage Explorer", "Azure Import/Export Service"],
+    answer: 0,
+    explanation: "Azure Data Box is a ruggedized device that you fill with data and ship back to Azure.",
+    hint: "Offline data transfer."
+  },
+  {
+    id: 441,
+    difficulty: "medium",
+    category: "scenarios",
+    question: "Which Azure service is used to create automated workflows that integrate apps, data, and systems across organizations (a low-code iPaaS)?",
+    options: ["Azure Functions", "Azure Logic Apps", "Azure Service Bus", "Azure Event Grid"],
+    answer: 1,
+    explanation: "Logic Apps is a cloud service that helps you schedule, automate, and orchestrate tasks and business processes.",
+    hint: "Workflow orchestration."
+  },
+  {
+    id: 442,
+    difficulty: "hard",
+    category: "security",
+    question: "What is 'Azure Private Link'?",
+    options: ["A type of VPN", "A service that allows you to access Azure PaaS Services (like SQL or Storage) over a private endpoint in your VNet", "A way to link two private subscriptions", "A physical cable from Azure"],
+    answer: 1,
+    explanation: "Private Link enables you to access services privately; the traffic stays on the Microsoft network.",
+    hint: "Private IP for PaaS."
+  },
+  {
+    id: 443,
+    difficulty: "medium",
+    category: "scenarios",
+    question: "A company wants to run its SAP workloads on Azure. Which VM series is specifically certified and optimized for memory-intensive applications like SAP HANA?",
+    options: ["F-series", "D-series", "M-series", "A-series"],
+    answer: 2,
+    explanation: "M-series VMs offer high memory capacity and are ideal for heavy in-memory workloads like SAP HANA.",
+    hint: "High-memory VMs."
+  },
+  {
+    id: 444,
+    difficulty: "hard",
+    category: "management",
+    question: "What is 'Azure Arc'?",
+    options: ["A type of virtual network", "A service that allows you to manage and govern your servers, Kubernetes clusters, and applications across on-premises, edge, and multi-cloud environments", "A backup service for VMs", "A gaming platform"],
+    answer: 1,
+    explanation: "Azure Arc extends Azure management and services to any infrastructure.",
+    hint: "Multi-cloud/Hybrid management."
+  },
+  {
+    id: 445,
+    difficulty: "medium",
+    category: "scenarios",
+    question: "You need a high-performance, enterprise-grade file share that supports both NFS and SMB protocols. Which service is best?",
+    options: ["Azure Files", "Azure NetApp Files", "Azure Blob Storage", "Azure Data Lake"],
+    answer: 1,
+    explanation: "Azure NetApp Files is a first-party Azure service for high-performance file storage.",
+    hint: "Enterprise NetApp on Azure."
+  },
+  {
+    id: 446,
+    difficulty: "hard",
+    category: "networking",
+    question: "Which Azure service acts as a global, Layer 7 load balancer that provides fast, reliable, and secure access between your users and your applications' static and dynamic web content?",
+    options: ["Azure Application Gateway", "Azure Front Door", "Azure Traffic Manager", "Azure Load Balancer"],
+    answer: 1,
+    explanation: "Front Door is a global entry point that uses the Microsoft global edge network to create fast, secure, and scalable web apps.",
+    hint: "Global Layer 7 Entry Point."
+  },
+  {
+    id: 447,
+    difficulty: "medium",
+    category: "ai_ml",
+    question: "Which Azure AI service provides pre-built models for language detection, sentiment analysis, and key phrase extraction?",
+    options: ["Azure AI Language", "Azure AI Speech", "Azure AI Vision", "Azure AI Search"],
+    answer: 0,
+    explanation: "Azure AI Language (part of Cognitive Services) handles text-based AI tasks.",
+    hint: "Natural Language Processing."
+  },
+  {
+    id: 448,
+    difficulty: "hard",
+    category: "scenarios",
+    question: "You are designing a web application and want to distribute traffic to different regions based on the lowest latency for the user. Which service do you use?",
+    options: ["Azure Load Balancer", "Azure Traffic Manager", "Azure Application Gateway", "Azure Front Door"],
+    answer: 1,
+    explanation: "Traffic Manager is a DNS-based traffic load balancer that allows you to distribute traffic optimally to services across global Azure regions.",
+    hint: "DNS-based global routing."
+  },
+  {
+    id: 449,
+    difficulty: "medium",
+    category: "security",
+    question: "Which service provides managed DDoS protection for your Virtual Networks to protect against volumetric and protocol attacks?",
+    options: ["Azure Firewall", "Azure DDoS Protection", "Azure Front Door", "Microsoft Defender for Cloud"],
+    answer: 1,
+    explanation: "Azure DDoS Protection (IP Protection or Network Protection) provides enhanced DDoS mitigation capabilities.",
+    hint: "VNet DDoS shield."
+  },
+  {
+    id: 450,
+    difficulty: "hard",
+    category: "scenarios",
+    question: "A developer wants to run a serverless workflow that waits for an approval email before continuing a process. Which service is most appropriate?",
+    options: ["Azure Functions", "Azure Logic Apps", "Azure Event Grid", "Azure Service Bus"],
+    answer: 1,
+    explanation: "Logic Apps is excellent for workflows that involve human interaction and external connectors like Office 365 email.",
+    hint: "Workflow with connectors."
+  }
+];
+
+// Append to master database
+questionBank.push(...azureBatch9);
+/* ======================================================
+   AZURE MASTER QUESTION BANK (Batch 2: 451-500)
+   Topics: Governance, DevOps, Advanced Security, & Well-Architected
+   ====================================================== */
+
+const azureBatch10 = [
+  {
+    id: 451,
+    difficulty: "medium",
+    category: "governance",
+    question: "Which Azure tool allows you to prevent the accidental deletion or modification of critical resources, regardless of a user's permissions?",
+    options: ["Azure Policy", "Resource Locks", "Azure RBAC", "Management Groups"],
+    answer: 1,
+    explanation: "Resource Locks (CanNotDelete or ReadOnly) provide a way for administrators to lock a subscription, resource group, or resource.",
+    hint: "Prevent accidental deletion."
+  },
+  {
+    id: 452,
+    difficulty: "hard",
+    category: "devops",
+    question: "In Azure DevOps, which component is used to manage and host private Docker images and Maven/NuGet packages?",
+    options: ["Azure Repos", "Azure Artifacts", "Azure Pipelines", "Azure Container Registry"],
+    answer: 1,
+    explanation: "Azure Artifacts enables developers to share and consume packages from different feeds and public registries.",
+    hint: "Package management."
+  },
+  {
+    id: 453,
+    difficulty: "medium",
+    category: "security",
+    question: "Which service provides a managed 'jumpbox' to access Azure Virtual Machines over SSL without requiring a public IP address on the VM?",
+    options: ["Azure VPN Gateway", "Azure Front Door", "Azure Bastion", "Azure ExpressRoute"],
+    answer: 2,
+    explanation: "Azure Bastion provides secure RDP/SSH connectivity to your VMs directly in the portal over SSL.",
+    hint: "Browser-based RDP."
+  },
+  {
+    id: 454,
+    difficulty: "hard",
+    category: "scenarios",
+    question: "You need to store data for a globally distributed app. You require the ability to choose between five well-defined consistency levels. Which service fits?",
+    options: ["Azure SQL Database", "Azure Table Storage", "Azure Cosmos DB", "Azure Synapse"],
+    answer: 2,
+    explanation: "Cosmos DB offers five consistency levels: Strong, Bounded Staleness, Session, Consistent Prefix, and Eventual.",
+    hint: "Multi-model global NoSQL."
+  },
+  {
+    id: 455,
+    difficulty: "medium",
+    category: "architecture",
+    question: "In the Azure Well-Architected Framework, which pillar focuses on the ability of a system to recover from failures and continue to function?",
+    options: ["Operational Excellence", "Reliability", "Performance Efficiency", "Security"],
+    answer: 1,
+    explanation: "The Reliability pillar ensures that your application can meet the commitments you make to your customers regarding uptime.",
+    hint: "Uptime and recovery."
+  },
+  {
+    id: 456,
+    difficulty: "easy",
+    category: "management",
+    question: "Which Azure service provides information about planned maintenance and service advisories that may affect your resources?",
+    options: ["Azure Monitor", "Azure Service Health", "Azure Advisor", "Azure Policy"],
+    answer: 1,
+    explanation: "Azure Service Health provides a personalized dashboard for the health of the Azure services and regions you use.",
+    hint: "Platform health status."
+  },
+  {
+    id: 457,
+    difficulty: "hard",
+    category: "security",
+    question: "Which Microsoft Entra ID feature allows you to provide 'Just-In-Time' (JIT) administrative access to Azure resources?",
+    options: ["Conditional Access", "Privileged Identity Management (PIM)", "Access Reviews", "Managed Identities"],
+    answer: 1,
+    explanation: "PIM allows you to manage, control, and monitor access to important resources, providing access only when needed.",
+    hint: "JIT Admin access."
+  },
+  {
+    id: 458,
+    difficulty: "medium",
+    category: "ai_ml",
+    question: "You want to build a custom chatbot that uses your own PDF documents to answer questions (RAG pattern). Which Azure service is used to index and retrieve that data?",
+    options: ["Azure OpenAI", "Azure AI Search", "Azure Machine Learning", "Azure Bot Service"],
+    answer: 1,
+    explanation: "Azure AI Search provides the retrieval capability in Retrieval-Augmented Generation (RAG) patterns.",
+    hint: "Vector and keyword search."
+  },
+  {
+    id: 459,
+    difficulty: "hard",
+    category: "analytics",
+    question: "Which Azure Synapse Analytics feature allows you to query data sitting in a Data Lake using T-SQL without having to provision a dedicated SQL pool?",
+    options: ["Serverless SQL pool", "Spark pool", "Data Integration", "Synapse Link"],
+    answer: 0,
+    explanation: "Serverless SQL pools allow you to use T-SQL to query data in your data lake on-demand with no infrastructure setup.",
+    hint: "Query CSV/Parquet in-place."
+  },
+  {
+    id: 460,
+    difficulty: "medium",
+    category: "scenarios",
+    question: "You are hosting a web app on Azure App Service. You want to test a new version of the app with 10% of your traffic before a full rollout. What feature do you use?",
+    options: ["Deployment Slots", "App Service Plans", "Traffic Manager", "Azure Front Door"],
+    answer: 0,
+    explanation: "Deployment slots are live apps with their own host names; you can swap slots or route a percentage of traffic to them.",
+    hint: "Staging environments."
+  },
+  {
+    id: 461,
+    difficulty: "hard",
+    category: "security",
+    question: "What is the difference between a 'System-assigned' and 'User-assigned' Managed Identity?",
+    options: [
+      "System-assigned is shared across resources; User-assigned is tied to one resource",
+      "System-assigned is tied to the lifecycle of a single resource; User-assigned is a standalone resource that can be assigned to multiple resources",
+      "They are identical in function",
+      "User-assigned only works for on-premises servers"
+    ],
+    answer: 1,
+    explanation: "System-assigned identities are deleted when the resource is deleted. User-assigned identities exist independently.",
+    hint: "Lifecycle vs. Shared."
+  },
+  {
+    id: 462,
+    difficulty: "medium",
+    category: "networking",
+    question: "Which service would you use to connect two Azure Virtual Networks (VNets) together so that resources can communicate as if they were in the same network?",
+    options: ["VNet Peering", "VPN Gateway", "ExpressRoute", "Azure Bastion"],
+    answer: 0,
+    explanation: "VNet Peering connects two VNets over the Azure backbone network with low latency and high bandwidth.",
+    hint: "Direct VNet connection."
+  },
+  {
+    id: 463,
+    difficulty: "hard",
+    category: "scenarios",
+    question: "A financial firm requires dedicated physical servers in an Azure datacenter to meet strict compliance and isolation requirements. Which service should they use?",
+    options: ["Azure Virtual Machines", "Azure Dedicated Host", "Azure App Service Environment", "Azure Confidential Computing"],
+    answer: 1,
+    explanation: "Azure Dedicated Host provides physical servers that are dedicated to one Azure subscription.",
+    hint: "Hardware isolation."
+  },
+  {
+    id: 464,
+    difficulty: "medium",
+    category: "governance",
+    question: "Which Azure tool is used to assign metadata to resources for the purpose of organizing billing and management?",
+    options: ["Azure Policy", "Tags", "Resource Groups", "Management Groups"],
+    answer: 1,
+    explanation: "Tags are name-value pairs that help you categorize resources and view consolidated billing.",
+    hint: "Key-value metadata."
+  },
+  {
+    id: 465,
+    difficulty: "hard",
+    category: "analytics",
+    question: "You are using Azure Databricks. You want to ensure that all data changes (inserts/updates/deletes) are recorded so you can travel back in time to earlier versions. What feature is this?",
+    options: ["Delta Lake Time Travel", "Databricks Snapshot", "Azure Backup", "SQL Audit Logs"],
+    answer: 0,
+    explanation: "Delta Lake stores a transaction log that allows you to query previous versions of data.",
+    hint: "Version history for data."
+  },
+  {
+    id: 466,
+    difficulty: "medium",
+    category: "euc",
+    question: "In Azure Virtual Desktop, what is a 'Host Pool'?",
+    options: [
+      "A collection of users",
+      "A collection of identical virtual machines for user sessions",
+      "A storage account for profiles",
+      "A network of virtual desktops"
+    ],
+    answer: 1,
+    explanation: "A host pool is a collection of one or more identical virtual machines within Azure Virtual Desktop environments.",
+    hint: "Group of session hosts."
+  },
+  {
+    id: 467,
+    difficulty: "easy",
+    category: "compute",
+    question: "What is the primary benefit of 'Azure Spot Virtual Machines'?",
+    options: ["Highest availability", "Significant cost savings for interruptible workloads", "Unlimited CPU performance", "Dedicated hardware"],
+    answer: 1,
+    explanation: "Spot VMs allow you to take advantage of unused Azure capacity at a deep discount, but they can be evicted at any time.",
+    hint: "Unused capacity pricing."
+  },
+  {
+    id: 468,
+    difficulty: "hard",
+    category: "networking",
+    question: "Which Azure service provides a central, private IP address for multiple PaaS services, ensuring that data never traverses the public internet?",
+    options: ["Azure Private Link", "Azure Service Endpoints", "Azure Firewall", "Azure Front Door"],
+    answer: 0,
+    explanation: "Private Link uses a private endpoint (private IP) in your VNet to connect to services.",
+    hint: "Private IP for PaaS."
+  },
+  {
+    id: 469,
+    difficulty: "medium",
+    category: "security",
+    question: "Which Azure service provides cloud-native, intelligent network security to protect your Azure Virtual Network resources (acting as a Statefull Firewall)?",
+    options: ["Azure Firewall", "Network Security Group (NSG)", "Azure Bastion", "Azure DDoS Protection"],
+    answer: 0,
+    explanation: "Azure Firewall is a managed, cloud-based network security service that protects your VNet resources with built-in high availability.",
+    hint: "Fully managed VNet firewall."
+  },
+  {
+    id: 470,
+    difficulty: "hard",
+    category: "devops",
+    question: "What is 'Azure Bicep'?",
+    options: [
+      "A new monitoring tool",
+      "A Domain-Specific Language (DSL) that uses declarative syntax to deploy Azure resources, simplifying ARM templates",
+      "A testing framework for C#",
+      "A security scanner"
+    ],
+    answer: 1,
+    explanation: "Bicep is a transparent abstraction over ARM templates that makes the authoring experience easier.",
+    hint: "Cleaner Infrastructure as Code."
+  },
+  {
+    id: 471,
+    difficulty: "medium",
+    category: "scenarios",
+    question: "A company wants to move its local file server to the cloud but keep local caching for fast access. Which service should they use?",
+    options: ["Azure Files", "Azure File Sync", "Azure Blob Storage", "Azure NetApp Files"],
+    answer: 1,
+    explanation: "Azure File Sync centralizes your organization's file shares in Azure Files, while keeping the flexibility, performance, and compatibility of an on-premises file server.",
+    hint: "Cloud shares + Local cache."
+  },
+  {
+    id: 472,
+    difficulty: "hard",
+    category: "ai_ml",
+    question: "Which Azure OpenAI model is best suited for generating code from natural language prompts?",
+    options: ["GPT-4", "Codex (integrated into GPT-3.5/4)", "DALL-E", "Whisper"],
+    answer: 1,
+    explanation: "Codex is the model series specifically trained on code, though GPT-4 now encompasses these capabilities.",
+    hint: "Programming assistant model."
+  },
+  {
+    id: 473,
+    difficulty: "medium",
+    category: "architecture",
+    question: "What is an Azure 'Availability Zone'?",
+    options: [
+      "A grouping of multiple subscriptions",
+      "Physically separate datacenters within an Azure region",
+      "A backup of a database",
+      "A logical group of resources"
+    ],
+    answer: 1,
+    explanation: "Availability Zones are unique physical locations within a region, each made up of one or more datacenters with independent power/cooling.",
+    hint: "Datacenter level redundancy."
+  },
+  {
+    id: 474,
+    difficulty: "hard",
+    category: "databases",
+    question: "You need an Azure SQL database that automatically scales compute based on workload demand and bills for the amount of compute used per second. Which compute tier do you choose?",
+    options: ["Provisioned", "Serverless", "Hyperscale", "Business Critical"],
+    answer: 1,
+    explanation: "The Serverless compute tier for Azure SQL Database automatically scales and pauses during inactive periods.",
+    hint: "Auto-scale and Auto-pause."
+  },
+  {
+    id: 475,
+    difficulty: "medium",
+    category: "governance",
+    question: "In Azure RBAC, what is a 'Role Definition'?",
+    options: [
+      "A list of users",
+      "A collection of permissions, such as read, write, and delete",
+      "A security group",
+      "A management group"
+    ],
+    answer: 1,
+    explanation: "A role definition is the set of permissions that can be performed, such as 'Contributor' or 'Owner'.",
+    hint: "The 'What' of RBAC."
+  },
+  {
+    id: 476,
+    difficulty: "hard",
+    category: "scenarios",
+    question: "A company needs to analyze petabytes of data using Spark and Python within an integrated workspace that includes notebooks and automated clusters. Which service is best?",
+    options: ["Azure Synapse Analytics", "Azure Databricks", "Azure HDInsight", "Azure Batch"],
+    answer: 1,
+    explanation: "Azure Databricks is the premier managed Apache Spark platform for high-scale data science and engineering.",
+    hint: "Managed Spark Notebooks."
+  },
+  {
+    id: 477,
+    difficulty: "medium",
+    category: "security",
+    question: "Which service protects Azure SQL databases from threats like SQL injection and unusual access patterns?",
+    options: ["Microsoft Defender for SQL", "Azure Firewall", "Azure WAF", "Azure Key Vault"],
+    answer: 0,
+    explanation: "Defender for SQL identifies potential database vulnerabilities and detects anomalous activities.",
+    hint: "Database threat detection."
+  },
+  {
+    id: 478,
+    difficulty: "hard",
+    category: "networking",
+    question: "What is 'Global VNet Peering'?",
+    options: [
+      "Peering within the same region",
+      "Connecting VNets across different Azure regions",
+      "Connecting a VNet to an on-premises network",
+      "Connecting a VNet to the internet"
+    ],
+    answer: 1,
+    explanation: "Global VNet Peering allows you to connect virtual networks in different Azure regions.",
+    hint: "Inter-region private connection."
+  },
+  {
+    id: 479,
+    difficulty: "medium",
+    category: "management",
+    question: "Which tool allows you to visually track the costs of your Azure resources and set budgets/alerts?",
+    options: ["Azure Pricing Calculator", "Azure Cost Management + Billing", "Azure Advisor", "Azure Monitor"],
+    answer: 1,
+    explanation: "Cost Management allows you to analyze costs, create budgets, and set alerts when spending reaches certain thresholds.",
+    hint: "Post-deployment cost tracking."
+  },
+  {
+    id: 480,
+    difficulty: "hard",
+    category: "governance",
+    question: "Which Azure service allows you to create and manage 'Compliant Environments' by packaging ARM templates, RBAC, and Policies together?",
+    options: ["Azure Policy", "Azure Blueprints", "Azure Resource Graph", "Azure Arc"],
+    answer: 1,
+    explanation: "Blueprints enable cloud architects to define a repeatable set of Azure resources that implement an organization's standards.",
+    hint: "Environment orchestration."
+  },
+  {
+    id: 481,
+    difficulty: "medium",
+    category: "ai_ml",
+    question: "What is the primary purpose of 'Azure AI Language' (formerly LUIS/Text Analytics)?",
+    options: [
+      "Translating audio to text",
+      "Building models that understand intent and extract information from text",
+      "Generating images from text",
+      "Hosting custom Python models"
+    ],
+    answer: 1,
+    explanation: "Azure AI Language is a cloud-based service that provides Natural Language Processing (NLP) features.",
+    hint: "Text understanding."
+  },
+  {
+    id: 482,
+    difficulty: "hard",
+    category: "scenarios",
+    question: "You need to store non-relational data that requires sub-millisecond response times. Which Azure service should you use?",
+    options: ["Azure Cosmos DB", "Azure Cache for Redis", "Azure SQL Database", "Azure Table Storage"],
+    answer: 1,
+    explanation: "Azure Cache for Redis provides an in-memory data store for extremely low-latency performance.",
+    hint: "In-memory NoSQL."
+  },
+  {
+    id: 483,
+    difficulty: "medium",
+    category: "storage",
+    question: "What is 'Object Replication' in Azure Blob Storage?",
+    options: [
+      "Backing up data to a tape drive",
+      "Asynchronously copying block blobs between a source storage account and a destination account",
+      "The same as RAID-1",
+      "Moving data to the Archive tier"
+    ],
+    answer: 1,
+    explanation: "Object replication helps you minimize latency and increase availability by syncing blobs between accounts.",
+    hint: "Account-to-account blob sync."
+  },
+  {
+    id: 484,
+    difficulty: "hard",
+    category: "security",
+    question: "In Azure, what is the 'Shared Responsibility Model' for a PaaS service?",
+    options: [
+      "Microsoft is responsible for everything",
+      "The customer is responsible for everything",
+      "Microsoft manages the infrastructure and OS; the customer manages applications and data",
+      "Responsibilities are chosen by a contract"
+    ],
+    answer: 2,
+    explanation: "In PaaS, the cloud provider handles the underlying platform, while you manage the code and data.",
+    hint: "Platform vs. Data responsibility."
+  },
+  {
+    id: 485,
+    difficulty: "medium",
+    category: "compute",
+    question: "Which service is a managed Kubernetes service in Azure that simplifies deploying and managing containerized applications?",
+    options: ["Azure Container Instances", "Azure Kubernetes Service (AKS)", "Azure App Service", "Azure Functions"],
+    answer: 1,
+    explanation: "AKS reduces the complexity and operational overhead of managing a Kubernetes cluster.",
+    hint: "Managed K8s."
+  },
+  {
+    id: 486,
+    difficulty: "hard",
+    category: "scenarios",
+    question: "You want to automate the remediation of a security finding (e.g., automatically closing a port when it's opened). Which combination is best?",
+    options: [
+      "Azure Policy + Azure Functions/Logic Apps",
+      "Azure Monitor + Azure Advisor",
+      "Azure Bastion + NSG",
+      "Microsoft Sentinel + Power BI"
+    ],
+    answer: 0,
+    explanation: "Azure Policy can trigger a remediation task via Logic Apps or Functions when a resource is found non-compliant.",
+    hint: "Policy + Automation."
+  },
+  {
+    id: 487,
+    difficulty: "medium",
+    category: "networking",
+    question: "What is an Azure 'Service Endpoint'?",
+    options: [
+      "A public IP for a VM",
+      "A way to secure Azure service resources to your virtual network by extending VNet identity to the service",
+      "A VPN connection",
+      "A load balancer front-end"
+    ],
+    answer: 1,
+    explanation: "Service endpoints provide secure and direct connectivity to Azure services over an optimized route over the Azure backbone network.",
+    hint: "Secure PaaS to VNet."
+  },
+  {
+    id: 488,
+    difficulty: "hard",
+    category: "analytics",
+    question: "Which Azure service is best suited for doing large-scale data exploration and telemetry analysis using the Kusto Query Language (KQL)?",
+    options: ["Azure Data Explorer", "Azure Synapse SQL", "Azure SQL Database", "Azure Databricks"],
+    answer: 0,
+    explanation: "Azure Data Explorer (ADX) is a fast and highly scalable data exploration service for log and telemetry data.",
+    hint: "Home of KQL."
+  },
+  {
+    id: 489,
+    difficulty: "medium",
+    category: "management",
+    question: "What does the 'Azure Resource Graph' allow you to do?",
+    options: [
+      "Draw a diagram of your network",
+      "Run complex queries across all your subscriptions to explore and inventory resources",
+      "Monitor the performance of your CPU",
+      "Check the weather in the datacenter"
+    ],
+    answer: 1,
+    explanation: "Resource Graph provides an efficient way to query resource properties across the entire Azure environment.",
+    hint: "SQL-like query for resources."
+  },
+  {
+    id: 490,
+    difficulty: "hard",
+    category: "devops",
+    question: "In an Azure Pipeline, what is a 'Self-hosted Agent'?",
+    options: [
+      "A robot in the datacenter",
+      "An agent you drop on your own machine (on-prem or VM) to run build and deployment jobs",
+      "A software for tracking bugs",
+      "A type of GitHub Action"
+    ],
+    answer: 1,
+    explanation: "Self-hosted agents give you more control to install dependent software needed for your builds and deployments.",
+    hint: "Your hardware, Azure's pipeline."
+  },
+  {
+    id: 491,
+    difficulty: "medium",
+    category: "euc",
+    question: "Which FSLogix feature is commonly used in Azure Virtual Desktop to handle user profiles?",
+    options: ["Profile Containers", "App Masking", "Java Redirection", "Cloud Cache"],
+    answer: 0,
+    explanation: "Profile Containers redirect user profiles to a network location, allowing them to roam across virtual machines seamlessly.",
+    hint: "Roaming VDI profiles."
+  },
+  {
+    id: 492,
+    difficulty: "hard",
+    category: "architecture",
+    question: "Which Azure region type is designed for high-security workloads and is physically isolated from other Azure regions (e.g., for US Government)?",
+    options: ["Global Regions", "Sovereign Regions", "Availability Zones", "Regional Pairs"],
+    answer: 1,
+    explanation: "Sovereign regions like Azure Government are physically isolated instances of Azure.",
+    hint: "Isolation for government/legal."
+  },
+  {
+    id: 493,
+    difficulty: "medium",
+    category: "scenarios",
+    question: "You want to run a web application that consists of several containers. You want to manage them together as a group. Which service is best?",
+    options: ["Azure Container Instances (ACI) with Container Groups", "Azure Virtual Machines", "Azure Functions", "Azure Storage"],
+    answer: 0,
+    explanation: "A container group in ACI is a collection of containers that are scheduled on the same host machine.",
+    hint: "Multi-container serverless."
+  },
+  {
+    id: 494,
+    difficulty: "hard",
+    category: "security",
+    question: "What is 'Microsoft Entra ID Protection'?",
+    options: [
+      "A firewall for identity",
+      "A feature that allows organizations to automate the detection and remediation of identity-based risks",
+      "A way to password protect files",
+      "An antivirus for servers"
+    ],
+    answer: 1,
+    explanation: "It uses machine learning to identify risks like 'leaked credentials' or 'impossible travel'.",
+    hint: "Risk-based identity security."
+  },
+  {
+    id: 495,
+    difficulty: "medium",
+    category: "scenarios",
+    question: "Which Azure service is a fully managed, open-source-compatible NoSQL database for MongoDB, Cassandra, and Gremlin?",
+    options: ["Azure Cosmos DB", "Azure SQL Database", "Azure Cache for Redis", "Azure Table Storage"],
+    answer: 0,
+    explanation: "Cosmos DB provides multiple APIs for compatibility with various open-source NoSQL engines.",
+    hint: "Multi-API NoSQL."
+  },
+  {
+    id: 496,
+    difficulty: "hard",
+    category: "analytics",
+    question: "You need to ingest data from an on-premises SQL Server into Azure Data Lake Gen2. Which component of Azure Data Factory do you install on-premises?",
+    options: ["Self-hosted Integration Runtime (IR)", "Azure Integration Runtime", "Data Factory Agent", "SQL Gateway"],
+    answer: 0,
+    explanation: "The Self-hosted IR is the compute infrastructure used by ADF to perform data integration across network environments.",
+    hint: "Bridge for on-prem data."
+  },
+  {
+    id: 497,
+    difficulty: "medium",
+    category: "security",
+    question: "Which Azure service allows you to manage and govern your Azure resources using 'Assignments' and 'Definitions' to ensure compliance?",
+    options: ["Azure Policy", "Azure RBAC", "Azure Blueprints", "Azure Advisor"],
+    answer: 0,
+    explanation: "Azure Policy evaluates resources by comparing them to business rules defined in policy definitions.",
+    hint: "Compliance definitions."
+  },
+  {
+    id: 498,
+    difficulty: "hard",
+    category: "scenarios",
+    question: "A company needs to host a global API. They want to ensure that traffic is routed to the nearest healthy endpoint and want to protect the API from OWASP top 10 threats. What should they use?",
+    options: ["Azure Front Door with WAF", "Azure Load Balancer", "Azure Traffic Manager", "Azure VPN Gateway"],
+    answer: 0,
+    explanation: "Azure Front Door provides global routing (Layer 7) and includes WAF for security.",
+    hint: "Global L7 + Security."
+  },
+  {
+    id: 499,
+    difficulty: "medium",
+    category: "compute",
+    question: "In Azure App Service, what determines the compute resources (CPU, Memory) available to your web app?",
+    options: ["App Service Plan", "Resource Group", "Subscription tier", "The App Code"],
+    answer: 0,
+    explanation: "An App Service plan defines a set of compute resources for a web app to run.",
+    hint: "The 'Server' behind the PaaS."
+  },
+  {
+    id: 500,
+    difficulty: "hard",
+    category: "scenarios",
+    question: "You want to implement a 'Hub and Spoke' network topology in Azure. The 'Hub' should contain shared services like a firewall. What is the most common way to connect the 'Spokes' to the 'Hub'?",
+    options: ["VNet Peering", "VPN Tunnels", "ExpressRoute", "Physical cables"],
+    answer: 0,
+    explanation: "VNet Peering is the standard way to connect spoke VNets to a central hub VNet for shared service access.",
+    hint: "Network topology connection."
+  }
+];
+
+// Combine into main db
+questionBank.push(...azureBatch10);
