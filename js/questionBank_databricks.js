@@ -2046,7 +2046,6 @@ id:127,
 difficulty:"medium",
 category:"db_sql",
 explanation:"Photon is Databricks' next-generation engine, written in C++ to bypass JVM overhead for SQL operations.",
-category:"architecture",
 question:"Which engine is specifically designed to accelerate modern architectural patterns like the Medallion Architecture and Delta Lake?",
 options:[
 "MapReduce",
@@ -5159,14 +5158,14 @@ UTILITIES
 function getRandomQuestions(count){
 return questionBank
 .sort(()=>0.5-Math.random())
-.slice(0,count)
+.slice(0,count);
 }
 
 function getQuestionsByDifficulty(level){
-return questionBank.filter(q=>q.difficulty===level)
+return questionBank.filter(q=>q.difficulty===level);
 }
 
 function getQuestionsByCategory(category){
-return questionBank.filter(q=>q.category===category)
+return questionBank.filter(q=>q.category===category);
 }
 
