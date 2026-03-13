@@ -4244,21 +4244,3 @@ explanation:"USERADMIN manages users and roles."
 },
 ];
 
-
-/* ======================================================
-UTILITIES
-====================================================== */
-
-function getRandomQuestions(count){
-return questionBank
-.sort(()=>0.5-Math.random())
-.slice(0,count)
-}
-
-function getQuestionsByDifficulty(level){
-return questionBank.filter(q=>q.difficulty===level)
-}
-
-function getQuestionsByCategory(category){
-return questionBank.filter(q=>q.category===category)
-}
