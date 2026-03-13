@@ -3449,7 +3449,7 @@ const questionBank = [
       "An advanced threat protection layer that detects unusual and potentially harmful attempts to access or exploit your key vaults",
       "A way to share keys",
       "A backup for keys"
-n    ],
+    ],
     answer: 1,
     explanation: "It alerts you to suspicious activities, such as access from an unusual location or a high volume of secret requests.",
     hint: "Threat detection for keys."
