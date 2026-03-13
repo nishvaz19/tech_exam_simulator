@@ -3,7 +3,7 @@
    Topics: Basic CRUD, Joins, Union, Intersection
    ====================================================== */
 
-const sqlBatch1 = [
+const questionBank = [
   {
     id: 1,
     difficulty: "easy",
@@ -578,17 +578,12 @@ const sqlBatch1 = [
     answer: 2,
     explanation: "A CROSS JOIN (Cartesian Product) results in M * N rows, which is usually significantly larger than the others.",
     hint: "The multiplier."
-  }
-];
+  },
 
-// Append to master bank
-// questionBank.push(...sqlBatch1);
 /* ======================================================
    SQL CERTIFICATION QUESTION BANK (Batch 2: 51-100)
    Topics: Subqueries, CTEs, and Aggregations
    ====================================================== */
-
-const sqlBatch2 = [
   {
     id: 51,
     difficulty: "medium",
@@ -1238,17 +1233,11 @@ const sqlBatch2 = [
     answer: 0,
     explanation: "WHERE happens before data is grouped; HAVING happens after.",
     hint: "Pre-group vs Post-group."
-  }
-];
-
-// Append logic
-// questionBank.push(...sqlBatch1, ...sqlBatch2);
+  },
 /* ======================================================
    SQL CERTIFICATION QUESTION BANK (Batch 3: 101-150)
    Topics: Window Functions, Partitions, and Optimization
    ====================================================== */
-
-const sqlBatch3 = [
   {
     id: 101,
     difficulty: "hard",
@@ -1968,17 +1957,12 @@ const sqlBatch3 = [
     answer: 1,
     explanation: "MySQL uses EXPLAIN for plan analysis and SHOW PROFILE for execution timing.",
     hint: "MySQL profiling."
-  }
-];
+  },
 
-// Combine logic
-// questionBank.push(...sqlBatch1, ...sqlBatch2, ...sqlBatch3);
 /* ======================================================
    SQL CERTIFICATION QUESTION BANK (Batch 4: 151-200)
    Topics: Materialized Views, Architecture, and Advanced Joins
    ====================================================== */
-
-const sqlBatch4 = [
   {
     id: 151,
     difficulty: "hard",
@@ -2683,16 +2667,13 @@ const sqlBatch4 = [
     answer: 2,
     explanation: "DROP TABLE is a DDL command that removes the entire object from the database.",
     hint: "Goodbye table."
-  }
-];
-// Combine logic
-// questionBank.push(...sqlBatch1, ...sqlBatch2, ...sqlBatch3, ...sqlBatch4);
+  },
+
 /* ======================================================
    SQL CERTIFICATION QUESTION BANK (Batch 5: 201-250)
    Topics: Stored Procedures, Triggers, and Transactions
    ====================================================== */
 
-const sqlBatch5 = [
   {
     id: 201,
     difficulty: "medium",
@@ -3393,7 +3374,7 @@ const sqlBatch5 = [
       "An empty string",
       "A marker indicating that a data value does not exist in the database (Unknown)",
       "A space character"
-)    ],
+    ],
     answer: 2,
     explanation: "NULL is not a value; it is a state representing missing or unknown data.",
     hint: "Missing data."
@@ -3414,6 +3395,3 @@ const sqlBatch5 = [
     hint: "Strict isolation."
   }
 ];
-
-// All batches are now ready to be added to the questionBank.
-questionBank.push(...sqlBatch1, ...sqlBatch2, ...sqlBatch3, ...sqlBatch4, ...sqlBatch5);
