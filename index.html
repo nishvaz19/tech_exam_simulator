@@ -236,6 +236,181 @@ renderDB(dbKeywords.filter(k => k.word.toLowerCase().includes(q)));
 </script>
 
 </div>
+<div id="azure-cloud" style="font-family: Arial; background: #f0f4f8; padding: 30px; border-radius: 8px; margin-bottom: 40px;">
+    <style>
+        #azure-cloud .tag { display: inline-block; margin: 8px; padding: 10px 16px; border-radius: 25px; cursor: pointer; transition: 0.2s; color: white; }
+        #azure-cloud .tag:hover { transform: scale(1.15); box-shadow: 0 3px 8px rgba(0,0,0,0.2); }
+        .az-compute { background: #0078d4; }
+        .az-data { background: #5ea0ef; }
+        .az-identity { background: #323130; }
+        .az-net { background: #00ad56; }
+        .az-gov { background: #8b5cf6; }
+    </style>
+
+    <h2 style="text-align:center; color:#0078d4;">Azure Solutions Architect / Admin Buzzword Cloud</h2>
+    <div style="text-align:center; margin-bottom:25px;">
+        <input id="azSearch" placeholder="Search Azure (e.g. VNET, Entra)" style="padding:10px; width:320px; border-radius:6px; border:1px solid #ccc;">
+    </div>
+    <div class="cloud" id="azCloud" style="text-align:center;"></div>
+    
+    <div style="margin-top: 30px; text-align: center;">
+        <span class="tag az-compute">Compute & Hybrid</span>
+        <span class="tag az-data">Data & Storage</span>
+        <span class="tag az-identity">Identity (Entra)</span>
+        <span class="tag az-net">Networking</span>
+    </div>
+
+    <script>
+        const azKeywords = [
+            {word:"Azure Entra ID", freq:5, domain:"az-identity", desc:"Formerly Azure AD: Identity and access management"},
+            {word:"Virtual Machines", freq:4, domain:"az-compute", desc:"On-demand scalable computing resources"},
+            {word:"AKS", freq:5, domain:"az-compute", desc:"Azure Kubernetes Service: Managed container orchestration"},
+            {word:"VNET", freq:5, domain:"az-net", desc:"Azure Virtual Network: Private network in the cloud"},
+            {word:"Cosmos DB", freq:4, domain:"az-data", desc:"Globally distributed, multi-model NoSQL database"},
+            {word:"Blob Storage", freq:5, domain:"az-data", desc:"Object storage for unstructured data"},
+            {word:"Azure Functions", freq:4, domain:"az-compute", desc:"Serverless event-driven compute"},
+            {word:"Resource Groups", freq:3, domain:"az-gov", desc:"Logical containers for Azure resources"},
+            {word:"App Service", freq:4, domain:"az-compute", desc:"HTTP-based service for hosting web apps"},
+            {word:"ExpressRoute", freq:3, domain:"az-net", desc:"Private connection from on-prem to Azure"},
+            {word:"Azure SQL", freq:4, domain:"az-data", desc:"Managed relational database service"},
+            {word:"RBAC", freq:5, domain:"az-identity", desc:"Role-Based Access Control"},
+            {word:"NSG", freq:4, domain:"az-net", desc:"Network Security Group: Filter network traffic"}
+        ];
+        function renderAZ(l){
+            const c=document.getElementById("azCloud"); c.innerHTML="";
+            l.forEach(k=>{
+                let t=document.createElement("span"); t.className=`tag freq${k.freq} ${k.domain}`;
+                t.textContent=k.word; t.title=k.desc; c.appendChild(t);
+            });
+        }
+        renderAZ(azKeywords);
+        document.getElementById("azSearch").addEventListener("keyup",e=>renderAZ(azKeywords.filter(k=>k.word.toLowerCase().includes(e.target.value.toLowerCase()))));
+    </script>
+</div>
+<div id="aws-cloud" style="font-family: Arial; background: #232f3e; padding: 30px; border-radius: 8px; color: white; margin-bottom: 40px;">
+    <style>
+        #aws-cloud .tag { display: inline-block; margin: 8px; padding: 10px 16px; border-radius: 25px; cursor: pointer; transition: 0.2s; color: white; }
+        .aws-core { background: #ff9900; color: #232f3e !important; font-weight: bold; }
+        .aws-serverless { background: #ec7211; }
+        .aws-db { background: #3b48cc; }
+        .aws-sec { background: #7aa116; }
+    </style>
+
+    <h2 style="text-align:center; color:#ff9900;">AWS Certified Solutions Architect Buzzword Cloud</h2>
+    <div style="text-align:center; margin-bottom:25px;">
+        <input id="awsSearch" placeholder="Search AWS (e.g. S3, Lambda)" style="padding:10px; width:320px; background:#37475a; color:white; border:none; border-radius:6px;">
+    </div>
+    <div class="cloud" id="awsCloud" style="text-align:center;"></div>
+
+    <script>
+        const awsKeywords = [
+            {word:"EC2", freq:5, domain:"aws-core", desc:"Elastic Compute Cloud: Virtual servers"},
+            {word:"S3", freq:5, domain:"aws-core", desc:"Simple Storage Service: Scalable object storage"},
+            {word:"Lambda", freq:5, domain:"aws-serverless", desc:"Serverless functions: Run code without servers"},
+            {word:"VPC", freq:4, domain:"aws-core", desc:"Virtual Private Cloud: Isolated network section"},
+            {word:"IAM", freq:5, domain:"aws-sec", desc:"Identity and Access Management"},
+            {word:"DynamoDB", freq:5, domain:"aws-db", desc:"Fast, flexible NoSQL database"},
+            {word:"RDS", freq:4, domain:"aws-db", desc:"Relational Database Service"},
+            {word:"CloudFront", freq:3, domain:"aws-core", desc:"Content Delivery Network (CDN)"},
+            {word:"Route 53", freq:3, domain:"aws-core", desc:"Scalable DNS web service"},
+            {word:"Auto Scaling", freq:4, domain:"aws-core", desc:"Automatically adjust capacity"},
+            {word:"Fargate", freq:4, domain:"aws-serverless", desc:"Serverless compute for containers"},
+            {word:"Redshift", freq:3, domain:"aws-db", desc:"Cloud data warehousing"},
+            {word:"SNS/SQS", freq:3, domain:"aws-serverless", desc:"Messaging and queuing services"}
+        ];
+        function renderAWS(l){
+            const c=document.getElementById("awsCloud"); c.innerHTML="";
+            l.forEach(k=>{
+                let t=document.createElement("span"); t.className=`tag freq${k.freq} ${k.domain}`;
+                t.textContent=k.word; t.title=k.desc; c.appendChild(t);
+            });
+        }
+        renderAWS(awsKeywords);
+        document.getElementById("awsSearch").addEventListener("keyup",e=>renderAWS(awsKeywords.filter(k=>k.word.toLowerCase().includes(e.target.value.toLowerCase()))));
+    </script>
+</div>
+<div id="mongo-cloud" style="font-family: Arial; background: #e3f2fd; padding: 30px; border-radius: 8px; margin-bottom: 40px;">
+    <style>
+        #mongo-cloud .tag { display: inline-block; margin: 8px; padding: 10px 16px; border-radius: 25px; cursor: pointer; transition: 0.2s; color: white; }
+        .mg-crud { background: #13aa52; }
+        .mg-arch { background: #001e2b; }
+        .mg-perf { background: #494949; }
+        .mg-atlas { background: #00ed64; color: #001e2b !important; }
+    </style>
+
+    <h2 style="text-align:center; color:#13aa52;">MongoDB Developer / DBA Buzzword Cloud</h2>
+    <div style="text-align:center; margin-bottom:25px;">
+        <input id="mgSearch" placeholder="Search MongoDB (e.g. Sharding, BSON)" style="padding:10px; width:320px; border-radius:6px; border:1px solid #13aa52;">
+    </div>
+    <div class="cloud" id="mgCloud" style="text-align:center;"></div>
+
+    <script>
+        const mgKeywords = [
+            {word:"BSON", freq:5, domain:"mg-arch", desc:"Binary JSON: Primary storage format"},
+            {word:"Aggregation Pipeline", freq:5, domain:"mg-crud", desc:"Framework for data transformation"},
+            {word:"Sharding", freq:4, domain:"mg-arch", desc:"Horizontal scaling by distributing data"},
+            {word:"Replica Sets", freq:5, domain:"mg-arch", desc:"High availability via data redundancy"},
+            {word:"Index", freq:4, domain:"mg-perf", desc:"Improve query execution speed"},
+            {word:"Atlas", freq:5, domain:"mg-atlas", desc:"Fully managed cloud database"},
+            {word:"Document Model", freq:5, domain:"mg-arch", desc:"Flexible schema mapping to objects"},
+            {word:"Upsert", freq:3, domain:"mg-crud", desc:"Update or insert if not exists"},
+            {word:"Mongoose", freq:4, domain:"mg-crud", desc:"ODM for Node.js"},
+            {word:"GridFS", freq:2, domain:"mg-arch", desc:"Storing large files > 16MB"},
+            {word:"Compound Index", freq:3, domain:"mg-perf", desc:"Index on multiple fields"},
+            {word:"WiredTiger", freq:3, domain:"mg-arch", desc:"Default storage engine"}
+        ];
+        function renderMG(l){
+            const c=document.getElementById("mgCloud"); c.innerHTML="";
+            l.forEach(k=>{
+                let t=document.createElement("span"); t.className=`tag freq${k.freq} ${k.domain}`;
+                t.textContent=k.word; t.title=k.desc; c.appendChild(t);
+            });
+        }
+        renderMG(mgKeywords);
+        document.getElementById("mgSearch").addEventListener("keyup",e=>renderMG(mgKeywords.filter(k=>k.word.toLowerCase().includes(e.target.value.toLowerCase()))));
+    </script>
+</div>
+<div id="react-cloud" style="font-family: Arial; background: #20232a; padding: 30px; border-radius: 8px; color: #61dafb; margin-bottom: 40px;">
+    <style>
+        #react-cloud .tag { display: inline-block; margin: 8px; padding: 10px 16px; border-radius: 25px; cursor: pointer; transition: 0.2s; color: #20232a; font-weight: bold; }
+        .r-hooks { background: #61dafb; }
+        .r-state { background: #fb7e61; }
+        .r-core { background: #ffffff; }
+        .r-perf { background: #a1fb61; }
+    </style>
+
+    <h2 style="text-align:center;">React Frontend Engineer Buzzword Cloud</h2>
+    <div style="text-align:center; margin-bottom:25px;">
+        <input id="rSearch" placeholder="Search React (e.g. Hooks, Context)" style="padding:10px; width:320px; border-radius:6px; background:#282c34; color:white; border:1px solid #61dafb;">
+    </div>
+    <div class="cloud" id="rCloud" style="text-align:center;"></div>
+
+    <script>
+        const rKeywords = [
+            {word:"Virtual DOM", freq:5, domain:"r-core", desc:"React's lightweight copy of the real DOM"},
+            {word:"JSX", freq:5, domain:"r-core", desc:"JavaScript XML syntax extension"},
+            {word:"useState", freq:5, domain:"r-hooks", desc:"Hook for functional component state"},
+            {word:"useEffect", freq:5, domain:"r-hooks", desc:"Hook for side effects (API calls, subs)"},
+            {word:"Context API", freq:4, domain:"r-state", desc:"Global state management without prop drilling"},
+            {word:"Redux", freq:4, domain:"r-state", desc:"Predictable state container for JS apps"},
+            {word:"React Router", freq:4, domain:"r-core", desc:"Standard library for routing in React"},
+            {word:"Memoization", freq:3, domain:"r-perf", desc:"useMemo and useCallback for performance"},
+            {word:"Props", freq:5, domain:"r-core", desc:"Properties passed to components"},
+            {word:"Fiber", freq:3, domain:"r-perf", desc:"React's reconciliation engine"},
+            {word:"SSR", freq:3, domain:"r-core", desc:"Server-Side Rendering (Next.js)"},
+            {word:"Custom Hooks", freq:4, domain:"r-hooks", desc:"Reusable logic functions"}
+        ];
+        function renderR(l){
+            const c=document.getElementById("rCloud"); c.innerHTML="";
+            l.forEach(k=>{
+                let t=document.createElement("span"); t.className=`tag freq${k.freq} ${k.domain}`;
+                t.textContent=k.word; t.title=k.desc; c.appendChild(t);
+            });
+        }
+        renderR(rKeywords);
+        document.getElementById("rSearch").addEventListener("keyup",e=>renderR(rKeywords.filter(k=>k.word.toLowerCase().includes(e.target.value.toLowerCase()))));
+    </script>
+</div>    
 <div id="ai-engineering-cloud">
     <style>
         #ai-engineering-cloud {
