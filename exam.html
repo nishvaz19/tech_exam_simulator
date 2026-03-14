@@ -91,11 +91,12 @@
 
 <script>
     const urlParams = new URLSearchParams(window.location.search);
-    window.currentExamType = urlParams.get('type'); 
-    const urlParams = new URLSearchParams(window.location.search);
     const examType = urlParams.get('type');
     const focusKeyword = urlParams.get('focus'); // Get the buzzword from URL
 
+    // Set the global for the analytics tracker
+    window.currentExamType = examType;
+    
     const examMap = {
         'snowflake': { title: 'Snowflake Certification', file: 'js/questionBank_snowflake.js' },
         'databricks': { title: 'Databricks Certification', file: 'js/questionBank_databricks.js' },
