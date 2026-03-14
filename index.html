@@ -351,7 +351,7 @@ const aiKeywords = [
   {word:"TPOT", freq:4, domain:"infra", desc:"Time Per Output Token: The reading speed of the LLM stream"},
   {word:"Continuous Batching", freq:4, domain:"infra", desc:"Iteration-level scheduling to maximize throughput"},
   {word:"PagedAttention", freq:4, domain:"infra", desc:"vLLM's memory management to reduce KV cache fragmentation"},
-  {word:"Chain of Thought", freq:5, domain:"agent", desc:"Prompting technique to improve model reasoning step-by-step"},
+  {word:"CoT", freq:5, domain:"agent", desc:"Chain of Thought: Prompting technique to improve model reasoning step-by-step"},
   {word:"LangChain", freq:4, domain:"agent", desc:"Popular framework for building LLM applications"},
   {word:"Multi-Agent Systems", freq:4, domain:"agent", desc:"Orchestrating multiple LLMs to perform complex tasks"},
   {word:"Lost in the Middle", freq:3, domain:"rag", desc:"The phenomenon where LLMs ignore info in the center of long prompts"},
@@ -441,7 +441,7 @@ const rKeywords = [
 ];
     const snKeywords = [
   {word:"Micro-partitions", freq:5, domain:"sn-storage", desc:"Immutable storage units in Snowflake"},
-  {word:"Zero-copy", freq:5, domain:"sn-core", desc:"Zero-copy clone: Snapshot data without doubling storage costs"},
+  {word:"Zero copy", freq:5, domain:"sn-core", desc:"Zero-copy clone: Snapshot data without doubling storage costs"},
   {word:"Virtual Warehouse", freq:5, domain:"sn-compute", desc:"Independent compute resources (MPP clusters)"},
   {word:"Time Travel", freq:4, domain:"sn-core", desc:"Query data up to 90 days in the past"},
   {word:"Fail-safe", freq:3, domain:"sn-storage", desc:"7-day disaster recovery period"},
