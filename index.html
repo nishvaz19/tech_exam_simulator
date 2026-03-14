@@ -234,6 +234,25 @@ let q=e.target.value.toLowerCase();
 renderDB(dbKeywords.filter(k => k.word.toLowerCase().includes(q)));
 });
 
+function jumpToExam(examType, keyword) {
+    // Redirect to exam.html with both the exam type and the specific keyword
+    window.location.href = `exam.html?type=${examType}&focus=${encodeURIComponent(keyword)}`;
+}
+
+// Attach listeners to all tags in all clouds
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.tag').forEach(tag => {
+        tag.addEventListener('click', function() {
+            // Find which cloud this tag belongs to (e.g., 'aws-cloud' -> 'aws')
+            const cloudContainer = this.closest('[id$="-cloud"]');
+            if (cloudContainer) {
+                const cloudType = cloudContainer.id.split('-')[0];
+                jumpToExam(cloudType, this.textContent.trim());
+            }
+        });
+    });
+});
+    
 </script>
 
 </div>
