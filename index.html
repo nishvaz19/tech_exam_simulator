@@ -302,7 +302,7 @@ const dbKeywords = [
   // --- Streaming & Ingestion ---
   {word:"Structured Streaming",freq:4,domain:"streaming",desc:"Unified batch and streaming processing model"},
   {word:"Auto Loader",freq:4,domain:"streaming",desc:"Incremental cloud file ingestion with schema inference"},
-  {word:"DLT (Delta Live Tables)",freq:5,domain:"streaming",desc:"Declarative framework for building reliable data pipelines with quality constraints"},
+  {word:"DLT",freq:5,domain:"streaming",desc:"Delta Live Tables - Declarative framework for building reliable data pipelines with quality constraints"},
   {word:"Checkpointing",freq:3,domain:"streaming",desc:"Stores streaming progress for fault tolerance"},
   {word:"Exactly Once Processing",freq:2,domain:"streaming",desc:"Guarantees each record is processed exactly once"},
 
@@ -322,7 +322,8 @@ const dbKeywords = [
 
   // --- Workspace & Infrastructure ---
   {word:"Notebook",freq:4,domain:"workspace",desc:"Collaborative interactive development environment"},
-  {word:"Jobs & Workflows",freq:4,domain:"workspace",desc:"Orchestration for scheduled data tasks"},
+  {word:"Jobs",freq:4,domain:"workspace",desc:"Orchestration for scheduled data tasks"},
+  {word:"Workflows",freq:4,domain:"workspace",desc:"Orchestration for scheduled data tasks"},
   {word:"Clusters",freq:3,domain:"workspace",desc:"Compute resources running Spark workloads"},
   {word:"Repos",freq:2,domain:"workspace",desc:"Git integration for version control and CI/CD"},
   {word:"DBFS",freq:2,domain:"workspace",desc:"Databricks File System abstraction layer"}
@@ -333,7 +334,7 @@ const aiKeywords = [
   {word:"Function Calling", freq:5, domain:"agent", desc:"Models calling external APIs via structured JSON"},
   {word:"Agentic Workflows", freq:5, domain:"agent", desc:"Iterative loops where LLMs reason and act"},
   {word:"Context Window", freq:5, domain:"infra", desc:"The total number of tokens a model can process at once"},
-  {word:"LoRA/QLoRA", freq:5, domain:"optim", desc:"Low-Rank Adaptation: Efficiently fine-tuning specific model layers"},
+  {word:"LoRA", freq:5, domain:"optim", desc:"Low-Rank Adaptation: Efficiently fine-tuning specific model layers"},
   {word:"Embedding Model", freq:4, domain:"rag", desc:"Converting text to high-dimensional vectors"},
   {word:"DSPy", freq:3, domain:"optim", desc:"Programmatic optimization of LLM prompts"},
   {word:"RLHF", freq:4, domain:"eval", desc:"Reinforcement Learning from Human Feedback"},
@@ -383,12 +384,13 @@ const awsKeywords = [
   {word:"Auto Scaling", freq:4, domain:"aws-core", desc:"Automatically adjust capacity"},
   {word:"Fargate", freq:4, domain:"aws-serverless", desc:"Serverless compute for containers"},
   {word:"Redshift", freq:3, domain:"aws-db", desc:"Cloud data warehousing"},
-  {word:"SNS/SQS", freq:3, domain:"aws-serverless", desc:"Messaging and queuing services"}
+  {word:"SNS", freq:3, domain:"aws-serverless", desc:"Messaging services"},
+  {word:"SQS", freq:3, domain:"aws-serverless", desc:"Queuing services"},
 ];
 
 const azKeywords = [
   {word:"OpenAI Service", freq:5, domain:"az-data", desc:"Enterprise-grade access to GPT-4o"},
-  {word:"Bicep / ARM", freq:4, domain:"az-compute", desc:"Infrastructure as Code for Azure"},
+  {word:"Bicep", freq:4, domain:"az-compute", desc:"Bicep/ARM: Infrastructure as Code for Azure"},
   {word:"Service Bus", freq:4, domain:"az-net", desc:"Enterprise message queuing and pub-sub"},
   {word:"Azure Data Factory", freq:5, domain:"az-data", desc:"Cloud ETL service for scale-out data integration"},
   {word:"Private Link", freq:4, domain:"az-net", desc:"Accessing PaaS services via private IP"},
@@ -439,7 +441,7 @@ const rKeywords = [
 ];
     const snKeywords = [
   {word:"Micro-partitions", freq:5, domain:"sn-storage", desc:"Immutable storage units in Snowflake"},
-  {word:"Zero-copy Cloning", freq:5, domain:"sn-core", desc:"Snapshot data without doubling storage costs"},
+  {word:"Zero-copy", freq:5, domain:"sn-core", desc:"Zero-copy clone: Snapshot data without doubling storage costs"},
   {word:"Virtual Warehouse", freq:5, domain:"sn-compute", desc:"Independent compute resources (MPP clusters)"},
   {word:"Time Travel", freq:4, domain:"sn-core", desc:"Query data up to 90 days in the past"},
   {word:"Fail-safe", freq:3, domain:"sn-storage", desc:"7-day disaster recovery period"},
