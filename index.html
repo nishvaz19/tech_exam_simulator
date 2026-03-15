@@ -372,7 +372,6 @@ const aiKeywords = [
   {word:"Chunking", freq:3, domain:"rag", desc:"How documents are split (Recursive, Semantic, Fixed) for RAG"},
   {word:"Routing", freq:3, domain:"ops", desc:"Directing queries to cheaper or smarter models based on complexity"}
 ];
-
 const awsKeywords = [
   {word:"Nitro", freq:5, domain:"aws-core", desc:"Underlying hardware acceleration for instances"},
   {word:"EventBridge", freq:5, domain:"aws-serverless", desc:"Serverless event bus for decoupled architectures"},
@@ -396,8 +395,21 @@ const awsKeywords = [
   {word:"Redshift", freq:3, domain:"aws-db", desc:"Cloud data warehousing"},
   {word:"SNS", freq:3, domain:"aws-serverless", desc:"Messaging services"},
   {word:"SQS", freq:3, domain:"aws-serverless", desc:"Queuing services"},
+  
+  {word:"Glue", freq:5, domain:"aws-data", desc:"Serverless data integration and ETL service"},
+  {word:"Athena", freq:5, domain:"aws-data", desc:"Interactive query service using standard SQL on S3"},
+  {word:"Kinesis", freq:5, domain:"aws-data", desc:"Real-time data streaming and analytics"},
+  {word:"Step Functions", freq:4, domain:"aws-serverless", desc:"Visual workflows for serverless microservices"},
+  {word:"KMS", freq:5, domain:"aws-sec", desc:"Key Management Service: Create and control encryption keys"},
+  {word:"CloudWatch", freq:5, domain:"aws-core", desc:"Monitoring and observability for AWS resources"},
+  {word:"CloudTrail", freq:5, domain:"aws-sec", desc:"Log, continuously monitor, and retain account activity for auditing"},
+  {word:"EMR", freq:4, domain:"aws-data", desc:"Managed Hadoop, Spark, and big data framework"},
+  {word:"Lake Formation", freq:4, domain:"aws-data", desc:"Service to set up a secure data lake in days"},
+  {word:"Secrets Manager", freq:4, domain:"aws-sec", desc:"Rotate, manage, and retrieve database credentials and API keys"},
+  {word:"SageMaker", freq:4, domain:"aws-ml", desc:"Fully managed machine learning service"},
+  {word:"EKS", freq:5, domain:"aws-core", desc:"Elastic Kubernetes Service: Managed K8s on AWS"}
 ];
-
+    
 const azKeywords = [
   {word:"OpenAI Service", freq:5, domain:"az-data", desc:"Enterprise-grade access to GPT-4o"},
   {word:"Bicep", freq:4, domain:"az-compute", desc:"Bicep/ARM: Infrastructure as Code for Azure"},
@@ -417,7 +429,18 @@ const azKeywords = [
   {word:"App Service", freq:4, domain:"az-compute", desc:"HTTP-based service for hosting web apps"},
   {word:"ExpressRoute", freq:3, domain:"az-net", desc:"Private connection from on-prem to Azure"},
   {word:"Azure SQL", freq:4, domain:"az-data", desc:"Managed relational database service"},
-  {word:"NSG", freq:4, domain:"az-net", desc:"Network Security Group: Filter network traffic"}
+  {word:"NSG", freq:4, domain:"az-net", desc:"Network Security Group: Filter network traffic"},
+
+  {word:"Synapse", freq:5, domain:"az-data", desc:"Enterprise analytics service for data warehousing and big data"},
+  {word:"Purview", freq:4, domain:"az-gov", desc:"Unified data governance and compliance solution"},
+  {word:"Key Vault", freq:5, domain:"az-security", desc:"Safeguard cryptographic keys and other secrets"},
+  {word:"Monitor", freq:5, domain:"az-gov", desc:"Full-stack observability for applications and infrastructure"},
+  {word:"Event Hubs", freq:4, domain:"az-data", desc:"Big data streaming platform and event ingestion service"},
+  {word:"Logic Apps", freq:4, domain:"az-compute", desc:"Automated workflows and enterprise integration"},
+  {word:"ADLS", freq:5, domain:"az-data", desc:"Azure Data Lake Storage Gen2: Hierarchical storage for analytics"},
+  {word:"Sentinel", freq:4, domain:"az-security", desc:"Cloud-native SIEM and SOAR for intelligent security analytics"},
+  {word:"Log Analytics", freq:5, domain:"az-gov", desc:"Tool to edit and run log queries for Azure Monitor data"},
+  {word:"Container Apps", freq:4, domain:"az-compute", desc:"Serverless containers for microservices and jobs"}
 ];
 
 const mgKeywords = [
