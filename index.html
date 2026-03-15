@@ -265,55 +265,52 @@
 const dbKeywords = [
   // --- Delta Lake & Storage ---
   {word:"Delta Lake",freq:5,domain:"delta",desc:"Open-source storage layer enabling ACID transactions on data lakes"},
-  {word:"ACID Transactions",freq:5,domain:"delta",desc:"Atomicity, Consistency, Isolation, Durability guarantees"},
-  {word:"Time Travel",freq:4,domain:"delta",desc:"Query previous versions of Delta tables"},
-  {word:"Transaction Log",freq:4,domain:"delta",desc:"Delta _delta_log storing commit history"},
-  {word:"VACUUM",freq:3,domain:"delta",desc:"Deletes obsolete files after retention period"},
-  {word:"Change Data Feed",freq:3,domain:"delta",desc:"Tracking row-level changes between table versions"},
-  {word:"Schema",freq:4,domain:"delta",desc:"Schema Enforcement prevents data corruption by rejecting mismatched schemas"},
+  {word:"ACID",freq:5,domain:"delta",desc:"ACID Transactions: Atomicity, Consistency, Isolation, Durability guarantees"},
+  {word:"Time Travel",freq:4,domain:"delta",desc:"Query previous versions of Delta tables using timestamps or versions"},
+  {word:"Transaction Log",freq:4,domain:"delta",desc:"The _delta_log folder storing the source of truth for table state"},
+  {word:"VACUUM",freq:3,domain:"delta",desc:"Removes data files no longer in the latest state and older than retention period"},
+  {word:"Change Data Feed",freq:3,domain:"delta",desc:"Exposes row-level changes (inserts, deletes, updates) between versions"},
+  {word:"Schema",freq:4,domain:"delta",desc:"Schema Enforcement: Prevents data corruption by rejecting writes with mismatched schemas"},
+  {word:"Bin-Packing",freq:3,domain:"delta",desc:"Algorithm used by OPTIMIZE to coalesce small files into ~1GB objects"},
 
   // --- Performance & Optimization ---
-  {word:"OPTIMIZE",freq:4,domain:"performance",desc:"Compacts small files to improve read performance"},
-  {word:"Z-ORDER",freq:4,domain:"performance",desc:"Clusters related data to improve query skipping"},
-  {word:"Liquid Clustering",freq:5,domain:"performance",desc:"Next-gen replacement for Z-Ordering and Partitioning"},
+  {word:"OPTIMIZE",freq:4,domain:"performance",desc:"Compaction command to handle the small file problem"},
+  {word:"Z-ORDER",freq:4,domain:"performance",desc:"Multi-dimensional clustering to improve data skipping effectiveness"},
+  {word:"Liquid Clustering",freq:5,domain:"performance",desc:"Flexible, incremental data clustering that replaces fixed partitioning"},
+  {word:"Data Skew",freq:5,domain:"performance",desc:"Uneven distribution of data across partitions causing 'straggler' tasks"},
+  {word:"Predicate Pushdown",freq:4,domain:"performance",desc:"Optimization that filters data at the source level before loading to memory"},
+  {word:"Disk Spilling",freq:4,domain:"performance",desc:"Fallback mechanism moving shuffle data to disk when RAM is exhausted"},
+  {word:"High-Cardinality",freq:3,domain:"performance",desc:"Columns with many unique values (bad for partitioning, great for Z-Order)"},
+  {word:"Pruning",freq:3,domain:"performance",desc:"Reads only required partitions"},
+  {word:"Broadcast Join",freq:3,domain:"performance",desc:"Optimization that sends a small table to all worker nodes to avoid shuffle"},
+  {word:"Adaptive Query Execution",freq:4,domain:"performance",desc:"Re-optimizes query plans based on runtime statistics (AQE)"},
   {word:"Photon Engine",freq:5,domain:"performance",desc:"High-performance C++ vectorized execution engine"},
   {word:"Data Skipping",freq:4,domain:"performance",desc:"Uses statistics to skip irrelevant files"},
-  {word:"Pruning",freq:3,domain:"performance",desc:"Reads only required partitions"},
-  {word:"Broadcast Join",freq:3,domain:"performance",desc:"Broadcasts small table to all executors"},
-  {word:"Adaptive Query Execution",freq:3,domain:"performance",desc:"Optimizes query plan during runtime"},
 
-  // --- Architecture ---
-  {word:"Medallion Architecture",freq:5,domain:"arch",desc:"Layered architecture: Bronze (Raw) → Silver (Cleaned) → Gold (Business)"},
+  // --- Architecture & Governance & Security ---
+  {word:"Medallion Architecture",freq:5,domain:"arch",desc:"Data design pattern: Bronze (Raw), Silver (Curated), Gold (Aggregated)"},
+  {word:"Unity Catalog",freq:5,domain:"governance",desc:"Unified governance layer for files, tables, and AI models"},
   {word:"Bronze Layer",freq:3,domain:"arch",desc:"Raw ingested data (In-situ)"},
   {word:"Silver Layer",freq:3,domain:"arch",desc:"Cleaned, filtered, and augmented data"},
   {word:"Gold Layer",freq:3,domain:"arch",desc:"Aggregated business-level analytics data"},
+  {word:"3-Layer Namespace",freq:4,domain:"governance",desc:"The catalog.schema.table naming convention in Unity Catalog"},
+  {word:"Data Lineage",freq:4,domain:"governance",desc:"Automatically captured trace of data flow from source to destination"},
+  {word:"Secret Scopes",freq:3,domain:"security",desc:"Secure containers for sensitive credentials like API keys or S3 tokens"},
   {word:"Databricks Lakehouse",freq:5,domain:"arch",desc:"Unified platform combining data lake and warehouse"},
   {word:"Serverless SQL",freq:4,domain:"arch",desc:"Instant, elastic compute for SQL workloads without cluster management"},
-
-  // --- Apache Spark Core ---
-  {word:"Apache Spark",freq:5,domain:"spark",desc:"Distributed data processing engine"},
-  {word:"Driver",freq:3,domain:"spark",desc:"Controls Spark job execution and scheduling"},
-  {word:"Executor",freq:3,domain:"spark",desc:"Worker processes executing individual tasks"},
-  {word:"Catalyst Optimizer",freq:4,domain:"spark",desc:"Spark SQL query optimizer and generator"},
-  {word:"Lazy",freq:2,domain:"spark",desc:"Defers execution until an action is triggered"},
-  {word:"Execution",freq:3,domain:"spark",desc:"execution stages"},
-   {word:"DAG",freq:3,domain:"spark",desc:"DAG: Directed Acyclic Graph of execution stages"},
-    // {word:"Tungsten",freq:3,domain:"spark",desc:"Spark Execution engine: Memory management and code generation engine"},
-
-  // --- Streaming & Ingestion ---
-  {word:"Structured Streaming",freq:4,domain:"streaming",desc:"Unified batch and streaming processing model"},
-  {word:"Auto Loader",freq:4,domain:"streaming",desc:"Incremental cloud file ingestion with schema inference"},
-  {word:"DLT",freq:5,domain:"streaming",desc:"Delta Live Tables - Declarative framework for building reliable data pipelines with quality constraints"},
-  {word:"Checkpointing",freq:3,domain:"streaming",desc:"Stores streaming progress for fault tolerance"},
-  {word:"Processing",freq:2,domain:"streaming",desc:"Processing: Exactly once - Guarantees each record is processed exactly once"},
-
-  // --- Governance & Security ---
-  {word:"Unity Catalog",freq:5,domain:"governance",desc:"Central governance layer for data, AI, and files"},
-  {word:"Data Lineage",freq:4,domain:"governance",desc:"Visual tracking of data origins and downstream usage"},
   {word:"Row Level",freq:3,domain:"governance",desc:"Restricts rows based on user identity policies"},
   {word:"Column Level",freq:3,domain:"governance",desc:"Controls access to sensitive data columns"},
   {word:"System Tables",freq:3,domain:"governance",desc:"Operational metadata for billing and audit usage"},
 
+  // --- Streaming & Ingestion ---
+  {word:"Structured Streaming",freq:4,domain:"streaming",desc:"Scalable and fault-tolerant stream processing engine built on Spark"},
+  {word:"Watermarking",freq:4,domain:"streaming",desc:"Threshold for handling late-arriving data in stateful streaming"},
+  {word:"Auto Loader",freq:4,domain:"streaming",desc:"Efficiently processes new files in cloud storage with schema inference"},
+  {word:"DLT",freq:5,domain:"streaming",desc:"Delta Live Tables - Declarative framework for building reliable data pipelines with quality constraints"},
+  {word:"Checkpointing",freq:3,domain:"streaming",desc:"Saving state and offset to cloud storage for fault recovery"},
+  {word:"Idempotency",freq:3,domain:"streaming",desc:"Ensuring a retry of a process produces the same result without duplicates"},
+  {word:"Processing",freq:2,domain:"streaming",desc:"Processing: Exactly once - Guarantees each record is processed exactly once"},
+  
   // --- Machine Learning ---
   {word:"MLflow",freq:5,domain:"ml",desc:"Open-source platform for the ML lifecycle"},
   {word:"Feature Store",freq:3,domain:"ml",desc:"Centralized repository for discoverable ML features"},
@@ -327,8 +324,20 @@ const dbKeywords = [
   {word:"Workflows",freq:4,domain:"workspace",desc:"Orchestration for scheduled data tasks"},
   {word:"Clusters",freq:3,domain:"workspace",desc:"Compute resources running Spark workloads"},
   {word:"Repos",freq:2,domain:"workspace",desc:"Git integration for version control and CI/CD"},
-  {word:"DBFS",freq:2,domain:"workspace",desc:"Databricks File System abstraction layer"}
-];
+  {word:"DBFS",freq:2,domain:"workspace",desc:"Databricks File System abstraction layer"},
+
+  // --- Spark Internals ---
+  {word:"Catalyst Optimizer",freq:4,domain:"spark",desc:"The engine that translates SQL/Dataframe code into optimized physical plans"},
+  {word:"DAG",freq:3,domain:"spark",desc:"Directed Acyclic Graph representing the logical flow of Spark execution stages"},
+  {word:"Shuffle",freq:5,domain:"spark",desc:"The process of redistributing data across the network between executors"},
+  {word:"GC Time",freq:3,domain:"spark",desc:"Time spent by the JVM cleaning up memory, often indicating memory pressure"},
+  {word:"Apache Spark",freq:5,domain:"spark",desc:"Distributed data processing engine"},
+  {word:"Driver",freq:3,domain:"spark",desc:"Controls Spark job execution and scheduling"},
+  {word:"Executor",freq:3,domain:"spark",desc:"Worker processes executing individual tasks"},
+  {word:"Lazy",freq:2,domain:"spark",desc:"Defers execution until an action is triggered"},
+  {word:"Execution",freq:3,domain:"spark",desc:"execution stages"}, 
+   // {word:"Tungsten",freq:3,domain:"spark",desc:"Spark Execution engine: Memory management and code generation engine"},
+];    
 
 const aiKeywords = [
   {word:"RAG", freq:5, domain:"rag", desc:"Retrieval-Augmented Generation: Grounding LLMs with external data"},
