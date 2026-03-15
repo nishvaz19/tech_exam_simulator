@@ -6,7 +6,7 @@ let examQuestions = [];  // Questions picked adaptively
 let answers = {};        // User selections {questionIndex: optionIndex}
 let flagged = [];
 let current = 0;
-let EXAM_SIZE = 500;     // Target session length
+let EXAM_SIZE = 900;     // Target session length
 let activeExamSize = 0;  // Actual length (adjusted if search results < 500)
 
 let currentDifficulty = "easy"; 
