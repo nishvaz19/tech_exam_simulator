@@ -177,6 +177,7 @@
             <option value="JavaScript">JavaScript</option> 
             <option value="kafka">Kafka</option>
             <option value="hl7">HL7</option>
+            <option value="data_architect">DataArchitect</option>
             <option value="ai">AI & LLM Engineering</option> 
         </select>
         <button class="btn-primary" onclick="launchExam()">Start Examination</button>
@@ -249,7 +250,24 @@
         <span class="kf-connect">Connect</span><span class="kf-ops">Ops</span>
     </div>
 </div>
-    <div style="background: white; padding: 25px; border-radius: 12px; text-align: center;">
+ <div id="data-architect-cloud" class="cloud-section" style="background:#f3f4f6;">
+    <h2 style="color:#000000;">Data Architect Platform</h2>
+
+    <div class="search-box">
+        <input id="daSearch" placeholder="Search Architecture (Lakehouse, SCD, CDC...)">
+    </div>
+
+    <div class="cloud-display" id="daCloud"></div>
+
+    <div class="legend">
+        <span class="da-architecture">Architecture</span>
+        <span class="da-modelling">Modelling</span>
+        <span class="da-streaming">Streaming</span>
+        <span class="da-governance">Governance</span>
+        <span class="da-analytics">Analytics</span>
+    </div>
+</div>       
+<div style="background: white; padding: 25px; border-radius: 12px; text-align: center;">
         <h2>Snowflake Architecture</h2>
         <img src="assets/snowflake_architecture.png" alt="Snowflake Architecture">
         <ul style="display: inline-block; text-align: left;">
@@ -498,6 +516,29 @@ const kfKeywords = [
   {word:"Replication Factor", freq:3, domain:"kf-ops", desc:"Number of copies of data for fault tolerance"}
 ];
 
+const dataArchitectKeywords = [
+{word:"Lakehouse", freq:5, domain:"architecture", desc:"Unified architecture combining data lake and warehouse"},
+{word:"Medallion", freq:4, domain:"architecture", desc:"Bronze Silver Gold layered data architecture"},
+{word:"DataFabric", freq:4, domain:"architecture", desc:"Unified data access layer across distributed systems"},
+{word:"Streaming", freq:5, domain:"streaming", desc:"Real-time event data pipelines"},
+{word:"EventDriven", freq:4, domain:"streaming", desc:"Architecture based on event streams"},
+{word:"CDC", freq:4, domain:"ingestion", desc:"Change Data Capture for incremental ingestion"},
+{word:"Dimensional", freq:5, domain:"modelling", desc:"Kimball dimensional modelling technique"},
+{word:"StarSchema", freq:4, domain:"modelling", desc:"Fact table surrounded by dimensions"},
+{word:"DataVault", freq:4, domain:"modelling", desc:"Hub Link Satellite modelling pattern"},
+{word:"SCDType2", freq:4, domain:"modelling", desc:"Slowly changing dimension preserving history"},
+{word:"FeatureStore", freq:5, domain:"ml", desc:"Central storage for ML features"},
+{word:"ActivitySchema", freq:4, domain:"analytics", desc:"Event based product analytics schema"},
+{word:"Customer360", freq:4, domain:"analytics", desc:"Unified customer data model"},
+{word:"SemanticLayer", freq:5, domain:"analytics", desc:"Centralized business metric definitions"},
+{word:"DataLineage", freq:4, domain:"governance", desc:"Tracks data origin and transformations"},
+{word:"DataCatalog", freq:4, domain:"governance", desc:"Metadata repository for data discovery"},
+{word:"Partitioning", freq:5, domain:"performance", desc:"Splitting large tables for performance"},
+{word:"ColumnarStorage", freq:4, domain:"performance", desc:"Column-oriented storage for analytics"},
+{word:"RealTimeAnalytics", freq:4, domain:"analytics", desc:"Streaming based analytics processing"},
+{word:"PetabyteScale", freq:5, domain:"scale", desc:"Data platforms operating at PB scale"}
+];
+
     // --- LOGIC ---
     function renderCloud(containerId, list, type) {
         const container = document.getElementById(containerId);
@@ -532,7 +573,8 @@ const kfKeywords = [
         renderCloud("rCloud", rKeywords, "react");
         renderCloud("snCloud", snKeywords, "snowflake");
         renderCloud("kfCloud", kfKeywords, "kafka");
-
+        // Render Data Architect Cloud
+        renderCloud("daCloud", dataArchitectKeywords, "dataarchitect");
         // Search listeners
         const bindSearch = (id, cloudId, data, type) => {
             document.getElementById(id).addEventListener('keyup', e => {
@@ -549,6 +591,7 @@ const kfKeywords = [
         bindSearch("rSearch", "rCloud", rKeywords, "react");
         bindSearch("snSearch", "snCloud", snKeywords, "snowflake");
         bindSearch("kfSearch", "kfCloud", kfKeywords, "kafka");
+        bindSearch("daSearch", "daCloud", dataArchitectKeywords, "dataarchitect");
     });
 </script>
 </body>
