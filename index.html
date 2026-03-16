@@ -369,7 +369,7 @@ const aiKeywords = [
   {word:"Tokenization", freq:3, domain:"infra", desc:"Breaking text into numerical chunks (BPE, SentencePiece)"},
   {word:"KV Cache", freq:4, domain:"infra", desc:"Storing past token keys/values to speed up generation"},
   {word:"Vector Database", freq:5, domain:"rag", desc:"Specialized DB for storing and searching high-dimensional embeddings"},
-  {word:"Semantic Search", freq:4, domain:"rag", desc:"Searching by meaning rather than keyword matching"},
+  {word:"Semantic", freq:4, domain:"rag", desc:"Searching by meaning rather than keyword matching"},
   {word:"TTFT", freq:5, domain:"infra", desc:"Time to First Token: Key latency metric for UI responsiveness"},
   {word:"Quantization", freq:4, domain:"optim", desc:"Reducing bit-precision (e.g. FP16 to INT4) to save VRAM"},
   {word:"Prompt Injection", freq:5, domain:"infra", desc:"Security vulnerability where users bypass system instructions"},
@@ -468,9 +468,9 @@ const mgKeywords = [
   {word:"Replica Sets", freq:5, domain:"mg-arch", desc:"High availability via data redundancy"},
   {word:"Index", freq:4, domain:"mg-perf", desc:"Improve query execution speed"},
   {word:"Atlas", freq:5, domain:"mg-atlas", desc:"Fully managed cloud database"},
-  {word:"Document Model", freq:5, domain:"mg-arch", desc:"Flexible schema mapping to objects"},
+  {word:"filter", freq:5, domain:"mg-crud", desc:"defines criteria to select a specific subset of data from a collection or an array returned from find(), updateOne(), deleteMany()"},
   {word:"Upsert", freq:3, domain:"mg-crud", desc:"Update or insert if not exists"},
-  {word:"Mongoose", freq:4, domain:"mg-crud", desc:"ODM for Node.js"},
+  {word:"connect", freq:4, domain:"mg-crud", desc:"stats for mongo connection"},
   {word:"GridFS", freq:2, domain:"mg-arch", desc:"Storing large files > 16MB"},
   {word:"Compound Index", freq:3, domain:"mg-perf", desc:"Index on multiple fields"},
   {word:"WiredTiger", freq:3, domain:"mg-arch", desc:"Default storage engine"}
@@ -486,7 +486,7 @@ const rKeywords = [
   {word:"React Router", freq:4, domain:"r-core", desc:"Standard library for routing in React"},
   {word:"Memoization", freq:3, domain:"r-perf", desc:"useMemo and useCallback for performance"},
   {word:"Props", freq:5, domain:"r-core", desc:"Properties passed to components"},
-  {word:"Fiber", freq:3, domain:"r-perf", desc:"React's reconciliation engine"},
+  {word:"responsive", freq:3, domain:"r-perf", desc:"Standard @media queries in CSS are the primary method for applying different styles based on screen size (e.g., min-width, max-width)."},
   {word:"SSR", freq:3, domain:"r-core", desc:"Server-Side Rendering (Next.js)"},
   {word:"Custom Hooks", freq:4, domain:"r-hooks", desc:"Reusable logic functions"}
 ];
@@ -499,7 +499,8 @@ const rKeywords = [
   {word:"Snowpipe", freq:5, domain:"sn-services", desc:"Continuous serverless data ingestion"},
   {word:"External Tables", freq:3, domain:"sn-storage", desc:"Querying data stored in S3/Azure Blob/GCS"},
   {word:"Secure Data Sharing", freq:4, domain:"sn-services", desc:"Sharing data without moving or copying it"},
-  {word:"Resource Monitors", freq:3, domain:"sn-compute", desc:"Controlling credit consumption"},
+  {word:"cost", freq:3, domain:"sn-compute", desc:"cost optimization"},
+  {word:"history", freq:3, domain:"sn-compute", desc:"history tables"},
   {word:"Search Optimization", freq:4, domain:"sn-services", desc:"Speeds up point lookup queries"}
 ];
 
