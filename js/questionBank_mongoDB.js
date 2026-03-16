@@ -3609,7 +3609,83 @@ const mongodbBatch7 = [
     answer: 1,
     explanation: "show databases lists all databases available in the cluster.",
     hint: "Database listing."
+  },
+
+/* ======================================================
+   MONGODB QUERY SAMPLES & OPERATORS (Batch Addition)
+   Topics: findOne, Comparison, Logical Operators, Sorting
+   ====================================================== */
+
+  {
+    id: 276,
+    difficulty: "easy",
+    category: "crud",
+    question: "When performing a find() query with multiple field-value pairs like { name: 'Alex', age: 27 }, which logical operator is applied by default?",
+    options: ["$or", "$and", "$nor", "$not"],
+    answer: 1,
+    explanation: "MongoDB implicitly uses a logical AND when multiple field-value pairs are listed in a single query filter document.",
+    hint: "It is an implicit behavior for comma-separated pairs."
+  },
+  {
+    id: 277,
+    difficulty: "medium",
+    category: "crud",
+    question: "What does the db.collection.findOne() method return if no document matches the specified criteria?",
+    options: ["An empty array", "An empty document", "null", "undefined"],
+    answer: 2,
+    explanation: "Unlike find(), which returns a cursor (even if empty), findOne() returns the actual document if found, or null if no match exists.",
+    hint: "Think about the return type for a single missing object."
+  },
+  {
+    id: 278,
+    difficulty: "easy",
+    category: "operations",
+    question: "In the .sort() method, which value is used to specify that the results should be returned in descending order?",
+    options: ["0", "1", "-1", "desc"],
+    answer: 2,
+    explanation: "In MongoDB sorting, 1 is used for ascending order and -1 is used for descending order.",
+    hint: "Positive for up, negative for down."
+  },
+  {
+    id: 279,
+    difficulty: "medium",
+    category: "crud",
+    question: "When using Projection to return specific fields, which field is included by default unless it is explicitly set to 0?",
+    options: ["The first field in the document", "name", "email", "_id"],
+    answer: 3,
+    explanation: "The _id field is always included in the result set by default. You must explicitly set it to 0 or false to exclude it.",
+    hint: "It is the unique primary key."
+  },
+  {
+    id: 280,
+    difficulty: "hard",
+    category: "crud",
+    question: "Which query correctly finds documents where the age is between 25 and 35, inclusive?",
+    options: [
+      "{ age: { $gt: 25, $lt: 35 } }",
+      "{ age: { $gte: 25, $lte: 35 } }",
+      "{ $or: [{ age: 25 }, { age: 35 }] }",
+      "{ age: { $between: [25, 35] } }"
+    ],
+    answer: 1,
+    explanation: "To specify a range, you combine comparison operators like $gte (greater than or equal) and $lte (less than or equal) for the same field.",
+    hint: "Use 'Greater Than or Equal' and 'Less Than or Equal'."
+  },
+  {
+    id: 281,
+    difficulty: "medium",
+    category: "crud",
+    question: "What is the primary difference between the $ne and $not operators?",
+    options: [
+      "$ne matches only numbers, while $not matches strings",
+      "$ne is a comparison operator for inequality, while $not is a logical operator used to negate other operators",
+      "There is no difference; they are interchangeable",
+      "$not can only be used with regular expressions"
+    ],
+    answer: 1,
+    explanation: "$ne is used to find values not equal to a specific value. $not is a logical operator used to negate a query expression (e.g., matching documents that do not match a regex or range).",
+    hint: "One compares values, the other negates expressions."
   }
-];
+   ];
 
 questionBank.push(...mongodbBatch7);
