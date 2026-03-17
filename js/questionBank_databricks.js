@@ -1,13 +1,12 @@
 /* Note: This template follows the logic requested. 
    1-20: Databricks Lakehouse Architecture & Delta Lake
-   To reach 280, the pattern continues across:
    21-60: Delta Lake deep dive (Z-Order, Liquid Clustering, CDF)
    61-120: PySpark DataFrames & Spark SQL (Window functions, joins, broadcast)
    121-180: Structured Streaming & Auto Loader (Watermarking, Trigger.Once)
    181-220: Unity Catalog (Permissions, Lineage, External Locations)
    221-250: DLT (SCD Type 1 & 2, Quality Expectations)
    251-280: Databricks SQL & Security (Dashboards, Alerts, Service Principals)
-   281-: Custom scenarios and MCQ
+   281-: Custom scenarios and additional MCQ
 */
 const questionBank = [
 /* ======================================================
@@ -5782,11 +5781,10 @@ PYSPARK DATAFRAME API & SPARK SQL OPERATIONS
   explanation: "When you pass the join column name as a string (or a list of strings), Spark performs an 'equi-join' and automatically drops the duplicate join column from the right-hand side DataFrame.",
   hint: "Passing the column name as a string is a shorthand that handles column deduplication."
 },
-[
   {
     "id": 365,
     "difficulty": "hard",
-    "category": "databricks_pyspark_idempotency",
+    "category": "idempotency",
     "question": "A PySpark job fails halfway through writing a large batch of data to a Delta table. Which Delta Lake feature primarily ensures that a partial write does not corrupt the table's state upon a job retry?",
     "options": [
       "Z-Order Indexing",
@@ -5801,7 +5799,7 @@ PYSPARK DATAFRAME API & SPARK SQL OPERATIONS
   {
     "id": 366,
     "difficulty": "hard",
-    "category": "databricks_pyspark_idempotency",
+    "category": "idempotency",
     "question": "You are processing daily logs and want to ensure that re-running the job for '2025-03-17' replaces existing data for that day without affecting other dates. Which configuration or method is most appropriate for an idempotent partition overwrite?",
     "options": [
       "df.write.mode('overwrite').save(path)",
@@ -5816,7 +5814,7 @@ PYSPARK DATAFRAME API & SPARK SQL OPERATIONS
   {
     "id": 367,
     "difficulty": "hard",
-    "category": "databricks_pyspark_idempotency",
+    "category": "idempotency",
     "question": "To achieve idempotency when merging Change Data Capture (CDC) logs into a Silver-tier Delta table, which PySpark command should be used to handle both updates to existing rows and inserts for new rows?",
     "options": [
       "df.union(target_df).dropDuplicates()",
@@ -5831,7 +5829,7 @@ PYSPARK DATAFRAME API & SPARK SQL OPERATIONS
   {
     "id": 368,
     "difficulty": "hard",
-    "category": "databricks_pyspark_idempotency",
+    "category": "idempotency",
     "question": "Which of the following practices is likely to BREAK the idempotency of a Databricks job if the job is re-run for a historical backfill?",
     "options": [
       "Using a deterministic hash of the business keys to create a unique ID.",
@@ -5846,7 +5844,7 @@ PYSPARK DATAFRAME API & SPARK SQL OPERATIONS
   {
     "id": 369,
     "difficulty": "hard",
-    "category": "databricks_pyspark_idempotency",
+    "category": "idempotency",
     "question": "In a Structured Streaming context, how does Databricks ensure that a job can be restarted after a failure without processing the same data twice or missing data?",
     "options": [
       "By using the 'dropDuplicates()' transformation on every batch.",
@@ -5858,11 +5856,10 @@ PYSPARK DATAFRAME API & SPARK SQL OPERATIONS
     "explanation": "Checkpoints record the exact offset of data processed from the source. When a stream restarts, it reads the checkpoint to resume exactly where it left off, ensuring exactly-once processing (idempotency).",
     "hint": "This feature tracks 'offsets' in a persistent storage location."
   },
-  [
   {
     "id": 370,
     "difficulty": "easy",
-    "category": "pyspark_idempotency",
+    "category": "idempotency",
     "question": "What is the primary goal of an idempotent PySpark job?",
     "options": [
       "To ensure the job runs as fast as possible",
@@ -5877,7 +5874,7 @@ PYSPARK DATAFRAME API & SPARK SQL OPERATIONS
   {
     "id": 371,
     "difficulty": "easy",
-    "category": "pyspark_idempotency",
+    "category": "idempotency",
     "question": "Which write mode is generally NOT idempotent when running a job multiple times on the same data source?",
     "options": [
       "overwrite",
@@ -5892,7 +5889,7 @@ PYSPARK DATAFRAME API & SPARK SQL OPERATIONS
   {
     "id": 372,
     "difficulty": "medium",
-    "category": "pyspark_idempotency",
+    "category": "idempotency",
     "question": "Why is it considered a best practice to avoid using 'current_timestamp()' in idempotent transformation logic?",
     "options": [
       "It makes the Spark job consume more memory",
@@ -5907,7 +5904,7 @@ PYSPARK DATAFRAME API & SPARK SQL OPERATIONS
   {
     "id": 373,
     "difficulty": "medium",
-    "category": "pyspark_idempotency",
+    "category": "idempotency",
     "question": "When using Delta Lake, which command is most commonly used to perform an idempotent 'upsert'?",
     "options": [
       "df.write.mode('overwrite').save()",
@@ -5922,7 +5919,7 @@ PYSPARK DATAFRAME API & SPARK SQL OPERATIONS
   {
     "id": 374,
     "difficulty": "easy",
-    "category": "pyspark_idempotency",
+    "category": "idempotency",
     "question": "In the context of idempotency, what is the benefit of 'Reliability'?",
     "options": [
       "The job will never fail",
@@ -5937,7 +5934,7 @@ PYSPARK DATAFRAME API & SPARK SQL OPERATIONS
   {
     "id": 375,
     "difficulty": "medium",
-    "category": "pyspark_idempotency",
+    "category": "idempotency",
     "question": "Which technique allows you to overwrite a specific slice of data (e.g., a specific date) in a Delta table to ensure a daily batch job is idempotent?",
     "options": [
       "Using the 'replaceWhere' option",
@@ -5952,7 +5949,7 @@ PYSPARK DATAFRAME API & SPARK SQL OPERATIONS
   {
     "id": 376,
     "difficulty": "medium",
-    "category": "pyspark_idempotency",
+    "category": "idempotency",
     "question": "How does Structured Streaming maintain idempotency during a restart after failure?",
     "options": [
       "By using the 'limit' transformation",
@@ -5967,7 +5964,7 @@ PYSPARK DATAFRAME API & SPARK SQL OPERATIONS
   {
     "id": 377,
     "difficulty": "easy",
-    "category": "pyspark_idempotency",
+    "category": "idempotency",
     "question": "Which of these is a 'Best Practice' for designing idempotent PySpark jobs?",
     "options": [
       "Always use 'append' mode to save space",
@@ -5982,7 +5979,7 @@ PYSPARK DATAFRAME API & SPARK SQL OPERATIONS
   {
     "id": 378,
     "difficulty": "medium",
-    "category": "pyspark_idempotency",
+    "category": "idempotency",
     "question": "If you are performing a backfill for the month of January, which idempotent approach is most efficient for a partitioned Delta table?",
     "options": [
       "Dropping the table and reloading all data from the beginning of time",
@@ -5997,7 +5994,7 @@ PYSPARK DATAFRAME API & SPARK SQL OPERATIONS
   {
     "id": 379,
     "difficulty": "medium",
-    "category": "pyspark_idempotency",
+    "category": "idempotency",
     "question": "What is 'fingerprinting' in the context of creating unique transaction IDs?",
     "options": [
       "Using biometric data to secure the Databricks workspace",
