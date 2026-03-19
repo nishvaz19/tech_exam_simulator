@@ -629,6 +629,7 @@ const typescriptNestjsKeywords = [
   { word: "CQRS", freq: 5, domain: "architecture", desc: "Command Query Responsibility Segregation" },
   { word: "Interceptors", freq: 7, domain: "architecture", desc: "AOP technique to transform request/response streams" },
   { word: "Guards", freq: 9, domain: "security", desc: "Authentication and RBAC logic layer" },
+  { word: "pipe", freq: 9, domain: "architecture", desc: "used for controller parameter data transformations and validation" },  
   { word: "ForwardRef", freq: 4, domain: "architecture", desc: "Resolving circular dependencies in DI" },
 
   // --- ANGULAR & STATE MANAGEMENT ---
@@ -741,7 +742,7 @@ const eaKeywords = [
         // Render Data Architect Cloud
         renderCloud("daCloud", dataArchitectKeywords, "data_architect");
         renderCloud("eaCloud", eaKeywords, "enterprise_architect");
-        renderCloud("typescriptNestjsCloud", typescriptNestjsKeywords, "typescript_nestjs");
+        renderCloud("typescriptNestjsCloud", typescriptNestjsKeywords, "TypeScript_NestJS");
         // Search listeners
         const bindSearch = (id, cloudId, data, type) => {
             document.getElementById(id).addEventListener('keyup', e => {
@@ -760,7 +761,7 @@ const eaKeywords = [
         bindSearch("kfSearch", "kfCloud", kfKeywords, "kafka");
         bindSearch("daSearch", "daCloud", dataArchitectKeywords, "data_architect");
         bindSearch("eaSearch", "eaCloud", eaKeywords, "enterprise_architect");
-        bindSearch("typescriptNestjsSearch", "typescriptNestjsCloud", typescriptNestjsKeywords, "typescript_nestjs");
+        bindSearch("typescriptNestjsSearch", "typescriptNestjsCloud", typescriptNestjsKeywords, "TypeScript_NestJS");
     });
 </script>
 </body>
