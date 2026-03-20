@@ -4917,4 +4917,340 @@ const questionBank = [
     explanation: "Originally, value was thought to stay in L1s (like ETH). With L2s and specialized chains, more value is being retained by the applications themselves.",
     hint: "Value capture: Infrastructure vs. Application."
   },
+  /* ======================================================
+     PHASE 14: ENTERPRISE ARCHITECT MAPPING & SECURITY (329-350)
+     ====================================================== */
+  {
+    id: 329,
+    difficulty: "hard",
+    category: "architecture_mapping",
+    question: "When migrating a Core Banking System (CBS) from a traditional SQL-based Ledger to a Blockchain, which architectural pattern replaces the 'Two-Phase Commit' for cross-shard or cross-chain consistency?",
+    options: [
+      "Optimistic UI Updates",
+      "The Saga Pattern with compensating transactions",
+      "Centralized API Gateways",
+      "Direct database replication"
+    ],
+    answer: 1,
+    explanation: "In distributed systems like Web3, atomic transactions across chains aren't natively supported. The Saga Pattern (distributed transactions) is used to manage consistency by triggering compensating smart contract calls if a step fails.",
+    hint: "Think about distributed state management."
+  },
+  {
+    id: 330,
+    difficulty: "hard",
+    category: "security_tooling",
+    question: "Which security tool would a Technical Architect integrate into a CI/CD pipeline to perform 'Symbolic Execution' on EVM bytecode to find hidden vulnerabilities?",
+    options: [
+      "Slither",
+      "Echidna",
+      "Mythril",
+      "Prettier"
+    ],
+    answer: 2,
+    explanation: "Mythril uses symbolic execution and SMT solvers to analyze EVM bytecode for complex security flaws, whereas Slither is a static analysis tool for Solidity source code.",
+    hint: "One is for static analysis, the other is for symbolic execution."
+  },
+  {
+    id: 331,
+    difficulty: "medium",
+    category: "hybrid_integration",
+    question: "A Java/Spring Boot backend needs to listen for on-chain events from an Ethereum contract. Which tool is most effective for mapping these events to a standard Web2 message queue like RabbitMQ?",
+    options: [
+      "The Graph (Indexing Protocol)",
+      "Web3j Event Monitoring",
+      "Infura Dashboard",
+      "Metamask Mobile"
+    ],
+    answer: 1,
+    explanation: "Web3j is the standard Java library for Ethereum integration. It allows architects to monitor contract events and pipe them into enterprise middleware.",
+    hint: "Java-specific Web3 library."
+  },
+  {
+    id: 332,
+    difficulty: "hard",
+    category: "account_abstraction",
+    question: "Under EIP-4337 (Account Abstraction), how is a 'UserOperation' fundamentally different from a standard Ethereum transaction for a Technical Architect?",
+    options: [
+      "It doesn't require gas",
+      "It is a higher-level pseudo-transaction object that is sent to a 'Bundler' rather than directly to the mempool",
+      "It only works on Layer 2",
+      "It replaces the Private Key requirement"
+    ],
+    answer: 1,
+    explanation: "EIP-4337 introduces an 'Entry Point' contract and 'Bundlers' who collect UserOperations, allowing for features like social recovery and sponsored gas without core protocol changes.",
+    hint: "Bundlers and EntryPoint contracts."
+  },
+  {
+    id: 333,
+    difficulty: "hard",
+    category: "security_tooling",
+    question: "In a 'Security-First' audit, what is the primary role of 'Echidna'?",
+    options: [
+      "Static analysis of Solidity code",
+      "Property-based Fuzzing to test if smart contract invariants hold true under random inputs",
+      "Gas optimization suggestions",
+      "Generating automated documentation"
+    ],
+    answer: 1,
+    explanation: "Echidna is a fuzzer that tests specific properties (invariants) of a contract. If a sequence of transactions can break a rule (e.g., 'total supply should never exceed X'), Echidna identifies the failing sequence.",
+    hint: "Fuzzing vs Static Analysis."
+  },
+  {
+    id: 334,
+    difficulty: "medium",
+    category: "indexing",
+    question: "When building a high-performance Web3 dashboard in Node.js, why would an architect use 'The Graph' instead of direct JSON-RPC calls to an Ethereum node?",
+    options: [
+      "The Graph is cheaper than gas",
+      "Standard nodes do not support complex relational queries (like 'find all NFTs owned by X with trait Y')",
+      "The Graph secures the private keys",
+      "Nodes are too slow for simple balance checks"
+    ],
+    answer: 1,
+    explanation: "Blockchain nodes are optimized for state storage, not querying. The Graph indexes blockchain data into a GraphQL schema, allowing for complex, performant queries.",
+    hint: "Query performance and GraphQL."
+  },
+  {
+    id: 335,
+    difficulty: "hard",
+    category: "tokenomics",
+    question: "What is the primary architectural risk of a 'Dual-Token' model (e.g., Governance + Stablecoin) in a DeFi protocol design?",
+    options: [
+      "Increased transaction latency",
+      "Death Spiral risk due to reflexive value dependency (e.g., LUNA/UST)",
+      "Smart contracts cannot handle two tokens",
+      "Incompatibility with ERC-20"
+    ],
+    answer: 1,
+    explanation: "Architects must ensure the economic design prevents circular dependencies where the collapse of one token leads to the automated liquidation of the other.",
+    hint: "Reflexivity and systemic risk."
+  },
+  {
+    id: 336,
+    difficulty: "medium",
+    category: "interoperability",
+    question: "Which EIP standard should a Fintech architect use to ensure their smart contract can interact with interest-bearing vaults across different protocols seamlessly?",
+    options: [
+      "ERC-20",
+      "ERC-721",
+      "ERC-4626 (Tokenized Vault Standard)",
+      "ERC-1155"
+    ],
+    answer: 2,
+    explanation: "ERC-4626 provides a standard API for yield-bearing vaults, simplifying integration for architects who need to plug into various DeFi lending protocols.",
+    hint: "Vault standardization."
+  },
+  {
+    id: 337,
+    difficulty: "hard",
+    category: "cryptography",
+    question: "In a ZK-Rollup architecture, what is the specific role of a 'zkVM' (Zero-Knowledge Virtual Machine)?",
+    options: [
+      "To store user data off-chain",
+      "To execute general-purpose programs (Rust/C++) and generate a cryptographic proof that the execution was correct",
+      "To replace the Ethereum Consensus layer",
+      "To encrypt private keys on the client side"
+    ],
+    answer: 1,
+    explanation: "zkVMs like RISC Zero or SP1 allow developers to write logic in standard languages and prove the execution, bridging the gap between Web2 developers and ZK-powered privacy/scaling.",
+    hint: "General-purpose ZK execution."
+  },
+  {
+    id: 338,
+    difficulty: "medium",
+    category: "tooling",
+    question: "As a Lead Architect, why might you recommend 'Foundry' over 'Hardhat' for a team already proficient in Solidity?",
+    options: [
+      "Foundry is written in JavaScript",
+      "Foundry allows writing tests directly in Solidity, enabling better developer experience and faster execution via Rust-based tooling",
+      "Hardhat does not support deployment",
+      "Foundry is only for Layer 2"
+    ],
+    answer: 1,
+    explanation: "Foundry is a Rust-based toolkit that allows tests to be written in Solidity, eliminating the 'context switching' between JavaScript/TypeScript and Solidity.",
+    hint: "Solidity-native testing."
+  },
+  /* ======================================================
+     PHASE 14: ENTERPRISE ARCHITECT MAPPING & SECURITY (CONT. 339-350)
+     ====================================================== */
+  {
+    id: 339,
+    difficulty: "hard",
+    category: "mev_security",
+    question: "How does 'Maximal Extractable Value' (MEV) impact a Fintech architect's design of a high-volume Decentralized Exchange (DEX) aggregator?",
+    options: [
+      "It increases the speed of transactions",
+      "It introduces the risk of 'Sandwich Attacks' and 'Front-running', requiring the use of private RPC endpoints like Flashbots to protect user slippage",
+      "It reduces the gas cost for retail users",
+      "It ensures that all transactions are processed in the order they were received"
+    ],
+    answer: 1,
+    explanation: "MEV allows searchers to reorder transactions for profit. Architects must implement protection (e.g., Flashbots Protect or CowSwap) to ensure enterprise-grade execution for high-value swaps.",
+    hint: "Think about transaction ordering and sandwiching."
+  },
+  {
+    id: 340,
+    difficulty: "hard",
+    category: "interoperability",
+    question: "When designing a cross-chain liquidity bridge, what is the primary security advantage of using 'Arbitrary Messaging Bridges' (AMBs) like LayerZero or Chainlink CCIP over traditional lock-and-mint bridges?",
+    options: [
+      "They are always cheaper to use",
+      "They rely on decentralized oracle networks or specialized validation layers rather than a single multisig, reducing the 'Bridge Hack' attack surface",
+      "They don't require smart contracts",
+      "They eliminate the need for gas on the destination chain"
+    ],
+    answer: 1,
+    explanation: "Lock-and-mint bridges are notorious single points of failure. AMBs use varied security models (like decentralized validation or ZK proofs) to move state, not just tokens, across chains.",
+    hint: "Decentralized validation vs. Multisig."
+  },
+  {
+    id: 341,
+    difficulty: "medium",
+    category: "oracle_security",
+    question: "In a 'Security-First' DeFi architecture on an L2 (e.g., Arbitrum), why must an architect implement an 'L2 Sequencer Uptime Feed' check before calling an Oracle?",
+    options: [
+      "To save gas",
+      "To ensure that the price data isn't stale if the L2 sequencer goes down while the L1 oracle continues to update",
+      "To encrypt the transaction data",
+      "To bypass the need for a wallet"
+    ],
+    answer: 1,
+    explanation: "If an L2 sequencer stops, users cannot trade, but prices on L1 might keep moving. Without an uptime check, 'bad debt' can accumulate when the sequencer restarts with stale prices.",
+    hint: "Stale price risk during sequencer downtime."
+  },
+  {
+    id: 342,
+    difficulty: "medium",
+    category: "storage_mapping",
+    question: "When mapping Web2 'AWS S3' storage requirements to Web3, which architectural choice provides the best balance of 'Persistence' and 'Content Addressability' for NFT metadata?",
+    options: [
+      "Storing the full JSON on a private MySQL server",
+      "IPFS for content-addressing combined with Filecoin or Arweave for permanent incentive-based storage",
+      "Google Drive links inside the smart contract",
+      "Hardcoding the metadata strings into the Solidity bytecode"
+    ],
+    answer: 1,
+    explanation: "IPFS ensures the link is tied to the file hash (Content-Addressing), while Arweave/Filecoin ensures the file remains available even if the original pinner goes offline.",
+    hint: "Hash-based links vs. Location-based links."
+  },
+  {
+    id: 343,
+    difficulty: "hard",
+    category: "privacy_architecture",
+    question: "For an Enterprise Architect requiring 'Regulated Privacy' (e.g., GDPR compliance), how does a 'zk-SNARK' circuit differ from a 'Trusted Execution Environment' (TEE) like Intel SGX?",
+    options: [
+      "They are the same thing",
+      "zk-SNARKs provide mathematical proofs of privacy without trusted hardware, while TEEs rely on secure hardware enclaves that can be vulnerable to side-channel attacks",
+      "TEEs are only for Bitcoin",
+      "zk-SNARKs require a centralized server to verify"
+    ],
+    answer: 1,
+    explanation: "Zero-Knowledge Proofs (SNARKs/STARKs) offer a 'trustless' privacy model. TEEs are faster for complex logic but introduce a hardware-level trust assumption and potential physical exploits.",
+    hint: "Math-based vs. Hardware-based security."
+  },
+  {
+    id: 344,
+    difficulty: "medium",
+    category: "integration_tooling",
+    question: "A Technical Architect is choosing between 'web3.py' and 'ethers.js'. Which factor would lead them to choose 'web3.py' for an enterprise backend?",
+    options: [
+      "It is faster at rendering frontend components",
+      "Better alignment with existing Python-based Data Science, ML, or Fintech quantitative trading stacks",
+      "It is the only library that supports Ethereum",
+      "It replaces the need for an RPC provider"
+    ],
+    answer: 1,
+    explanation: "While both are excellent, web3.py is the industry standard for Python environments, which are prevalent in banking backends and algorithmic trading systems.",
+    hint: "Backend language compatibility."
+  },
+  {
+    id: 345,
+    difficulty: "hard",
+    category: "gas_economics",
+    question: "Under EIP-1559, how should an architect handle the 'Base Fee' and 'Priority Fee' in a high-priority automated liquidation bot?",
+    options: [
+      "Set the Priority Fee to 0 to save money",
+      "Dynamically adjust the Priority Fee (Tip) to outbid other bots while ensuring the Max Fee covers potential Base Fee spikes",
+      "Only use Legacy transactions",
+      "Ignore fees and let the transaction fail"
+    ],
+    answer: 1,
+    explanation: "EIP-1559 splits fees. The Base Fee is burned, but the Priority Fee is the 'tip' to the validator. For liquidation bots, the 'tip' must be competitive to ensure inclusion in the next block.",
+    hint: "The 'Tip' mechanism for inclusion."
+  },
+  {
+    id: 346,
+    difficulty: "hard",
+    category: "indexing_strategy",
+    question: "Why would a Lead Architect choose a 'Custom Indexer' (e.g., using Go or Java) over 'The Graph' for a high-frequency Fintech dashboard?",
+    options: [
+      "The Graph is too cheap",
+      "To achieve sub-second latency and support custom logic (e.g., joining on-chain data with private Web2 SQL data) that The Graph’s public nodes cannot handle",
+      "Because GraphQL is obsolete",
+      "To avoid using smart contracts entirely"
+    ],
+    answer: 1,
+    explanation: "Public indexers have sync lag. Custom indexers allow architects to control the 'Sidecar' database, enabling complex joins with sensitive internal banking data not suitable for a public Subgraph.",
+    hint: "Latency and Web2/Web3 data joins."
+  },
+  {
+    id: 347,
+    difficulty: "medium",
+    category: "devops",
+    question: "In a Multi-Chain deployment strategy (e.g., deploying to Mainnet, Polygon, and Base), how does a Technical Architect ensure the same contract address is maintained across all networks?",
+    options: [
+      "By using the same wallet for all deployments",
+      "By using the 'CREATE2' opcode with a consistent salt and deployer factory address",
+      "By manually deploying at the exact same timestamp",
+      "It is impossible to have the same address on different chains"
+    ],
+    answer: 1,
+    explanation: "CREATE2 derives the address from the salt and bytecode rather than the deployer's nonce. This allows 'Deterministic Deployment' across different EVM chains.",
+    hint: "Deterministic deployment opcode."
+  },
+  {
+    id: 348,
+    difficulty: "hard",
+    category: "tokenomics_architecture",
+    question: "What is the primary architectural purpose of the 'veToken' (Voter Escrowed) model in DeFi governance?",
+    options: [
+      "To allow users to withdraw their tokens instantly",
+      "To align long-term incentives by requiring users to 'lock' tokens for voting power, reducing circulating supply and market volatility",
+      "To replace the need for gas fees",
+      "To encrypt the voting process"
+    ],
+    answer: 1,
+    explanation: "The veToken model (popularized by Curve) encourages long-term holding. The longer the lock, the higher the voting power and share of protocol fees, preventing 'mercenary' capital.",
+    hint: "Locking for power."
+  },
+  {
+    id: 349,
+    difficulty: "hard",
+    category: "upgradability",
+    question: "Which proxy pattern is preferred for an Enterprise Architect who wants to minimize 'Gas Overhead' for the end-user while maintaining the ability to upgrade logic?",
+    options: [
+      "Transparent Proxy Pattern",
+      "UUPS (Universal Upgradeable Proxy Standard) because the upgrade logic resides in the implementation, reducing gas for standard calls",
+      "Removing proxies entirely",
+      "Using a new address for every version"
+    ],
+    answer: 1,
+    explanation: "UUPS is more gas-efficient than the Transparent Proxy Pattern because the 'Admin' checks are not performed on every single call to the proxy, only during the upgrade process.",
+    hint: "Logic in proxy vs logic in implementation."
+  },
+  {
+    id: 350,
+    difficulty: "hard",
+    category: "settlement_architecture",
+    question: "How should a Technical Architect account for 'Probabilistic Finality' when integrating a Bitcoin-based bridge into a real-time banking settlement system?",
+    options: [
+      "Process the transaction immediately upon seeing it in the mempool",
+      "Implement a 'Confirmation Threshold' (e.g., waiting 6 blocks) to ensure the transaction is unlikely to be reversed by a chain reorganization",
+      "Ignore finality as it doesn't apply to Bitcoin",
+      "Use a centralized database to override the blockchain"
+    ],
+    answer: 1,
+    explanation: "Unlike 'Instant Finality' chains (BFT-based), PoW chains like Bitcoin require waiting for several blocks to achieve 'economic finality' where the cost of reversal exceeds the transaction value.",
+    hint: "Waiting for confirmations to prevent re-org risk."
+    },
   ];
