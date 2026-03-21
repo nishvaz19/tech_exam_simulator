@@ -1,37 +1,35 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
-<title>Snowflake SQL Practice</title>
-
-<link rel="stylesheet" href="css/styles.css">
-
+    <meta charset="UTF-8">
+    <title>Snowflake SQL Practice</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
-
 <body>
 
-<div class="container">
+    <div class="container">
+        <header>
+            <img src="https://www.snowflake.com/wp-content/themes/snowflake/assets/img/logo-blue.svg" alt="Snowflake Logo" width="150">
+            <h1>SQL Practice Lab</h1>
+        </header>
 
-<h1>Snowflake SQL Practice Lab</h1>
+        <div class="editor-wrapper">
+            <textarea id="sql" spellcheck="false" placeholder="Write your SQL here...">SELECT * FROM SALES_DATA 
+WHERE AMOUNT > 1000;</textarea>
+            
+            <div class="controls">
+                <button id="runBtn">▶ Run Query</button>
+                <small>Simulated Warehouse: <strong>X-Small</strong></small>
+            </div>
+        </div>
 
-<textarea id="sql" rows="10">
+        <div id="result" class="idle">Results will appear here...</div>
+    </div>
 
-SELECT *
-FROM sales
-WHERE amount > 1000;
-
-</textarea>
-
-<br>
-
-<button onclick="runSQL()">Run Query</button>
-
-<div id="result"></div>
-
-</div>
-
-<script src="js/sqlSandbox.js"></script>
-
+    <script src="js/sqlSandbox.js"></script>
+    <script>
+        // Modern way to bind events
+        document.getElementById("runBtn").addEventListener("click", runSQL);
+    </script>
 </body>
 </html>
