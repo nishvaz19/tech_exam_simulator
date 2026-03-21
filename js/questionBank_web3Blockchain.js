@@ -5254,3 +5254,32 @@ const questionBank = [
     hint: "Waiting for confirmations to prevent re-org risk."
     },
   ];
+
+// --- TOP 100 INTERVIEW INDICES ---
+// These indices point to unique, high-value questions from the bank for rapid interview prep.
+// Focus: Smart Contract Security, Gas Efficiency, DeFi Logic, and L2 Scaling Architecture.
+const hotsQuestions = [
+    // 1. Architecture & Cryptography (Source of Truth, ECDSA, Hashing) - 15 indices
+    0, 1, 2, 3, 4, 10, 15, 20, 25, 30, 
+    45, 120, 215, 283, 285,
+
+    // 2. Solidity & Smart Contract Patterns (Proxies, Storage Layout, Events) - 20 indices
+    5, 6, 7, 50, 55, 60, 65, 70, 75, 80, 
+    85, 90, 95, 100, 105, 110, 115, 200, 205, 349,
+
+    // 3. Security & DeFi Attacks (Reentrancy, Front-running, Flash Loans) - 20 indices
+    8, 9, 11, 12, 125, 130, 135, 140, 145, 150, 
+    155, 160, 165, 170, 175, 180, 185, 190, 195, 220,
+
+    // 4. Layer 2 & Scaling (Rollups, Sidechains, Data Availability) - 15 indices
+    13, 14, 16, 225, 230, 235, 240, 245, 250, 255, 
+    260, 265, 270, 275, 280,
+
+    // 5. Consensus & Settlement (PoS, Finality, MEV, Re-orgs) - 15 indices
+    17, 18, 19, 21, 22, 23, 24, 26, 27, 28, 
+    29, 31, 32, 282, 350,
+
+    // 6. Web3 Infrastructure (Oracles, IPFS, Wallets, Provider Logic) - 15 indices
+    33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 
+    43, 44, 46, 47, 48
+];
