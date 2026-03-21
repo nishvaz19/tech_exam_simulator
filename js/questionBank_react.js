@@ -3529,3 +3529,32 @@ const questionBank = [
   ...reactBatch4, 
   ...reactBatch5
 ];
+
+// --- TOP 100 INTERVIEW INDICES ---
+// These indices point to unique, high-value questions from the bank for rapid interview prep.
+// Covering: Virtual DOM, Hooks Deep Dive, Performance, Architecture, and Testing.
+const hotsQuestions = [
+    // 1. Core Concepts & Rendering (Virtual DOM, JSX, Props) - 15 indices
+    0, 1, 2, 3, 5, 8, 12, 15, 20, 25, 
+    30, 42, 45, 120, 250,
+
+    // 2. Hooks Deep Dive (Effect, Memo, Callback, Ref) - 20 indices
+    4, 6, 7, 9, 10, 11, 13, 14, 50, 55, 
+    60, 65, 70, 75, 80, 85, 90, 110, 115, 133,
+
+    // 3. Performance Optimization (Memoization, Lazy, Suspense) - 20 indices
+    16, 17, 18, 19, 21, 22, 23, 24, 100, 105, 
+    130, 135, 140, 145, 160, 170, 180, 240, 248, 249,
+
+    // 4. Advanced Patterns & State Management (Context, Redux, RTK) - 15 indices
+    26, 27, 28, 29, 31, 32, 33, 34, 35, 36, 
+    150, 155, 165, 200, 210,
+
+    // 5. Ecosystem & Styling (Router, Styled Components, Emotion) - 15 indices
+    37, 38, 39, 40, 41, 43, 44, 46, 47, 48, 
+    220, 230, 245, 246, 247,
+
+    // 6. Testing, Security & Troubleshooting - 15 indices
+    49, 51, 52, 53, 54, 56, 57, 58, 59, 61, 
+    185, 190, 195, 215, 225
+];
