@@ -12,6 +12,7 @@
             --dark-bg: #1e293b;
             --border: #cbd5e1;
             --text-main: #334155;
+            --disabled: #94a3b8;
         }
 
         body {
@@ -52,7 +53,7 @@
             border: 1px solid #e2e8f0;
             margin-bottom: 12px;
             gap: 10px;
-            flex-wrap: wrap; /* Wraps on very small screens */
+            flex-wrap: wrap;
         }
 
         .timer { font-weight: 700; color: var(--danger); font-size: 1.1rem; }
@@ -77,7 +78,7 @@
             display: inline-flex;
             align-items: center;
             padding: 0 12px;
-            border: 1px solid #000; /* Requested thin black border */
+            border: 1px solid #000;
             border-radius: 4px;
             height: 40px;
             background: white;
@@ -101,6 +102,14 @@
             border-radius: 4px;
             font-size: 0.9rem;
             outline-color: var(--primary);
+            transition: all 0.2s;
+        }
+
+        /* Logic for Disabled States */
+        #keywordSearch:disabled {
+            background-color: #f1f5f9;
+            cursor: not-allowed;
+            opacity: 0.6;
         }
 
         .btn-focus {
@@ -116,6 +125,12 @@
         }
 
         .btn-focus:hover { background: var(--primary-dark); }
+        
+        .btn-focus:disabled {
+            background: var(--disabled);
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
 
         /* --- MAIN CONTAINER --- */
         .question-card {
@@ -168,22 +183,11 @@
 
         /* --- RESPONSIVE MOBILE FIXES --- */
         @media (max-width: 768px) {
-            .search-row {
-                flex-direction: column;
-                align-items: stretch;
-            }
+            .search-row { flex-direction: column; align-items: stretch; }
             .hot-selection-box { justify-content: center; }
-            .exam-actions {
-                flex-direction: column;
-            }
-            .action-group {
-                width: 100%;
-                justify-content: center;
-            }
-            .right-actions {
-                flex-direction: column;
-                width: 100%;
-            }
+            .exam-actions { flex-direction: column; }
+            .action-group { width: 100%; justify-content: center; }
+            .right-actions { flex-direction: column; width: 100%; }
             .right-actions button { width: 100%; }
         }
     </style>
@@ -205,16 +209,16 @@
         <div class="search-row">
             <div class="hot-selection-box">
                 <label for="hotToggle">
-                    <input type="checkbox" id="hotToggle" onchange="startExam()">
+                    <input type="checkbox" id="hotToggle" onchange="handleToggle()">
                     🔥 Top 100
                 </label>
             </div>
             
             <input type="text" id="keywordSearch" 
                    placeholder="Filter by keyword (e.g. RxJS)..." 
-                   onkeyup="if(event.key==='Enter') startExam()">
+                   onkeyup="if(event.key==='Enter' && !this.disabled) startExam()">
             
-            <button class="btn-focus" onclick="startExam()">Apply Focus</button>
+            <button id="applyFocusBtn" class="btn-focus" onclick="startExam()">Apply Focus</button>
         </div>
     </header>
 
@@ -248,6 +252,25 @@
 
 <script src="js/examEngine.js"></script>
 <script>
+    // --- UI LOGIC FOR DISABLING SEARCH ---
+    function handleToggle() {
+        const isHotMode = document.getElementById('hotToggle').checked;
+        const searchInput = document.getElementById('keywordSearch');
+        const focusBtn = document.getElementById('applyFocusBtn');
+
+        // Disable/Enable based on checkbox
+        searchInput.disabled = isHotMode;
+        focusBtn.disabled = isHotMode;
+
+        // Optionally clear search if entering Hot Mode to prevent logic conflicts
+        if (isHotMode) {
+            searchInput.value = "";
+        }
+
+        // Trigger the exam engine update
+        startExam();
+    }
+
     const urlParams = new URLSearchParams(window.location.search);
     const examType = urlParams.get('type');
     const focusKeyword = urlParams.get('focus');
@@ -280,11 +303,16 @@
     const config = examMap[examType];
     if (config) {
         document.getElementById('examTitle').innerText = config.title;
-        if (focusKeyword) { document.getElementById('keywordSearch').value = focusKeyword; }
+        if (focusKeyword) { 
+            document.getElementById('keywordSearch').value = focusKeyword; 
+        }
 
         const script = document.createElement('script');
         script.src = config.file + '?v=' + new Date().getTime(); 
-        script.onload = () => { startExam(); };
+        script.onload = () => { 
+            // Initialize the UI state on load
+            handleToggle(); 
+        };
         document.head.appendChild(script);
     } else {
         document.getElementById('examTitle').innerText = "Exam Not Found";
