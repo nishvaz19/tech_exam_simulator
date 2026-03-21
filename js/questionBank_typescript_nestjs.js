@@ -6023,4 +6023,209 @@ const questionBank = [
     explanation: "Type safety and readability are the cornerstones of high-quality software development.",
     hint: "Readability and maintenance."
   },
+  // --- ANGULAR COMPONENT LIFECYCLE (501-505) ---
+  {
+    id: 501,
+    difficulty: "medium",
+    category: "angular_lifecycle",
+    question: "Which Angular lifecycle hook is called only once, immediately after the first 'ngOnChanges()'?",
+    options: ["ngAfterViewInit()", "ngOnInit()", "ngDoCheck()", "ngAfterContentInit()"],
+    answer: 1,
+    explanation: "ngOnInit() is used to perform complex initializations and is called only once after the first change detection cycle.",
+    hint: "The most common initialization hook."
+  },
+  {
+    id: 502,
+    difficulty: "hard",
+    category: "angular_lifecycle",
+    question: "Scenario: You need to access a child component using '@ViewChild'. In which lifecycle hook is the child component guaranteed to be initialized?",
+    options: ["ngOnInit()", "ngAfterContentInit()", "ngAfterViewInit()", "ngOnChanges()"],
+    answer: 2,
+    explanation: "ngAfterViewInit() is called after the component's view and its children's views are fully initialized.",
+    hint: "Post-view rendering."
+  },
+  {
+    id: 503,
+    difficulty: "medium",
+    category: "angular_lifecycle",
+    question: "Which hook should you use to clean up resources, such as unsubscribing from Observables, to prevent memory leaks?",
+    options: ["ngOnDestroy()", "ngOnChanges()", "ngAfterViewChecked()", "ngDoCheck()"],
+    answer: 0,
+    explanation: "ngOnDestroy() is called just before Angular destroys the component, making it the ideal place for cleanup logic.",
+    hint: "The final hook."
+  },
+  {
+    id: 504,
+    difficulty: "hard",
+    category: "angular_lifecycle",
+    question: "Which lifecycle hook is called immediately after Angular has checked the content projected into the component via 'ng-content'?",
+    options: ["ngAfterViewChecked()", "ngAfterContentChecked()", "ngDoCheck()", "ngOnChanges()"],
+    answer: 1,
+    explanation: "ngAfterContentChecked() is called after every check of the projected content.",
+    hint: "Follows ngAfterContentInit."
+  },
+  {
+    id: 505,
+    difficulty: "medium",
+    category: "angular_lifecycle",
+    question: "In Angular, what is the primary purpose of the 'ngDoCheck()' lifecycle hook?",
+    options: [
+      "To detect and act upon changes that Angular can't or won't detect on its own",
+      "To initialize the component for the first time",
+      "To handle input changes exclusively",
+      "To perform DOM manipulation after rendering"
+    ],
+    answer: 0,
+    explanation: "ngDoCheck() is a custom change detection hook used when the default change detection algorithm is insufficient.",
+    hint: "Custom change detection."
+  },
+
+  // --- NESTJS & TYPESCRIPT PITFALLS (506-510) ---
+  {
+    id: 506,
+    difficulty: "hard",
+    category: "nestjs_pitfalls",
+    question: "Pitfall: You defined a 'Request-scoped' provider, but noticed its dependencies are also being recreated for every request. Why does this happen?",
+    options: [
+      "It is a bug in NestJS",
+      "Scope is 'bubbled up'; any provider depending on a request-scoped provider also becomes request-scoped",
+      "Because the database is slow",
+      "Request scope only works for controllers"
+    ],
+    answer: 1,
+    explanation: "Injection of a request-scoped provider into a singleton provider changes the singleton's scope to request-scoped (Scope Bubbling).",
+    hint: "Dependency chain impact."
+  },
+  {
+    id: 507,
+    difficulty: "medium",
+    category: "typescript_pitfalls",
+    question: "Pitfall: In TypeScript, why does 'myArray.map(async x => ...)' not wait for all promises to resolve before continuing?",
+    options: [
+      "map() is deprecated",
+      "map() is synchronous and does not await the inner async function; it returns an array of Promises immediately",
+      "Async functions cannot be used in map",
+      "The browser is too old"
+    ],
+    answer: 1,
+    explanation: "To wait for all results, you must wrap the map result in 'Promise.all(myArray.map(...))'.",
+    hint: "Array methods vs Async/Await."
+  },
+  {
+    id: 508,
+    difficulty: "hard",
+    category: "nestjs_pitfalls",
+    question: "Pitfall: When two services in NestJS depend on each other (Circular Dependency), the application fails to start. What is the standard NestJS fix?",
+    options: [
+      "Moving both services into the same file",
+      "Using the 'forwardRef()' utility in both the '@Inject()' decorator and the module providers",
+      "Removing the '@Injectable()' decorator",
+      "Converting one service into a global variable"
+    ],
+    answer: 1,
+    explanation: "forwardRef() allows Nest to resolve dependencies that are not yet defined due to circularity.",
+    hint: "Resolving 'Chicken and Egg' imports."
+  },
+  {
+    id: 509,
+    difficulty: "medium",
+    category: "typescript_pitfalls",
+    question: "Pitfall: You pass a class method as a callback (e.g., 'this.service.getData') to a third-party library and 'this' becomes undefined. How do you fix this in TypeScript?",
+    options: [
+      "Declare the method as an arrow function or use '.bind(this)'",
+      "Change the class to an interface",
+      "Use the 'static' keyword on the method",
+      "Rename the method to 'constructor'"
+    ],
+    answer: 0,
+    explanation: "In JavaScript/TypeScript, passing a method as a reference loses its 'this' context unless it is bound or defined as an arrow function.",
+    hint: "Lexical scoping of 'this'."
+  },
+  {
+    id: 510,
+    difficulty: "hard",
+    category: "nestjs_pitfalls",
+    question: "Pitfall: In a NestJS application using TypeScript, you find that a dependency is 'undefined' despite being in the providers array. What is a common cause?",
+    options: [
+      "The provider was not exported from its module",
+      "Circular dependency without 'forwardRef()'",
+      "A missing '@Injectable()' decorator on the service class",
+      "All of the above"
+    ],
+    answer: 3,
+    explanation: "Missing decorators, missing exports, or circular dependencies are the primary reasons DI fails in NestJS.",
+    hint: "Standard DI requirements."
+  },
+
+  // --- GUARDS, FILTERS & DEBUGGING (511-515) ---
+  {
+    id: 511,
+    difficulty: "hard",
+    category: "nestjs_debugging",
+    question: "Best Practice: When debugging a Global Exception Filter, why might 'ArgumentsHost.switchToHttp()' fail in a hybrid application?",
+    options: [
+      "Because the filter only works for Express",
+      "The same filter might be catching an error from a Microservice (RPC) or WebSocket, which does not have HTTP context",
+      "The computer ran out of memory",
+      "Global filters do not support host switching"
+    ],
+    answer: 1,
+    explanation: "Global filters catch errors from all contexts; you must check 'host.getType()' before calling context-specific methods.",
+    hint: "Multi-protocol context safety."
+  },
+  {
+    id: 512,
+    difficulty: "medium",
+    category: "nestjs_guards",
+    question: "Where do NestJS Guards sit in the request lifecycle relative to Interceptors?",
+    options: [
+      "After Interceptors",
+      "Before Interceptors",
+      "At the same time",
+      "Guards only run after the controller"
+    ],
+    answer: 1,
+    explanation: "Guards execute before Interceptors, Pipes, and the route handler itself.",
+    hint: "Gatekeeper vs Transformer order."
+  },
+  {
+    id: 513,
+    difficulty: "hard",
+    category: "remote_api_debugging",
+    question: "Scenario: Your NestJS server is failing to call a remote REST API over HTTPS in a local dev environment due to 'self-signed certificate' errors. What is the safest best practice fix?",
+    options: [
+      "Set process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'",
+      "Disable HTTPS on the remote server",
+      "Add the remote server's CA certificate to your local trusted store or use an 'httpsAgent' with the CA in the Axios request",
+      "Switch to plain text HTTP"
+    ],
+    answer: 2,
+    explanation: "Turning off TLS validation (option 0) is a major security risk; using a proper CA configuration is the correct architectural approach.",
+    hint: "Secure certificate handling."
+  },
+  {
+    id: 514,
+    difficulty: "medium",
+    category: "browser_debugging",
+    question: "Best Practice: When debugging Angular performance, which Chrome DevTools tool should you use to visualize change detection cycles and frame drops?",
+    options: [
+      "Network Tab",
+      "Performance Monitor / Profiler",
+      "Application Tab",
+      "Console log sampling"
+    ],
+    answer: 1,
+    explanation: "The Performance tab allows you to record 'Profile' sessions to see exactly where Angular change detection is taking too long.",
+    hint: "Measuring execution time."
+  },
+  {
+    id: 515,
+    difficulty: "hard",
+    category: "angular_guards",
+    question: "In Angular, which guard should you use to prevent a user from leaving a route with unsaved changes?",
+    options: ["CanActivate", "CanLoad", "CanDeactivate", "CanActivateChild"],
+    answer: 2,
+    explanation: "CanDeactivate is specifically designed to check if a user can navigate away from the current route.",
+    hint: "Preventing exit."
+  },
 ];
