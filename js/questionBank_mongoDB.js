@@ -3076,21 +3076,7 @@ const mongodbBatch5 = [
 // Append to master database
 questionBank.push(...mongodbBatch5);
 const mongodbBatch6 = [
-  {
-    id: 240,
-    difficulty: "hard",
-    category: "sharding",
-    question: "What is the main risk of choosing a monotonically increasing shard key (e.g., timestamp) in MongoDB?",
-    options: [
-      "Data compression failures",
-      "Hot shard problem due to uneven write distribution",
-      "Index corruption",
-      "Replica lag"
-    ],
-    answer: 1,
-    explanation: "Monotonically increasing shard keys cause new writes to target the same shard, creating a hot shard bottleneck.",
-    hint: "Single shard overload."
-  },
+
   {
     id: 241,
     difficulty: "medium",
@@ -3685,7 +3671,22 @@ const mongodbBatch7 = [
     answer: 1,
     explanation: "$ne is used to find values not equal to a specific value. $not is a logical operator used to negate a query expression (e.g., matching documents that do not match a regex or range).",
     hint: "One compares values, the other negates expressions."
-  }
+  },
+     {
+    id: 282,
+    difficulty: "hard",
+    category: "sharding",
+    question: "What is the main risk of choosing a monotonically increasing shard key (e.g., timestamp) in MongoDB?",
+    options: [
+      "Data compression failures",
+      "Hot shard problem due to uneven write distribution",
+      "Index corruption",
+      "Replica lag"
+    ],
+    answer: 1,
+    explanation: "Monotonically increasing shard keys cause new writes to target the same shard, creating a hot shard bottleneck.",
+    hint: "Single shard overload."
+  },
    ];
 
 questionBank.push(...mongodbBatch7);
@@ -3696,7 +3697,7 @@ questionBank.push(...mongodbBatch7);
 const hotsQuestions = [
     // 1. CRUD Operations & Query Logic (Projection, Upsert, Array Filters) - 15 indices
     1, 2, 3, 4, 15, 20, 25, 30, 40, 45, 
-    278, 279, 280, 281, 282,
+    278, 279, 280, 281, 283,
 
     // 2. Aggregation Framework (Pipeline Stages, Expressions) - 20 indices
     5, 6, 7, 50, 55, 60, 65, 70, 75, 80, 
@@ -3711,7 +3712,7 @@ const hotsQuestions = [
     255, 260, 265, 270, 275,
 
     // 5. Replication, Sharding & High Availability (Oplog, Elections, Chunking) - 15 indices
-    14, 16, 17, 18, 19, 285, 290, 295, 300, 305, 
+    14, 16, 17, 18, 19, 282, 285, 290, 295, 300, 305, 
     310, 315, 320, 325, 330,
 
     // 6. Security, Governance & Atlas (RBAC, Encryption, Monitoring) - 15 indices
