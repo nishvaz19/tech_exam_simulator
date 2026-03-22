@@ -109,7 +109,396 @@ const questionBank = [
     answer: 1,
     explanation: "@RequestMapping (and specialized versions like @GetMapping) maps HTTP requests to Java methods."
   },
-  // ... Questions 11-40 would follow here with same structure ...
+  {
+    id: 11,
+    difficulty: "medium",
+    category: "Java Core",
+    question: "What is the primary purpose of the 'volatile' keyword in Java?",
+    options: [
+      "To make a variable immutable",
+      "To ensure that a variable's value is always read from and written to main memory, preventing thread-local caching",
+      "To prevent a method from being overridden",
+      "To speed up mathematical calculations"
+    ],
+    answer: 1,
+    explanation: "Volatile ensures visibility of changes to variables across threads. It prevents the CPU from caching the variable value in a register or local cache.",
+    hint: "Visibility in multi-threading."
+  },
+  {
+    id: 12,
+    difficulty: "medium",
+    category: "Java Core",
+    question: "Which of the following is a 'Checked Exception' in Java?",
+    options: ["NullPointerException", "ArithmeticException", "IOException", "ArrayIndexOutOfBoundsException"],
+    answer: 2,
+    explanation: "Checked exceptions (like IOException or SQLException) must be either caught or declared in the 'throws' clause. Unchecked exceptions extend RuntimeException.",
+    hint: "Exceptions you are forced to handle at compile time."
+  },
+  {
+    id: 13,
+    difficulty: "medium",
+    category: "Java Core",
+    question: "What is the difference between Comparable and Comparator?",
+    options: [
+      "Comparable is for numbers; Comparator is for strings",
+      "Comparable provides a natural sorting order for a class; Comparator allows for custom sorting logic in a separate class",
+      "They are identical in function",
+      "Comparable is deprecated in Java 17"
+    ],
+    answer: 1,
+    explanation: "Comparable uses the compareTo() method inside the class. Comparator is an external interface using the compare() method.",
+    hint: "Internal vs External sorting."
+  },
+  {
+    id: 14,
+    difficulty: "easy",
+    category: "Spring Boot",
+    question: "What is the default scope of a Spring Bean?",
+    options: ["Prototype", "Request", "Singleton", "Session"],
+    answer: 2,
+    explanation: "By default, Spring creates only one instance of a bean per ApplicationContext (Singleton scope).",
+    hint: "One instance for the whole app."
+  },
+  {
+    id: 15,
+    difficulty: "medium",
+    category: "Spring Boot",
+    question: "What is the main difference between @Controller and @RestController?",
+    options: [
+      "@RestController is only for mobile apps",
+      "@RestController is a convenience annotation that combines @Controller and @ResponseBody",
+      "@Controller is deprecated",
+      "@RestController cannot return HTML"
+    ],
+    answer: 1,
+    explanation: "@RestController ensures the return value of methods is written directly into the HTTP response body (usually as JSON/XML).",
+    hint: "@Controller + @ResponseBody."
+  },
+  {
+    id: 16,
+    difficulty: "medium",
+    category: "Java Core",
+    question: "Which Java 8 feature is used to represent a value that may or may not be present, helping to avoid NullPointerExceptions?",
+    options: ["Optional", "Nullable", "Wrapper", "Reference"],
+    answer: 0,
+    explanation: "The Optional class is a container object which may or may not contain a non-null value.",
+    hint: "A container for null safety."
+  },
+  {
+    id: 17,
+    difficulty: "medium",
+    category: "Java Core",
+    question: "Which variables can a Lambda expression access from its surrounding scope?",
+    options: [
+      "Any variable in the class",
+      "Only final or 'effectively final' local variables",
+      "Only private variables",
+      "Only static variables"
+    ],
+    answer: 1,
+    explanation: "To ensure thread safety and predictability, lambdas can only access local variables that do not change after being initialized.",
+    hint: "Effectively final."
+  },
+  {
+    id: 18,
+    difficulty: "hard",
+    category: "Java Core",
+    question: "In the Stream API, what is the difference between map() and flatMap()?",
+    options: [
+      "map() is faster than flatMap()",
+      "map() transforms each element; flatMap() transforms each element into a stream and flattens the result into a single stream",
+      "flatMap() is only for integers",
+      "There is no difference"
+    ],
+    answer: 1,
+    explanation: "Use flatMap() when you have a stream of collections (e.g., Stream<List<String>>) and you want to produce a Stream<String>.",
+    hint: "Flattening nested structures."
+  },
+  {
+    id: 19,
+    difficulty: "medium",
+    category: "Java Core",
+    question: "Where are objects stored in JVM memory?",
+    options: ["Stack", "Heap", "Method Area", "PC Register"],
+    answer: 1,
+    explanation: "Objects (and their instance variables) are stored on the Heap. Reference variables and primitive local variables are stored on the Stack.",
+    hint: "Shared memory for objects."
+  },
+  {
+    id: 20,
+    difficulty: "hard",
+    category: "Java Core",
+    question: "Which Garbage Collector became the default in Java 9?",
+    options: ["Serial GC", "Parallel GC", "G1 (Garbage First) GC", "ZGC"],
+    answer: 2,
+    explanation: "G1 GC replaced Parallel GC as the default to provide a balance between high throughput and low latency.",
+    hint: "Region-based collector."
+  },
+  {
+    id: 21,
+    difficulty: "easy",
+    category: "Java Core",
+    question: "What is a 'Record' in Java 16+?",
+    options: [
+      "A type of database entry",
+      "A restricted class used to model immutable data with built-in constructors, getters, equals, and hashCode",
+      "A way to record audio in Java",
+      "A new way to write try-catch blocks"
+    ],
+    answer: 1,
+    explanation: "Records provide a compact syntax for classes that are transparent holders for shallowly immutable data.",
+    hint: "Data-only classes."
+  },
+  {
+    id: 22,
+    difficulty: "hard",
+    category: "Java Core",
+    question: "What is 'Pattern Matching for switch' (Java 21)?",
+    options: [
+      "A way to use Regex in switch",
+      "The ability to switch on types and bind variables to the casted value directly in the case label",
+      "A way to switch between different JVMs",
+      "A deprecated feature"
+    ],
+    answer: 1,
+    explanation: "Pattern matching allows you to write: case String s -> s.length(). It eliminates the need for explicit casting after an instanceof check.",
+    hint: "Type checking in switch cases."
+  },
+  {
+    id: 23,
+    difficulty: "easy",
+    category: "Spring Boot",
+    question: "Which annotation is used to mark a class as a service layer component in Spring?",
+    options: ["@Component", "@Service", "@Repository", "@Bean"],
+    answer: 1,
+    explanation: "@Service is a specialization of @Component used specifically for business logic.",
+    hint: "Business logic layer."
+  },
+  {
+    id: 24,
+    difficulty: "medium",
+    category: "Spring Boot",
+    question: "Why is Constructor Injection generally preferred over Field Injection (@Autowired on a field)?",
+    options: [
+      "It is faster",
+      "It makes the class easier to unit test and ensures required dependencies are not null (final fields)",
+      "Field injection is removed in Spring 6",
+      "Constructor injection uses less memory"
+    ],
+    answer: 1,
+    explanation: "Constructor injection allows for immutable fields (final) and makes it clear what dependencies are required for the object to exist.",
+    hint: "Immutability and testing."
+  },
+  {
+    id: 25,
+    difficulty: "easy",
+    category: "Spring Boot",
+    question: "Which dependency allows for automatic application restarts when code changes are detected?",
+    options: ["Spring Web", "Spring Boot DevTools", "Lombok", "Spring Actuator"],
+    answer: 1,
+    explanation: "DevTools provides features like automatic restart and LiveReload to speed up the development cycle.",
+    hint: "Developer productivity tools."
+  },
+  {
+    id: 26,
+    difficulty: "medium",
+    category: "Spring Boot",
+    question: "What is the purpose of Spring Boot Actuator?",
+    options: [
+      "To actuate the database",
+      "To provide production-ready features like health checks, metrics, and environment info via HTTP endpoints",
+      "To speed up startup time",
+      "To encrypt passwords"
+    ],
+    answer: 1,
+    explanation: "Actuator allows you to monitor and manage your application in production (e.g., /actuator/health).",
+    hint: "Monitoring and health."
+  },
+  {
+    id: 27,
+    difficulty: "medium",
+    category: "Spring Boot",
+    question: "How do you define environment-specific properties in Spring Boot (e.g., dev vs prod)?",
+    options: [
+      "By using different folders",
+      "Using Profiles (e.g., application-dev.properties)",
+      "By hardcoding values in code",
+      "Spring Boot does not support environments"
+    ],
+    answer: 1,
+    explanation: "Spring Profiles allow you to segregate parts of your application configuration and make it only available in certain environments.",
+    hint: "@Profile annotation."
+  },
+  {
+    id: 28,
+    difficulty: "hard",
+    category: "Spring Boot",
+    question: "What is the difference between BeanFactory and ApplicationContext?",
+    options: [
+      "ApplicationContext is a sub-interface of BeanFactory and adds advanced features like AOP and Internationalization",
+      "BeanFactory is for web apps; ApplicationContext is for console apps",
+      "BeanFactory is newer than ApplicationContext",
+      "There is no difference"
+    ],
+    answer: 0,
+    explanation: "ApplicationContext is the more robust container. BeanFactory provides basic DI; ApplicationContext provides enterprise features.",
+    hint: "The 'advanced' Spring container."
+  },
+  {
+    id: 29,
+    difficulty: "medium",
+    category: "Java Core",
+    question: "What is the 'String Pool' in Java?",
+    options: [
+      "A collection of all strings in a database",
+      "A special memory area in the Heap where String literals are stored for reuse",
+      "A way to concatenate strings",
+      "The memory used by StringBuilder"
+    ],
+    answer: 1,
+    explanation: "String interning saves memory by ensuring that identical string literals point to the same object in the String Pool.",
+    hint: "Memory optimization for literals."
+  },
+  {
+    id: 30,
+    difficulty: "medium",
+    category: "Java Core",
+    question: "Which is thread-safe: StringBuilder or StringBuffer?",
+    options: ["StringBuilder", "StringBuffer", "Both", "Neither"],
+    answer: 1,
+    explanation: "StringBuffer is thread-safe because its methods are synchronized. StringBuilder is not thread-safe but is faster.",
+    hint: "Synchronization makes it safe."
+  },
+  {
+    id: 31,
+    difficulty: "hard",
+    category: "Java Core",
+    question: "What is a 'fail-fast' iterator?",
+    options: [
+      "An iterator that never fails",
+      "An iterator that throws ConcurrentModificationException if the collection is modified while iterating",
+      "An iterator for databases",
+      "An iterator that skips null values"
+    ],
+    answer: 1,
+    explanation: "ArrayList iterators are fail-fast. ConcurrentHashMap iterators are 'fail-safe' (or weakly consistent).",
+    hint: "Throws exception on modification."
+  },
+  {
+    id: 32,
+    difficulty: "hard",
+    category: "Java Core",
+    question: "In Java 8+, how does HashMap handle a high number of collisions in a single bucket?",
+    options: [
+      "It throws an error",
+      "It expands the array",
+      "It converts the linked list in that bucket into a Balanced Tree (Red-Black Tree)",
+      "It deletes the old data"
+    ],
+    answer: 2,
+    explanation: "When a bucket reaches a threshold (TREEIFY_THRESHOLD = 8), the linked list is converted to a tree to improve search time from O(n) to O(log n).",
+    hint: "From List to Tree."
+  },
+  {
+    id: 33,
+    difficulty: "medium",
+    category: "Java Core",
+    question: "What is the time complexity of searching for a key in a TreeMap?",
+    options: ["O(1)", "O(n)", "O(log n)", "O(n log n)"],
+    answer: 2,
+    explanation: "TreeMap is based on a Red-Black Tree (Self-balancing BST), which guarantees O(log n) time for basic operations.",
+    hint: "Logarithmic time."
+  },
+  {
+    id: 34,
+    difficulty: "easy",
+    category: "Java Core",
+    question: "Which collection type should you use if you want to ensure no duplicate elements?",
+    options: ["ArrayList", "LinkedList", "HashSet", "Vector"],
+    answer: 2,
+    explanation: "Sets (like HashSet, LinkedHashSet, or TreeSet) are designed specifically to prohibit duplicate entries.",
+    hint: "Mathematical set properties."
+  },
+  {
+    id: 35,
+    difficulty: "medium",
+    category: "JPA",
+    question: "What does the @Transactional annotation do?",
+    options: [
+      "It converts a method into a background thread",
+      "It ensures that a series of database operations are executed within a single transaction (Atomic)",
+      "It makes the method faster",
+      "It is used for multi-currency support"
+    ],
+    answer: 1,
+    explanation: "If any operation fails inside a @Transactional method, the entire transaction is rolled back to maintain data integrity.",
+    hint: "Atomic DB operations."
+  },
+  {
+    id: 36,
+    difficulty: "easy",
+    category: "JPA",
+    question: "What is the difference between @Id and @GeneratedValue?",
+    options: [
+      "@Id marks the primary key; @GeneratedValue defines the strategy for ID generation (e.g., Identity, Sequence)",
+      "They are the same",
+      "@Id is for numbers; @GeneratedValue is for strings",
+      "@GeneratedValue is only for MySQL"
+    ],
+    answer: 0,
+    explanation: "@Id is mandatory for every entity. @GeneratedValue tells JPA how to auto-increment the ID.",
+    hint: "PK vs PK strategy."
+  },
+  {
+    id: 37,
+    difficulty: "medium",
+    category: "JPA",
+    question: "In Spring Data JPA, what is a 'Derived Query'?",
+    options: [
+      "A query written in pure SQL",
+      "A query generated automatically by Spring based on the method name (e.g., findByLastName)",
+      "A query that uses a separate file",
+      "A query that uses a constructor"
+    ],
+    answer: 1,
+    explanation: "Spring parses the method name and automatically generates the JPQL/SQL needed to fetch the data.",
+    hint: "Naming convention queries."
+  },
+  {
+    id: 38,
+    difficulty: "medium",
+    category: "JPA",
+    question: "Which annotation allows you to write custom JPQL or native SQL queries in a Repository?",
+    options: ["@SQL", "@Query", "@JPQL", "@Native"],
+    answer: 1,
+    explanation: "@Query allows you to define complex queries that cannot be easily expressed via method naming conventions.",
+    hint: "Defining custom logic in Repos."
+  },
+  {
+    id: 39,
+    difficulty: "easy",
+    category: "Java Core",
+    question: "What does the @Data annotation from Lombok do?",
+    options: [
+      "It encrypts the class data",
+      "It is a shortcut for @ToString, @EqualsAndHashCode, @Getter, @Setter, and @RequiredArgsConstructor",
+      "It connects the class to a database",
+      "It is used for Big Data processing"
+    ],
+    answer: 1,
+    explanation: "Lombok's @Data annotation drastically reduces boilerplate code in POJOs/Entities.",
+    hint: "Boilerplate reducer."
+  },
+  {
+    id: 40,
+    difficulty: "medium",
+    category: "Java Core",
+    question: "Which JUnit 5 annotation is used to execute a method before every test case in the class?",
+    options: ["@Before", "@BeforeEach", "@BeforeAll", "@SetUp"],
+    answer: 1,
+    explanation: "@BeforeEach runs before every individual @Test method. @BeforeAll runs once for the entire class.",
+    hint: "JUnit 5 lifecycle."
+  },
   {
     id: 41,
     difficulty: "hard",
@@ -4147,6 +4536,136 @@ const questionBank = [
     explanation: "False sharing causes performance degradation because the CPU must constantly reload cache lines, even if threads are updating different variables.",
     hint: "CPU Cache Line contention."
   },
+  {
+    id: 341,
+    difficulty: "hard",
+    category: "Java Core",
+    question: "What is 'Project CRaC' (Coordinated Restore at Checkpoint) in the context of Java performance?",
+    options: [
+      "A way to crack passwords",
+      "A mechanism to checkpoint a running JVM and restore it later, allowing for near-instant 'warm' startup",
+      "A new garbage collection algorithm",
+      "A tool for debugging memory leaks"
+    ],
+    answer: 1,
+    explanation: "CRaC helps solve the 'Cold Start' problem in serverless/cloud environments by starting from a pre-loaded state.",
+    hint: "Instant startup for cloud."
+  },
+  {
+    id: 342,
+    difficulty: "hard",
+    category: "Java Core",
+    question: "Which Java 21 feature provides a standard API for expressing vector computations that compile to optimal hardware instructions (SIMD)?",
+    options: ["Project Loom", "Vector API", "Project Panama", "Project Valhalla"],
+    answer: 1,
+    explanation: "The Vector API allows developers to write performant data-parallel code that leverages SIMD (Single Instruction, Multiple Data) on modern CPUs.",
+    hint: "SIMD hardware acceleration."
+  },
+  {
+    id: 343,
+    difficulty: "hard",
+    category: "Java Core",
+    question: "In Project Loom, what is the 'Structured Concurrency' API primarily designed to do?",
+    options: [
+      "Make code run faster on GPUs",
+      "Treat groups of related tasks running in different threads as a single unit of work to improve reliability and observability",
+      "Replace all synchronized blocks",
+      "Automatically delete deadlocked threads"
+    ],
+    answer: 1,
+    explanation: "Structured Concurrency ensures that subtasks are finished before the parent task, preventing 'orphaned' threads and simplifying error handling.",
+    hint: "Parent-child task lifecycle."
+  },
+  {
+    id: 344,
+    difficulty: "medium",
+    category: "Java Core",
+    question: "Which Java 21 feature (Preview) simplifies string concatenation by allowing expressions to be embedded directly in string literals?",
+    options: ["String Interpolation", "String Templates", "F-Strings", "Dynamic Strings"],
+    answer: 1,
+    explanation: "String Templates (using STR.\"\") provide a safer and more readable way to compose strings than concatenation or String.format().",
+    hint: "STR.\"Hello \{name}\""
+  },
+  {
+    id: 345,
+    difficulty: "medium",
+    category: "Spring Boot",
+    question: "Spring Boot 3.1 introduced enhanced support for which tool to simplify local development with containers?",
+    options: ["Kubernetes", "Docker Compose", "Terraform", "Jenkins"],
+    answer: 1,
+    explanation: "Spring Boot can now automatically manage Docker Compose services, starting them when the application starts and stopping them when it stops.",
+    hint: "Local container orchestration."
+  },
+  {
+    id: 346,
+    difficulty: "hard",
+    category: "Microservices",
+    question: "When using Resilience4j, what is the 'Half-Open' state in a Circuit Breaker?",
+    options: [
+      "The circuit is closed but leaking errors",
+      "The circuit is allowing a limited number of 'trial' requests to see if the underlying service has recovered",
+      "The service is shutting down",
+      "The load balancer is broken"
+    ],
+    answer: 1,
+    explanation: "After a 'Wait Duration', the Circuit Breaker moves to Half-Open. If the trial requests succeed, it closes; if they fail, it re-opens.",
+    hint: "Trial period after a failure."
+  },
+  {
+    id: 347,
+    difficulty: "medium",
+    category: "Architecture",
+    question: "In a Microservices architecture, what is a 'Sidecar Pattern'?",
+    options: [
+      "A smaller service that handles logic",
+      "A separate container (like Envoy or a logging agent) that runs alongside the main application container to provide infrastructure features",
+      "A backup database",
+      "A design pattern for mobile apps"
+    ],
+    answer: 1,
+    explanation: "Sidecars handle cross-cutting concerns like logging, security, or service mesh traffic without bloating the application code.",
+    hint: "Helper container in the same Pod."
+  },
+  {
+    id: 348,
+    difficulty: "medium",
+    category: "Microservices",
+    question: "Which standard does Spring Boot 3 use for Observability (Tracing and Metrics)?",
+    options: ["Log4j", "Micrometer Observation API", "Zipkin-only", "Custom proprietary code"],
+    answer: 1,
+    explanation: "Spring Boot 3 unified metrics and tracing into a single 'Observation' API provided by Micrometer.",
+    hint: "Unified metrics and traces."
+  },
+  {
+    id: 349,
+    difficulty: "hard",
+    category: "Architecture",
+    question: "What is the 'BFF' (Backend for Frontend) pattern?",
+    options: [
+      "Best Friend Forever pattern",
+      "Creating a separate backend service tailored specifically for the needs of a particular frontend (e.g., Mobile BFF vs Web BFF)",
+      "A way to share databases",
+      "A type of frontend framework"
+    ],
+    answer: 1,
+    explanation: "BFFs reduce over-fetching and complexity by providing an API specifically optimized for a specific UI client.",
+    hint: "UI-specific backends."
+  },
+  {
+    id: 350,
+    difficulty: "medium",
+    category: "Architecture",
+    question: "What is 'Blue-Green Deployment'?",
+    options: [
+      "A way to color-code code reviews",
+      "A deployment strategy where two identical environments (Blue and Green) exist, with only one serving live traffic to allow for zero-downtime updates",
+      "Using two different cloud providers",
+      "Testing only half of the code"
+    ],
+    answer: 1,
+    explanation: "You deploy the new version to 'Green' while 'Blue' is live. Once Green is verified, you switch the router/load balancer to Green.",
+    hint: "Zero-downtime switchover."
+  }, 
 ];
 
 // --- TOP 100 INTERVIEW INDICES ---
@@ -4154,22 +4673,27 @@ const questionBank = [
 // Covering: Java Core (17/21), Spring Boot 3, Microservices, Security, and JPA.
 const hotsQuestions = [
     // 1. Java Core & Modern Features (0-14) - 15 indices
-    0, 1, 6, 40, 43, 47, 51, 55, 60, 65, 152, 155, 217, 220, 329,
+    // Includes Records, Sealed Classes, and new Java 21 features (340-343)
+    0, 1, 6, 20, 21, 22, 40, 43, 47, 51, 60, 155, 340, 341, 342,
 
-    // 2. Spring Boot Core & Dependency Injection (15-29) - 15 indices
-    2, 7, 9, 41, 44, 49, 50, 54, 58, 64, 151, 154, 190, 218, 225,
+    // 2. Spring Boot 3 & Dependency Injection (15-29) - 15 indices
+    // Includes DevTools, Actuator, and Spring Boot 3.1 features
+    2, 7, 9, 14, 15, 23, 24, 25, 26, 27, 41, 44, 49, 154, 344,
 
     // 3. Microservices & Resiliency Patterns (30-44) - 15 indices
-    3, 8, 46, 52, 57, 62, 156, 219, 282, 295, 313, 314, 331, 335, 336,
+    // Includes Saga, Circuit Breaker, Sidecar, and Observability
+    3, 8, 46, 52, 57, 156, 219, 282, 314, 334, 335, 345, 346, 347, 348,
 
     // 4. Security, JWT & OAuth2 (45-54) - 10 indices
-    4, 5, 45, 61, 150, 188, 281, 189, 99, 48,
+    4, 5, 45, 61, 99, 150, 188, 189, 281, 337,
 
     // 5. JPA, Hibernate & Transaction Management (55-69) - 15 indices
-    53, 59, 67, 100, 104, 222, 297, 312, 327, 328, 56, 63, 66, 101, 337,
+    // Includes N+1 problem, @Transactional, and Derived Queries
+    34, 35, 36, 37, 38, 53, 56, 59, 63, 67, 100, 101, 104, 312, 328,
 
-    // 6. Breadth Coverage (Java 21, Docker, Testing, Algorithms) (70-99) - 30 indices
-    10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 
-    20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 
-    332, 333, 334, 338, 339, 340, 30, 31, 32, 33
+    // 6. Breadth Coverage (70-99) - 30 indices
+    // Includes Strings, Collections, JVM Memory, and Performance
+    10, 11, 12, 13, 16, 17, 18, 19, 28, 29, 
+    30, 31, 32, 33, 39, 42, 48, 50, 54, 55, 
+    58, 62, 64, 65, 66, 151, 152, 190, 217, 349
 ];
