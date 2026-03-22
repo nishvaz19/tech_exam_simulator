@@ -6036,10 +6036,10 @@ const questionBank = [
     id: 514, difficulty: "hard", category: "nestjs_security", question: "How do you enable CORS in a NestJS application?", options: ["app.enableCors()", "app.use(cors)", "@Cors()", "Both 0 and 1"], answer: 3, explanation: "You can enable it globally on the app instance or use middleware.", hint: "Cross-Origin Resource Sharing."
   },
   
-  // --- UNIT & E2E TESTING: JEST & CYPRESS/PLAYWRIGHT (451-470) ---
+  // --- UNIT & E2E TESTING: JEST & CYPRESS/PLAYWRIGHT ---
   
   {
-    id: 451,
+    id: 515,
     difficulty: "medium",
     category: "testing",
     question: "In Jest, what is the difference between 'jest.spyOn()' and 'jest.fn()'?",
@@ -6054,7 +6054,7 @@ const questionBank = [
     hint: "Existing vs New function."
   },
   {
-    id: 452,
+    id: 516,
     difficulty: "hard",
     category: "testing",
     question: "What is 'Snapshot Testing' in Jest primarily used for?",
@@ -6069,7 +6069,7 @@ const questionBank = [
     hint: "Regression testing for UI/JSON."
   },
   {
-    id: 453,
+    id: 517,
     difficulty: "hard",
     category: "testing",
     question: "In Cypress, why is it discouraged to use 'async/await' directly in test commands?",
@@ -6084,7 +6084,7 @@ const questionBank = [
     hint: "Command queueing."
   },
   {
-    id: 454,
+    id: 518,
     difficulty: "medium",
     category: "testing",
     question: "What is the 'AAA' pattern in unit testing?",
@@ -6099,7 +6099,7 @@ const questionBank = [
     hint: "Three steps of a test."
   },
   {
-    id: 455,
+    id: 519,
     difficulty: "hard",
     category: "testing",
     question: "What is 'Code Coverage' and which tool does Jest use to generate it?",
@@ -6114,9 +6114,9 @@ const questionBank = [
     hint: "Execution metrics."
   },
 
-  // --- CLOUD & DEVOPS: NESTJS + AWS/AZURE (471-485) ---
+  // --- CLOUD & DEVOPS: NESTJS + AWS/AZURE ---
   {
-    id: 471,
+    id: 520,
     difficulty: "hard",
     category: "cloud_devops",
     question: "When deploying NestJS to AWS Lambda, what is the main challenge regarding the application lifecycle?",
@@ -6131,7 +6131,7 @@ const questionBank = [
     hint: "Initialization delay."
   },
   {
-    id: 472,
+    id: 521,
     difficulty: "medium",
     category: "cloud_devops",
     question: "How do you securely manage Secrets (like DB passwords) in a production NestJS app on Azure?",
@@ -6146,7 +6146,7 @@ const questionBank = [
     hint: "Cloud secret manager."
   },
   {
-    id: 473,
+    id: 522,
     difficulty: "hard",
     category: "cloud_devops",
     question: "What is 'Blue-Green Deployment'?",
@@ -6161,7 +6161,7 @@ const questionBank = [
     hint: "Zero-downtime strategy."
   },
   {
-    id: 474,
+    id: 523,
     difficulty: "medium",
     category: "cloud_devops",
     question: "Which AWS service is best suited for running a Dockerized NestJS app with auto-scaling?",
@@ -6171,7 +6171,7 @@ const questionBank = [
     hint: "Container orchestration."
   },
   {
-    id: 475,
+    id: 524,
     difficulty: "hard",
     category: "cloud_devops",
     question: "What is an 'Infrastructure as Code' (IaC) tool commonly used with TypeScript and NestJS?",
@@ -6181,9 +6181,9 @@ const questionBank = [
     hint: "Cloud resources via TS."
   },
 
-  // --- FRONTEND STATE MANAGEMENT: SIGNALS VS NGRX (486-500) ---
+  // --- FRONTEND STATE MANAGEMENT: SIGNALS VS NGRX ---
   {
-    id: 486,
+    id: 525,
     difficulty: "medium",
     category: "state_management",
     question: "In NgRx, what is the role of a 'Selector'?",
@@ -6198,7 +6198,7 @@ const questionBank = [
     hint: "Slicing the global store."
   },
   {
-    id: 487,
+    id: 526,
     difficulty: "hard",
     category: "state_management",
     question: "What is the 'Signal-based' alternative to 'BehaviorSubject' in Angular 17+?",
@@ -6208,7 +6208,7 @@ const questionBank = [
     hint: "The reactive primitive."
   },
   {
-    id: 488,
+    id: 527,
     difficulty: "hard",
     category: "state_management",
     question: "Why might you choose 'Signals' over 'NgRx' for a small to medium application?",
@@ -6223,7 +6223,7 @@ const questionBank = [
     hint: "Boilerplate reduction."
   },
   {
-    id: 489,
+    id: 528,
     difficulty: "medium",
     category: "state_management",
     question: "What is an 'Effect' in NgRx used for?",
@@ -6238,7 +6238,7 @@ const questionBank = [
     hint: "Async side-effect handler."
   },
   {
-    id: 490,
+    id: 529,
     difficulty: "hard",
     category: "state_management",
     question: "What is 'Immutability' and why is it required in NgRx Reducers?",
@@ -6253,7 +6253,7 @@ const questionBank = [
     hint: "New object vs Modified object."
   },
   {
-    id: 491,
+    id: 530,
     difficulty: "medium",
     category: "state_management",
     question: "How do you combine multiple signals into one derived value?",
@@ -6263,7 +6263,7 @@ const questionBank = [
     hint: "Derived state."
   },
   {
-    id: 492,
+    id: 531,
     difficulty: "hard",
     category: "state_management",
     question: "In NgRx, what does 'Redux DevTools' allow you to do?",
@@ -6278,7 +6278,7 @@ const questionBank = [
     hint: "Time-traveling."
   },
   {
-    id: 493,
+    id: 532,
     difficulty: "medium",
     category: "testing",
     question: "What is a 'Mock' in the context of unit testing?",
@@ -6293,7 +6293,7 @@ const questionBank = [
     hint: "Isolation tool."
   },
   {
-    id: 494,
+    id: 533,
     difficulty: "hard",
     category: "testing",
     question: "What is the difference between 'Shallow' and 'Deep' rendering in Angular component tests?",
@@ -6308,7 +6308,7 @@ const questionBank = [
     hint: "Component isolation depth."
   },
   {
-    id: 495,
+    id: 534,
     difficulty: "medium",
     category: "cloud_devops",
     question: "What is 'CI/CD'?",
@@ -6323,7 +6323,7 @@ const questionBank = [
     hint: "The automated pipeline."
   },
   {
-    id: 496,
+    id: 534,
     difficulty: "hard",
     category: "cloud_devops",
     question: "Which NestJS module is typically used to integrate with 'AWS S3' for file storage?",
@@ -6338,7 +6338,7 @@ const questionBank = [
     hint: "Official SDK wrapping."
   },
   {
-    id: 497,
+    id: 535,
     difficulty: "medium",
     category: "typescript_advanced",
     question: "What is a 'Type Predicate' function?",
@@ -6353,7 +6353,7 @@ const questionBank = [
     hint: "The 'is' keyword."
   },
   {
-    id: 498,
+    id: 536,
     difficulty: "hard",
     category: "testing",
     question: "What is 'TDD' (Test Driven Development)?",
@@ -6368,7 +6368,7 @@ const questionBank = [
     hint: "Test first approach."
   },
   {
-    id: 499,
+    id: 537,
     difficulty: "medium",
     category: "nestjs_advanced",
     question: "What is the 'LoggerService' interface in NestJS used for?",
@@ -6383,7 +6383,7 @@ const questionBank = [
     hint: "Custom logging logic."
   },
   {
-    id: 500,
+    id: 538,
     difficulty: "easy",
     category: "general",
     question: "What is the most important rule for writing clean TypeScript code?",
@@ -6397,9 +6397,9 @@ const questionBank = [
     explanation: "Type safety and readability are the cornerstones of high-quality software development.",
     hint: "Readability and maintenance."
   },
-  // --- ANGULAR COMPONENT LIFECYCLE (501-505) ---
+  // --- ANGULAR COMPONENT LIFECYCLE ---
   {
-    id: 501,
+    id: 539,
     difficulty: "medium",
     category: "angular_lifecycle",
     question: "Which Angular lifecycle hook is called only once, immediately after the first 'ngOnChanges()'?",
@@ -6409,7 +6409,7 @@ const questionBank = [
     hint: "The most common initialization hook."
   },
   {
-    id: 502,
+    id: 540,
     difficulty: "hard",
     category: "angular_lifecycle",
     question: "Scenario: You need to access a child component using '@ViewChild'. In which lifecycle hook is the child component guaranteed to be initialized?",
@@ -6419,7 +6419,7 @@ const questionBank = [
     hint: "Post-view rendering."
   },
   {
-    id: 503,
+    id: 541,
     difficulty: "medium",
     category: "angular_lifecycle",
     question: "Which hook should you use to clean up resources, such as unsubscribing from Observables, to prevent memory leaks?",
@@ -6429,7 +6429,7 @@ const questionBank = [
     hint: "The final hook."
   },
   {
-    id: 504,
+    id: 542,
     difficulty: "hard",
     category: "angular_lifecycle",
     question: "Which lifecycle hook is called immediately after Angular has checked the content projected into the component via 'ng-content'?",
@@ -6439,7 +6439,7 @@ const questionBank = [
     hint: "Follows ngAfterContentInit."
   },
   {
-    id: 505,
+    id: 543,
     difficulty: "medium",
     category: "angular_lifecycle",
     question: "In Angular, what is the primary purpose of the 'ngDoCheck()' lifecycle hook?",
@@ -6454,9 +6454,9 @@ const questionBank = [
     hint: "Custom change detection."
   },
 
-  // --- NESTJS & TYPESCRIPT PITFALLS (506-510) ---
+  // --- NESTJS & TYPESCRIPT PITFALLS ---
   {
-    id: 506,
+    id: 544,
     difficulty: "hard",
     category: "nestjs_pitfalls",
     question: "Pitfall: You defined a 'Request-scoped' provider, but noticed its dependencies are also being recreated for every request. Why does this happen?",
@@ -6471,7 +6471,7 @@ const questionBank = [
     hint: "Dependency chain impact."
   },
   {
-    id: 507,
+    id: 545,
     difficulty: "medium",
     category: "typescript_pitfalls",
     question: "Pitfall: In TypeScript, why does 'myArray.map(async x => ...)' not wait for all promises to resolve before continuing?",
@@ -6486,7 +6486,7 @@ const questionBank = [
     hint: "Array methods vs Async/Await."
   },
   {
-    id: 508,
+    id: 546,
     difficulty: "hard",
     category: "nestjs_pitfalls",
     question: "Pitfall: When two services in NestJS depend on each other (Circular Dependency), the application fails to start. What is the standard NestJS fix?",
@@ -6501,7 +6501,7 @@ const questionBank = [
     hint: "Resolving 'Chicken and Egg' imports."
   },
   {
-    id: 509,
+    id: 547,
     difficulty: "medium",
     category: "typescript_pitfalls",
     question: "Pitfall: You pass a class method as a callback (e.g., 'this.service.getData') to a third-party library and 'this' becomes undefined. How do you fix this in TypeScript?",
@@ -6516,7 +6516,7 @@ const questionBank = [
     hint: "Lexical scoping of 'this'."
   },
   {
-    id: 510,
+    id: 548,
     difficulty: "hard",
     category: "nestjs_pitfalls",
     question: "Pitfall: In a NestJS application using TypeScript, you find that a dependency is 'undefined' despite being in the providers array. What is a common cause?",
@@ -6531,9 +6531,9 @@ const questionBank = [
     hint: "Standard DI requirements."
   },
 
-  // --- GUARDS, FILTERS & DEBUGGING (511-515) ---
+  // --- GUARDS, FILTERS & DEBUGGING ---
   {
-    id: 511,
+    id: 549,
     difficulty: "hard",
     category: "nestjs_debugging",
     question: "Best Practice: When debugging a Global Exception Filter, why might 'ArgumentsHost.switchToHttp()' fail in a hybrid application?",
@@ -6548,7 +6548,7 @@ const questionBank = [
     hint: "Multi-protocol context safety."
   },
   {
-    id: 512,
+    id: 550,
     difficulty: "medium",
     category: "nestjs_guards",
     question: "Where do NestJS Guards sit in the request lifecycle relative to Interceptors?",
@@ -6563,7 +6563,7 @@ const questionBank = [
     hint: "Gatekeeper vs Transformer order."
   },
   {
-    id: 513,
+    id: 551,
     difficulty: "hard",
     category: "remote_api_debugging",
     question: "Scenario: Your NestJS server is failing to call a remote REST API over HTTPS in a local dev environment due to 'self-signed certificate' errors. What is the safest best practice fix?",
@@ -6578,7 +6578,7 @@ const questionBank = [
     hint: "Secure certificate handling."
   },
   {
-    id: 514,
+    id: 552,
     difficulty: "medium",
     category: "browser_debugging",
     question: "Best Practice: When debugging Angular performance, which Chrome DevTools tool should you use to visualize change detection cycles and frame drops?",
@@ -6593,7 +6593,7 @@ const questionBank = [
     hint: "Measuring execution time."
   },
   {
-    id: 515,
+    id: 553,
     difficulty: "hard",
     category: "angular_guards",
     question: "In Angular, which guard should you use to prevent a user from leaving a route with unsaved changes?",
