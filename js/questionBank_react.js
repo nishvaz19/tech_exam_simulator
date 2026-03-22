@@ -1122,7 +1122,7 @@ const reactBatch2 = [
     hint: "Passing the ref down."
   },
   {
-    id: 6,
+    id: 86,
     difficulty: "hard",
     category: "hooks",
     question: "When using 'useReducer', what is the 'init' function (the 3rd argument)?",
