@@ -2613,7 +2613,7 @@ const questionBank = [
     hint: "Unique count."
   },
   {
-    id: 177,
+    id: 197,
     difficulty: "hard",
     category: "architecture",
     question: "What is the 'Isolation' property of ACID?",
