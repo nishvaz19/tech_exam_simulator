@@ -31,10 +31,26 @@ function startExam() {
     isHotMode = hotCheckbox && hotCheckbox.checked;
 
     if (isHotMode) {
-        // Map the indices from the questionBank file
-        fullBank = hotsQuestions.map(idx => questionBank[idx]).filter(q => q !== undefined);
-        activeExamSize = Math.min(100, fullBank.length);
-        hintPersistent = true; 
+        // 1. Map to actual question objects and remove undefined (out-of-range)
+        const validQuestions = hotsQuestions
+           .map(idx => questionBank[idx])
+           .filter(q => q !== undefined);
+
+        // 2. Use a temporary Set to ensure absolute uniqueness in case of duplicate indices
+        const uniqueQuestions = [];
+        const seenIds = new Set();
+
+        for (const q of validQuestions) {
+           if (!seenIds.has(q.id)) {
+              uniqueQuestions.push(q);
+              seenIds.add(q.id);
+           }
+        }
+
+        fullBank = uniqueQuestions;
+        examQuestions = [...fullBank]; 
+        activeExamSize = examQuestions.length; // ensures UI matches the actual list
+        hintPersistent = true;
     } else {
         // Standard adaptive/keyword logic
 
