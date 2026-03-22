@@ -4017,29 +4017,159 @@ const questionBank = [
     answer: 1,
     explanation: "A HashMap provides O(1) lookup, and a Doubly Linked List allows O(1) removal and addition of elements to track the order of access."
   }, 
+   {
+    id: 331,
+    difficulty: "hard",
+    category: "Java Core",
+    question: "In Java 21, what is the primary benefit of 'Virtual Threads' (Project Loom) over platform threads?",
+    options: [
+      "They run faster on a single core",
+      "They allow an application to scale to millions of concurrent tasks with significantly less memory overhead",
+      "They replace the need for the Synchronized keyword",
+      "They are only for background garbage collection"
+    ],
+    answer: 1,
+    explanation: "Virtual threads are lightweight threads that aren't tied to a specific OS thread, allowing massive concurrency without the stack memory cost of platform threads.",
+    hint: "Think high-throughput concurrency."
+  },
+  {
+    id: 332,
+    difficulty: "medium",
+    category: "Java Core",
+    question: "Which Java 21 feature provides a way to share data within a thread and its child threads without using ThreadLocal?",
+    options: ["Global Variables", "Scoped Values", "Shared Records", "ThreadPointers"],
+    answer: 1,
+    explanation: "Scoped Values (Preview in 21) are an alternative to ThreadLocal, offering better performance and memory safety, especially with virtual threads.",
+    hint: "An alternative to ThreadLocal."
+  },
+  {
+    id: 333,
+    difficulty: "easy",
+    category: "Java Core",
+    question: "What is the new super-interface introduced in Java 21 for collections with a defined encounter order?",
+    options: ["OrderedCollection", "SequencedCollection", "SortedList", "LinearIterable"],
+    answer: 1,
+    explanation: "SequencedCollection provides a uniform way to access elements at both ends (addFirst, addLast, reversed).",
+    hint: "Includes methods like addFirst()."
+  },
+  {
+    id: 334,
+    difficulty: "medium",
+    category: "Spring Boot",
+    question: "In Spring Boot 3.x, which feature allows you to compile your application into a standalone executable that starts in milliseconds?",
+    options: ["Spring JAR", "GraalVM Native Image", "Docker Layering", "Spring Instant"],
+    answer: 1,
+    explanation: "Spring Boot 3 introduces official support for GraalVM Native Images, which offer low memory footprint and instant startup.",
+    hint: "Ahead-of-Time (AOT) compilation."
+  },
+  {
+    id: 335,
+    difficulty: "hard",
+    category: "Microservices",
+    question: "When implementing the Saga Pattern, what is the main difference between 'Choreography' and 'Orchestration'?",
+    options: [
+      "Choreography uses a central coordinator; Orchestration uses events",
+      "Choreography relies on event-driven coordination between services; Orchestration uses a central 'Saga Manager'",
+      "Orchestration is only for monoliths",
+      "There is no difference"
+    ],
+    answer: 1,
+    explanation: "Orchestration uses a central 'brain' to tell services what to do, while Choreography involves each service listening for events and deciding its next step.",
+    hint: "Central controller vs. Decentralized events."
+  },
+  {
+    id: 336,
+    difficulty: "medium",
+    category: "Architecture",
+    question: "What does the 'Outbox Pattern' solve in a distributed system?",
+    options: [
+      "It speeds up email delivery",
+      "It ensures atomicity between database updates and publishing events to a broker (like Kafka)",
+      "It prevents user logout errors",
+      "It is a type of CSS layout"
+    ],
+    answer: 1,
+    explanation: "By writing events to a table in the same transaction as the business data, the Outbox pattern prevents data inconsistency between the DB and the Message Broker.",
+    hint: "Atomicity for messages."
+  },
+  {
+    id: 337,
+    difficulty: "medium",
+    category: "JPA",
+    question: "How do you solve the 'N+1 Select' problem in Spring Data JPA efficiently?",
+    options: [
+      "Using @Lazy",
+      "Using @EntityGraph or JOIN FETCH in a JPQL query",
+      "Using more RAM",
+      "Increasing the thread pool"
+    ],
+    answer: 1,
+    explanation: "@EntityGraph or JOIN FETCH allows you to load the main entity and its associations in a single SQL query.",
+    hint: "Fetch joined data in one go."
+  },
+  {
+    id: 338,
+    difficulty: "medium",
+    category: "Security",
+    question: "What is the purpose of 'PKCE' (Proof Key for Code Exchange) in an OAuth2 flow?",
+    options: [
+      "It encrypts the user's password",
+      "It prevents authorization code injection/interception in public clients like SPAs and mobile apps",
+      "It acts as a firewall",
+      "It is used for multi-factor authentication"
+    ],
+    answer: 1,
+    explanation: "PKCE adds a secret (code verifier) that ensures the client requesting the token is the same one that initiated the authorization request.",
+    hint: "Securing mobile and frontend apps."
+  },
+  {
+    id: 339,
+    difficulty: "easy",
+    category: "Cloud",
+    question: "In Kubernetes, which probe is used to determine if a container is running and should be restarted if it fails?",
+    options: ["Readiness Probe", "Liveness Probe", "Startup Probe", "Health Check"],
+    answer: 1,
+    explanation: "The Liveness probe restarts a deadlocked or crashed container. The Readiness probe determines if traffic should be sent to it.",
+    hint: "Is it alive?"
+  },
+  {
+    id: 340,
+    difficulty: "hard",
+    category: "Java Core",
+    question: "What is the 'False Sharing' problem in Java multi-threading?",
+    options: [
+      "Giving the wrong password",
+      "Threads on different cores modifying variables that happen to share the same CPU cache line, causing constant cache invalidation",
+      "Sharing an object between two JVMs",
+      "A bug in the Stream API"
+    ],
+    answer: 1,
+    explanation: "False sharing causes performance degradation because the CPU must constantly reload cache lines, even if threads are updating different variables.",
+    hint: "CPU Cache Line contention."
+  },
 ];
 
 // --- TOP 100 INTERVIEW INDICES ---
 // These indices point to unique, high-value questions from the bank for rapid interview prep.
-// Covering: Java Core (17/21), Spring Boot, Microservices, Security, and JPA/Hibernate.
+// Covering: Java Core (17/21), Spring Boot 3, Microservices, Security, and JPA.
 const hotsQuestions = [
-    // 1. Java Core & Modern Features (Sealed, Records, Loom, Memory) - 15 indices
+    // 1. Java Core & Modern Features (0-14) - 15 indices
     0, 1, 6, 40, 43, 47, 51, 55, 60, 65, 152, 155, 217, 220, 329,
 
-    // 2. Spring Boot Core & Dependency Injection - 15 indices
+    // 2. Spring Boot Core & Dependency Injection (15-29) - 15 indices
     2, 7, 9, 41, 44, 49, 50, 54, 58, 64, 151, 154, 190, 218, 225,
 
-    // 3. Microservices & Resiliency Patterns (Saga, Circuit Breaker) - 15 indices
-    3, 8, 46, 52, 57, 62, 156, 219, 282, 295, 313, 314, 215, 216, 223,
+    // 3. Microservices & Resiliency Patterns (30-44) - 15 indices
+    3, 8, 46, 52, 57, 62, 156, 219, 282, 295, 313, 314, 331, 335, 336,
 
-    // 4. Security, JWT & OAuth2 - 10 indices
+    // 4. Security, JWT & OAuth2 (45-54) - 10 indices
     4, 5, 45, 61, 150, 188, 281, 189, 99, 48,
 
-    // 5. JPA, Hibernate & Transaction Management - 15 indices
-    53, 59, 67, 100, 104, 222, 297, 312, 327, 328, 56, 63, 66, 101, 105,
+    // 5. JPA, Hibernate & Transaction Management (55-69) - 15 indices
+    53, 59, 67, 100, 104, 222, 297, 312, 327, 328, 56, 63, 66, 101, 337,
 
-    // 6. Breadth Coverage (Collections, Web, Docker, Testing, Algorithms) - 30 indices
+    // 6. Breadth Coverage (Java 21, Docker, Testing, Algorithms) (70-99) - 30 indices
     10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 
     20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 
-    30, 31, 32, 33, 34, 35, 36, 37, 330, 325
+    332, 333, 334, 338, 339, 340, 30, 31, 32, 33
 ];
