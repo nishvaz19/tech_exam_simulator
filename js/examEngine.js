@@ -16,16 +16,78 @@ let hintPersistent = false;
 let examTimer;
 let timeRemaining = 60 * 120; // 120 minutes
 
+/**
+ * Checks for duplicate IDs and returns a detailed report.
+ * @param {Array} bank - The questionBank array
+ */
+function findDuplicateIds(bank) {
+    const seen = new Map();
+    const duplicates = [];
+
+    bank.forEach((q, idx) => {
+        if (seen.has(q.id)) {
+            duplicates.push({
+                id: q.id,
+                category: q.category,
+                question: q.question.substring(0, 60) + "...",
+                index: idx,
+                originalIndex: seen.get(q.id)
+            });
+        } else {
+            seen.set(q.id, idx);
+        }
+    });
+    return duplicates;
+}
+
+function showDuplicatePopup(duplicates) {
+    if (duplicates.length === 0) return;
+
+    // Create Modal Elements
+    const overlay = document.createElement('div');
+    overlay.className = 'modal-overlay';
+    
+    let tableRows = duplicates.map(d => `
+        <tr>
+            <td><strong>${d.id}</strong></td>
+            <td><span class="badge">${d.category}</span></td>
+            <td>${d.question}</td>
+            <td>Pos: ${d.originalIndex} & ${d.index}</td>
+        </tr>
+    `).join('');
+
+    overlay.innerHTML = `
+        <div class="modal-content">
+            <button class="close-btn" onclick="this.parentElement.parentElement.remove()">Close & Continue</button>
+            <h3 style="color:var(--danger)">⚠️ Duplicate IDs Detected</h3>
+            <p>The following questions share IDs. This may cause issues with history tracking.</p>
+            <table class="dup-table">
+                <thead>
+                    <tr><th>ID</th><th>Category</th><th>Question Snippet</th><th>Array Positions</th></tr>
+                </thead>
+                <tbody>${tableRows}</tbody>
+            </table>
+        </div>
+    `;
+    document.body.appendChild(overlay);
+}
+
 /* ======================================================
    CORE EXAM ENGINE
    ====================================================== */
-
 function startExam() {
     if (typeof questionBank === 'undefined') {
         console.error("questionBank is missing.");
         return;
     }
 
+    // 1. Check for duplicates and show table if found
+    const duplicates = findDuplicateIds(questionBank);
+    if (duplicates.length > 0) {
+        showDuplicatePopup(duplicates);
+        // We continue the exam, but the user is now warned with the table
+    }
+   
     // Detect the checkbox state from the new bordered container
     const hotCheckbox = document.getElementById("hotToggle");
     isHotMode = hotCheckbox && hotCheckbox.checked;
