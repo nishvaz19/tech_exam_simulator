@@ -5663,7 +5663,381 @@ const questionBank = [
     explanation: "Congratulations! You have reached the end of the question bank.",
     hint: "The final answer."
   },
+  {
+    id: 451,
+    difficulty: "medium",
+    category: "rxjs",
+    question: "What is the primary difference between a Subject and a BehaviorSubject in RxJS?",
+    options: [
+      "Subject has an initial value; BehaviorSubject does not",
+      "BehaviorSubject stores the latest value and emits it to new subscribers immediately; Subject does not",
+      "Subject is only for integers",
+      "There is no difference"
+    ],
+    answer: 1,
+    explanation: "BehaviorSubject requires an initial value and always provides the 'current value' to new observers.",
+    hint: "Initial value and replay."
+  },
+  {
+    id: 452,
+    difficulty: "hard",
+    category: "rxjs",
+    question: "Which RxJS operator should be used to avoid 'race conditions' by cancelling previous inner observables when a new value arrives?",
+    options: ["mergeMap", "concatMap", "switchMap", "exhaustMap"],
+    answer: 2,
+    explanation: "switchMap unsubscribes from the previous inner observable whenever a new value is emitted by the source.",
+    hint: "Switching to the latest."
+  },
+  {
+    id: 453,
+    difficulty: "hard",
+    category: "rxjs",
+    question: "In RxJS, what does the 'exhaustMap' operator do?",
+    options: [
+      "It cancels all previous requests",
+      "It ignores new source values until the current inner observable has completed",
+      "It runs all observables in parallel",
+      "It throws an error if the source is too fast"
+    ],
+    answer: 1,
+    explanation: "exhaustMap is ideal for login buttons where you want to ignore clicks until the first request finishes.",
+    hint: "Ignore until finished."
+  },
+  {
+    id: 454,
+    difficulty: "medium",
+    category: "angular_performance",
+    question: "What does the 'OnPush' change detection strategy do?",
+    options: [
+      "It disables change detection entirely",
+      "It only checks the component when its @Input properties change (reference check) or an event originates from it",
+      "It makes the app faster by using web workers",
+      "It automatically saves data to the server"
+    ],
+    answer: 1,
+    explanation: "OnPush reduces the number of checks Angular performs by relying on immutable input changes.",
+    hint: "Input reference check."
+  },
+  {
+    id: 455,
+    difficulty: "hard",
+    category: "angular_performance",
+    question: "How can you run code in Angular without triggering change detection cycles across the entire app?",
+    options: [
+      "Use NgZone.runOutsideAngular()",
+      "Use setImmediate()",
+      "Use a while loop",
+      "Use the @SkipChangeDetection annotation"
+    ],
+    answer: 0,
+    explanation: "runOutsideAngular is used for high-frequency events like scroll or mousemove to prevent unnecessary UI re-rendering.",
+    hint: "Outside the Zone."
+  },
+  {
+    id: 456,
+    difficulty: "medium",
+    category: "nestjs_architecture",
+    question: "In NestJS, what is the purpose of 'Dynamic Modules'?",
+    options: [
+      "To change the UI dynamically",
+      "To create modules whose properties are determined at runtime (e.g., passing config to a DatabaseModule)",
+      "To load JavaScript files from a URL",
+      "They are modules that delete themselves"
+    ],
+    answer: 1,
+    explanation: "Dynamic modules use static methods like forRoot() or register() to accept configuration objects.",
+    hint: "forRoot pattern."
+  },
+  {
+    id: 457,
+    difficulty: "hard",
+    category: "nestjs_microservices",
+    question: "Which transport layer does NestJS support for microservices to ensure reliable message delivery?",
+    options: ["Redis", "RabbitMQ", "NATS", "All of the above"],
+    answer: 3,
+    explanation: "NestJS provides a built-in abstraction for various transporters including Redis, MQTT, RabbitMQ, and gRPC.",
+    hint: "Multi-protocol support."
+  },
+  {
+    id: 458,
+    difficulty: "medium",
+    category: "typescript_advanced",
+    question: "What is a 'Discriminated Union' in TypeScript?",
+    options: [
+      "A union type with a common literal property used to narrow down the specific type",
+      "A type that is not allowed to be used",
+      "A union of strings and numbers only",
+      "A way to delete types at runtime"
+    ],
+    answer: 0,
+    explanation: "By using a property like 'kind' or 'type', TypeScript can safely narrow the object type within a switch or if block.",
+    hint: "A common 'tag' property."
+  },
+  {
+    id: 459,
+    difficulty: "hard",
+    category: "nestjs_security",
+    question: "How do you implement Rate Limiting (Throttling) in a NestJS application?",
+    options: [
+      "By using the ThrottlerModule",
+      "By writing a custom while loop",
+      "By restarting the server every hour",
+      "NestJS does not support rate limiting"
+    ],
+    answer: 0,
+    explanation: "@nestjs/throttler provides an easy way to protect APIs from brute-force attacks.",
+    hint: "Throttler provider."
+  },
+  {
+    id: 460,
+    difficulty: "medium",
+    category: "angular_di",
+    question: "What is the 'providedIn: root' syntax used for in Angular services?",
+    options: [
+      "To make the service global and allow tree-shaking",
+      "To prevent the service from being used in modules",
+      "To encrypt the service",
+      "To make the service only available in the index.html"
+    ],
+    answer: 0,
+    explanation: "'providedIn: root' enables the compiler to remove the service from the final bundle if it is never used.",
+    hint: "Singleton and Tree-shaking."
+  },
+  {
+    id: 461,
+    difficulty: "medium",
+    category: "nestjs_pipes",
+    question: "What is the primary use of the ValidationPipe in NestJS?",
+    options: ["To transform strings to numbers", "To validate incoming request payloads against DTOs using class-validator", "To check database connections", "To minify JSON"],
+    answer: 1,
+    explanation: "ValidationPipe automatically validates request bodies based on decorators like @IsString().",
+    hint: "DTO validation."
+  },
+  {
+    id: 462,
+    difficulty: "hard",
+    category: "nestjs_interceptors",
+    question: "Which method must be implemented when creating a NestJS Interceptor?",
+    options: ["intercept()", "handle()", "pipe()", "execute()"],
+    answer: 0,
+    explanation: "Interceptors must implement the NestInterceptor interface, which requires the intercept() method.",
+    hint: "Standard interface method."
+  },
+  {
+    id: 463,
+    difficulty: "medium",
+    category: "angular_router",
+    question: "Which property in the Route object is used to pass static data to a component?",
+    options: ["params", "data", "resolve", "query"],
+    answer: 1,
+    explanation: "The 'data' property allows you to pass a fixed object to the route, accessible via ActivatedRoute.",
+    hint: "Static route info."
+  },
+  {
+    id: 464,
+    difficulty: "hard",
+    category: "angular_router",
+    question: "What is the purpose of a Resolver in Angular routing?",
+    options: ["To fix bugs", "To fetch data before the component is loaded", "To redirect users", "To clear the cache"],
+    answer: 1,
+    explanation: "Resolvers ensure that the data is ready before the route is actually activated, preventing 'empty' UI states.",
+    hint: "Pre-fetching data."
+  },
+  {
+    id: 465,
+    difficulty: "medium",
+    category: "typescript_advanced",
+    question: "What does the 'Omit<T, K>' utility type do?",
+    options: ["It picks all properties of T", "It creates a type by picking all properties from T and then removing K", "It makes all properties optional", "It deletes the type"],
+    answer: 1,
+    explanation: "Omit is the opposite of Pick; it lets you define what to leave out.",
+    hint: "Exclude specific keys."
+  },
+  {
+    id: 466,
+    difficulty: "hard",
+    category: "nestjs_testing",
+    question: "Which package is the standard for unit testing in NestJS?",
+    options: ["Mocha", "Jest", "Chai", "Jasmine"],
+    answer: 1,
+    explanation: "NestJS comes with Jest pre-configured for both unit and e2e testing.",
+    hint: "Default test runner."
+  },
+  {
+    id: 467,
+    difficulty: "medium",
+    category: "angular_forms",
+    question: "In Reactive Forms, how do you track the validity of an entire group of inputs?",
+    options: ["FormGroup.status", "FormGroup.valid", "FormGroup.check()", "Both 0 and 1"],
+    answer: 3,
+    explanation: "FormGroup provides both a boolean '.valid' and a string '.status' ('VALID', 'INVALID', 'PENDING').",
+    hint: "Status or Boolean check."
+  },
+  {
+    id: 468,
+    difficulty: "hard",
+    category: "angular_performance",
+    question: "What is 'Differential Loading' in Angular?",
+    options: ["Loading different CSS files", "Building two separate bundles: one for modern browsers (ES6) and one for legacy browsers (ES5)", "Loading only the header", "Loading data from two databases"],
+    answer: 1,
+    explanation: "This optimizes bundle size for modern browsers while maintaining compatibility for older ones.",
+    hint: "ES6 vs ES5 bundles."
+  },
+  {
+    id: 469,
+    difficulty: "medium",
+    category: "nestjs_guards",
+    question: "Where can Guards be applied in a NestJS application?",
+    options: ["Controller level", "Method level", "Global level", "All of the above"],
+    answer: 3,
+    explanation: "Guards are highly flexible and can be scoped as needed across the app.",
+    hint: "Flexible scoping."
+  },
+  {
+    id: 470,
+    difficulty: "hard",
+    category: "typescript_advanced",
+    question: "What is the 'infer' keyword used for in TypeScript?",
+    options: ["To guess a variable value", "To declare a type variable within a conditional type", "To import a module", "To bypass type checking"],
+    answer: 1,
+    explanation: "Infer allows you to extract types from other types, often used in ReturnType implementation.",
+    hint: "Conditional types extraction."
+  },
+  {
+    id: 471, difficulty: "easy", category: "nest_cli", question: "Command to generate a new controller?", options: ["nest g co", "nest new co", "nest add co", "nest make co"], answer: 0, explanation: "nest generate controller (g co) creates the file and updates the module.", hint: "g co"
+  },
+  {
+    id: 472, difficulty: "medium", category: "rxjs", question: "Difference between of() and from()?", options: ["of emits items as a sequence; from converts an array/promise into a sequence", "No difference", "from is for strings only", "of is deprecated"], answer: 0, explanation: "of(1,2,3) vs from([1,2,3]).", hint: "Sequence vs Array/Promise."
+  },
+  {
+    id: 473, difficulty: "hard", category: "angular_performance", question: "What is the 'Hydration' process in Angular SSR?", options: ["Drinking water", "Restoring the client-side state and event listeners to an HTML page rendered by the server", "Deleting the cache", "Speeding up the network"], answer: 1, explanation: "Hydration allows the client-side app to take over the static HTML sent by the server without a visible flicker.", hint: "Server to Client handoff."
+  },
+  {
+    id: 474, difficulty: "medium", category: "nestjs_websockets", question: "Which decorator marks a class as a WebSocket Gateway?", options: ["@Gateway()", "@WebSocketGateway()", "@SocketServer()", "@WS()"], answer: 1, explanation: "WebSocket gateways are simply classes annotated with @WebSocketGateway().", hint: "WS Gateway."
+  },
+  {
+    id: 475, difficulty: "hard", category: "nestjs_websockets", question: "How do you handle incoming messages in a NestJS Gateway?", options: ["@SubscribeMessage()", "@OnMessage()", "@MessageBody()", "Both 0 and 2"], answer: 3, explanation: "You use @SubscribeMessage to name the event and @MessageBody to extract the payload.", hint: "Subscribe + Body."
+  },
+  {
+    id: 476, difficulty: "medium", category: "angular_directives", question: "Difference between Structural and Attribute directives?", options: ["Attribute directives change look/behavior; Structural directives change the DOM layout (via * syntax)", "No difference", "Structural are only for tables", "Attribute directives are deprecated"], answer: 0, explanation: "Structural directives (like *ngIf) add or remove elements from the DOM.", hint: "DOM layout vs Appearance."
+  },
+  {
+    id: 477, difficulty: "hard", category: "angular_di", question: "What is an 'Injection Token'?", options: ["A security code", "An object used to inject dependencies that don't have a class type (like strings or interfaces)", "A login token", "A way to inject CSS"], answer: 1, explanation: "Use InjectionToken when you need to inject a configuration object or a generic interface.", hint: "Non-class DI."
+  },
+  {
+    id: 478, difficulty: "medium", category: "nestjs_middleware", question: "In the NestJS request lifecycle, when does Middleware execute?", options: ["After the Guard", "Before the Guard and Interceptors", "After the Pipe", "After the Controller"], answer: 1, explanation: "Middleware runs first, followed by Guards, then Interceptors (pre), then Pipes.", hint: "Start of lifecycle."
+  },
+  {
+    id: 479, difficulty: "hard", category: "nestjs_exception_filters", question: "What is the purpose of @Catch() decorator?", options: ["To catch a ball", "To define the exceptions an Exception Filter should handle", "To catch database rows", "To slow down the app"], answer: 1, explanation: "Exception filters are used to process unhandled exceptions and send user-friendly responses.", hint: "Handling errors."
+  },
+  {
+    id: 480, difficulty: "medium", category: "typescript_advanced", question: "What does 'readonly' do in a class?", options: ["Makes the class invisible", "Prevents a property from being reassigned after initialization", "Makes the app faster", "Makes a property public"], answer: 1, explanation: "Properties with 'readonly' can only be set in the constructor or at the declaration.", hint: "Immutable property."
+  },
+  {
+    id: 481, difficulty: "hard", category: "nestjs_architecture", question: "What is 'Circular Dependency' in NestJS?", options: ["A loop in the UI", "When two classes depend on each other, preventing instantiation", "A type of database", "A security feature"], answer: 1, explanation: "Use forwardRef() to resolve situations where Class A depends on B, and B depends on A.", hint: "forwardRef()."
+  },
+  {
+    id: 482, difficulty: "medium", category: "angular_testing", question: "What is the purpose of 'fixture.detectChanges()' in unit tests?", options: ["To update the database", "To manually trigger Angular's change detection in the test environment", "To find bugs", "To restart the test"], answer: 1, explanation: "Since tests don't run inside the standard Zone, you must manually trigger change detection to see UI updates.", hint: "Manual UI update."
+  },
+  {
+    id: 483, difficulty: "hard", category: "angular_testing", question: "What is 'By.css' used for in Angular tests?", options: ["To style the test", "To select elements from the DebugElement's native element using CSS selectors", "To import CSS", "To delete CSS"], answer: 1, explanation: "By.css is a utility to query the DOM of the component being tested.", hint: "Querying the DOM."
+  },
+  {
+    id: 484, difficulty: "medium", category: "nestjs_config", question: "Which module is commonly used for managing environment variables in NestJS?", options: ["EnvModule", "ConfigModule", "SettingsModule", "SecretsModule"], answer: 1, explanation: "@nestjs/config is the standard wrapper for the 'dotenv' package.", hint: ".env management."
+  },
+  {
+    id: 485, difficulty: "hard", category: "rxjs", question: "What is a 'Cold' Observable?", options: ["An observable that doesn't work", "An observable that starts producing data only when a subscriber starts listening", "An observable for weather data", "An observable that is shared across all listeners"], answer: 1, explanation: "Cold observables (like HTTP requests) create a new producer for every subscriber.", hint: "Lazy emission."
+  },
+  {
+    id: 486, difficulty: "hard", category: "rxjs", question: "What is a 'Hot' Observable?", options: ["A fast observable", "An observable that produces data even if no one is listening (e.g., mouse clicks)", "An observable that crashes", "A deprecated feature"], answer: 1, explanation: "Hot observables share a single producer among multiple subscribers.", hint: "Eager emission."
+  },
+  {
+    id: 487, difficulty: "medium", category: "typescript_advanced", question: "What does the 'Record<K, T>' utility type represent?", options: ["A database record", "An object type where keys are of type K and values are of type T", "A history of types", "A way to record data"], answer: 1, explanation: "Record is perfect for defining dictionaries or maps.", hint: "Key-Value mapping."
+  },
+  {
+    id: 488, difficulty: "hard", category: "nestjs_microservices", question: "In a NestJS Microservice, what does @MessagePattern() do?", options: ["Styles the message", "Defines the pattern/topic the controller method should respond to", "Deletes the message", "Encrypts the message"], answer: 1, explanation: "It is the equivalent of @Get() or @Post() but for request-response microservice messages.", hint: "Pattern matching."
+  },
+  {
+    id: 489, difficulty: "medium", category: "angular_forms", question: "What is the 'ControlValueAccessor' interface used for?", options: ["To access values from a database", "To create custom form controls that integrate with Reactive/Template forms", "To delete form data", "To style forms"], answer: 1, explanation: "It acts as a bridge between the Angular Forms API and a native DOM element (like a custom star rater).", hint: "Custom form controls."
+  },
+  {
+    id: 490, difficulty: "hard", category: "angular_architecture", question: "What is 'Zone.js'?", options: ["A CSS library", "A polyfill that intercepts asynchronous tasks to notify Angular when to perform change detection", "A security tool", "A database wrapper"], answer: 1, explanation: "Zone.js 'monkeys-patches' async APIs (like setTimeout) so Angular knows when data might have changed.", hint: "The 'Magic' behind Change Detection."
+  },
+  {
+    id: 491, difficulty: "medium", category: "nestjs_lifecycle", question: "Which lifecycle hook is called after the module's dependencies have been resolved?", options: ["onModuleInit()", "onModuleDestroy()", "beforeApplicationShutdown()", "constructor()"], answer: 0, explanation: "onModuleInit is the standard place to perform initialization logic in NestJS providers/modules.", hint: "Module ready."
+  },
+  {
+    id: 492, difficulty: "hard", category: "nestjs_di", question: "What is 'Scope.REQUEST' for a provider?", options: ["The provider is a singleton", "A new instance of the provider is created for every incoming request", "The provider is only for GET requests", "The provider is shared by everyone"], answer: 1, explanation: "Request scoping is useful for things like multi-tenancy or request-specific logging, but impacts performance.", hint: "Per-request instance."
+  },
+  {
+    id: 493, difficulty: "medium", category: "angular_directives", question: "How do you pass data into an Attribute Directive?", options: ["Using @Input()", "Using @Output()", "Using the constructor", "Using local storage"], answer: 0, explanation: "Directives support @Input just like components do.", hint: "@Input decorator."
+  },
+  {
+    id: 494, difficulty: "hard", category: "angular_architecture", question: "What is the 'ViewContainerRef' used for?", options: ["To style the view", "To dynamically create and insert components into the DOM", "To delete the view", "To navigate between pages"], answer: 1, explanation: "ViewContainerRef provides an API to attach components dynamically at runtime.", hint: "Dynamic component insertion."
+  },
+  {
+    id: 495, difficulty: "medium", category: "typescript_basics", question: "What is the difference between 'undefined' and 'null'?", options: ["They are identical", "Undefined means a variable has been declared but not assigned; null is an intentional absence of value", "Null is only for numbers", "Undefined is only for strings"], answer: 1, explanation: "In TS, these are distinct types used to express different states of 'emptiness'.", hint: "Absence vs Unassigned."
+  },
+  {
+    id: 496, difficulty: "hard", category: "nestjs_guards", question: "How do you access metadata (set via @SetMetadata) inside a Guard?", options: ["Using the Reflector class", "Using the Request object", "Using the Database", "Using the Module"], answer: 0, explanation: "The Reflector utility allows Guards to read custom metadata attached to controllers or methods.", hint: "Reflector utility."
+  },
+  {
+    id: 497, difficulty: "medium", category: "angular_pipes", question: "What is a 'Pure Pipe'?", options: ["A pipe that uses no water", "A pipe that is only executed when its input value changes", "A pipe for numbers only", "A pipe that runs every second"], answer: 1, explanation: "Pure pipes are more efficient because they use change detection optimization.", hint: "Optimization by input change."
+  },
+  {
+    id: 498, difficulty: "hard", category: "angular_performance", question: "What is 'Tree Shaking'?", options: ["A way to clean a garden", "The process of removing unused code from the final bundle during the build process", "A security feature", "A way to organize files"], answer: 1, explanation: "Angular's build tool (Webpack/esbuild) 'shakes' the dependency tree to drop unused exports.", hint: "Dead code elimination."
+  },
+  {
+    id: 499, difficulty: "medium", category: "nestjs_controllers", question: "@Param() vs @Query() decorators?", options: ["@Param is for URL path segments; @Query is for URL search parameters (?key=val)", "No difference", "@Query is only for numbers", "@Param is deprecated"], answer: 0, explanation: "/user/:id (Param) vs /user?id=123 (Query).", hint: "Path vs Search string."
+  },
+  {
+    id: 500, difficulty: "hard", category: "nestjs_architecture", question: "What are 'Utilities' in NestJS (often called 'Healpers')?", options: ["Standard JS functions", "Providers that provide stateless helper logic", "A type of module", "A security tool"], answer: 1, explanation: "Utilities are often injected as 'Injectable' providers if they need dependencies themselves.", hint: "Helper logic."
+  },
+  {
+    id: 501, difficulty: "medium", category: "angular_basics", question: "What is the 'async' pipe in Angular?", options: ["It makes the UI slow", "A pipe that automatically subscribes to an Observable/Promise and returns the latest value", "A pipe for date formatting", "A pipe for upper-casing"], answer: 1, explanation: "The async pipe also handles unsubscription automatically, preventing memory leaks.", hint: "Auto-subscribe/unsub."
+  },
+  {
+    id: 502, difficulty: "hard", category: "angular_guards", question: "What does 'CanLoad' guard prevent?", options: ["The user from logging in", "The entire module from being downloaded (Lazy Loading) if the condition is not met", "The page from scrolling", "The image from loading"], answer: 1, explanation: "Unlike CanActivate, CanLoad prevents the code itself from being fetched over the network.", hint: "Module download prevention."
+  },
+  {
+    id: 503, difficulty: "medium", category: "typescript_advanced", question: "What is the 'NonNullable<T>' utility type?", options: ["It makes everything null", "It creates a type by excluding null and undefined from T", "It allows null values", "It deletes the type"], answer: 1, explanation: "Useful when you want to ensure a variable definitely contains a value.", hint: "Remove null/undefined."
+  },
+  {
+    id: 504, difficulty: "hard", category: "nestjs_interceptors", question: "Can Interceptors be used to cache responses?", options: ["No", "Yes, by returning a cached value instead of calling next.handle()", "Only in NestJS 10+", "Only for GET requests"], answer: 1, explanation: "Interceptors are the standard way to implement custom caching logic in NestJS.", hint: "Short-circuiting the request."
+  },
+  {
+    id: 505, difficulty: "medium", category: "angular_performance", question: "What is the benefit of 'AOT' (Ahead-of-Time) compilation?", options: ["Faster development", "Faster rendering, smaller bundles, and catching template errors at build time", "Better security", "Using less memory"], answer: 1, explanation: "AOT compiles templates before the browser downloads them, unlike JIT (Just-in-Time).", hint: "Build-time compilation."
+  },
+  {
+    id: 506, difficulty: "hard", category: "nestjs_websockets", question: "How do you broadcast a message to all connected clients in a NestJS Gateway?", options: ["Using @WebSocketServer() to access the native server instance", "Using a for loop", "Using the controller", "You cannot broadcast"], answer: 0, explanation: "Injecting the server instance allows you to use library-specific broadcast methods (e.g., socket.io.emit).", hint: "Native server access."
+  },
+  {
+    id: 507, difficulty: "medium", category: "typescript_advanced", question: "What is a 'Partial<T>' type?", options: ["A type that is half-finished", "Makes all properties in T optional", "Makes all properties in T required", "Deletes all properties"], answer: 1, explanation: "Partial is often used for 'update' payloads where you only send changed fields.", hint: "Optional properties."
+  },
+  {
+    id: 508, difficulty: "hard", category: "angular_di", question: "What is 'Self' decorator in DI?", options: ["The service is for me only", "Instructs DI to only look for a dependency in the current component's provider", "A way to rename a service", "A deprecated decorator"], answer: 1, explanation: "If not found in the local injector, it throws an error instead of looking in parents.", hint: "No parent lookup."
+  },
+  {
+    id: 509, difficulty: "medium", category: "angular_basics", question: "What is 'Shadow DOM' in Angular ViewEncapsulation?", options: ["A dark theme", "The browser's native implementation for encapsulating styles and markup", "A way to hide code", "A bug in Chrome"], answer: 1, explanation: "Angular defaults to 'Emulated', but 'ShadowDom' uses the real browser API.", hint: "Native encapsulation."
+  },
+  {
+    id: 510, difficulty: "hard", category: "rxjs", question: "What is the purpose of 'shareReplay' operator?", options: ["To share files", "To turn a cold observable into a hot one and replay the last N values to new subscribers", "To repeat an error", "To slow down emissions"], answer: 1, explanation: "Commonly used to cache HTTP responses so multiple components get the same data without multiple requests.", hint: "Caching RxJS values."
+  },
+  {
+    id: 511, difficulty: "medium", category: "nestjs_architecture", question: "What is an 'Adapter' in NestJS?", options: ["A hardware piece", "A wrapper that allows Nest to use different underlying libraries (e.g., Express vs Fastify)", "A type of module", "A security tool"], answer: 1, explanation: "Nest is platform-agnostic, meaning it can run on top of any HTTP framework via an adapter.", hint: "Express vs Fastify."
+  },
+  {
+    id: 512, difficulty: "hard", category: "typescript_advanced", question: "What are 'Template Literal Types'?", options: ["Strings in JS", "Types that allow for string manipulation and pattern matching based on backtick syntax", "A way to write HTML in TS", "Deprecated types"], answer: 1, explanation: "Example: type World = 'world'; type Hello = `hello ${World}`;", hint: "Type-level string interpolation."
+  },
+  {
+    id: 513, difficulty: "medium", category: "angular_forms", question: "What is the purpose of 'Validators.compose'?", options: ["To write music", "To combine multiple validators into a single validation function", "To delete validators", "To speed up forms"], answer: 1, explanation: "Example: [Validators.required, Validators.minLength(5)].", hint: "Multiple validators."
+  },
+  {
+    id: 514, difficulty: "hard", category: "nestjs_security", question: "How do you enable CORS in a NestJS application?", options: ["app.enableCors()", "app.use(cors)", "@Cors()", "Both 0 and 1"], answer: 3, explanation: "You can enable it globally on the app instance or use middleware.", hint: "Cross-Origin Resource Sharing."
+  },
+  
   // --- UNIT & E2E TESTING: JEST & CYPRESS/PLAYWRIGHT (451-470) ---
+  
   {
     id: 451,
     difficulty: "medium",
@@ -6255,5 +6629,8 @@ const hotsQuestions = [
     300, 305, 450, 455, 512,
 
     // 6. Testing & Debugging (Jest, Cypress, Mocking) - 10 indices
-    310, 315, 320, 325, 330, 335, 340, 345, 350, 355
+    310, 315, 320, 325, 330, 335, 340, 345, 350, 355,
+
+    // 7. additional questions - 10 indices
+    451, 456, 457, 463, 473, 484, 496, 503, 507, 514,
 ];
