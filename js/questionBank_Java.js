@@ -4666,11 +4666,461 @@ const questionBank = [
     explanation: "You deploy the new version to 'Green' while 'Blue' is live. Once Green is verified, you switch the router/load balancer to Green.",
     hint: "Zero-downtime switchover."
   }, 
+  {
+    "id": 351,
+    "difficulty": "medium",
+    "category": "Spring Boot",
+    "question": "Which annotation is most appropriate for handling an asynchronous POST request to prevent blocking the main thread?",
+    "options": ["@Async", "@Scheduled", "@Transient", "@EventListener"],
+    "answer": 0,
+    "explanation": "The @Async annotation marks a method to be executed in a separate thread pool, allowing the main thread to remain non-blocking."
+  },
+  {
+    "id": 352,
+    "difficulty": "medium",
+    "category": "Node.js",
+    "question": "Why should CPU-intensive tasks be offloaded to a worker in Node.js?",
+    "options": ["Node.js is multi-threaded by default", "Node.js is single-threaded and heavy tasks block the Event Loop", "Workers improve model accuracy", "PostgreSQL requires workers for JSON"],
+    "answer": 1,
+    "explanation": "Because Node.js runs on a single-threaded Event Loop, heavy computation can freeze the entire server's ability to handle other requests."
+  },
+  {
+    "id": 353,
+    "difficulty": "hard",
+    "category": "Security",
+    "question": "Which header prevents Cross-Site Request Forgery (CSRF) in Spring Security?",
+    "options": ["Content-Type", "Access-Control-Allow-Origin", "X-XSRF-TOKEN", "Authorization"],
+    "answer": 2,
+    "explanation": "X-XSRF-TOKEN is a standard header used to validate that a state-changing request came from a trusted domain session."
+  },
+  {
+    "id": 354,
+    "difficulty": "medium",
+    "category": "Docker",
+    "question": "What is the best way to handle a backend failing because the DB is still initializing despite 'depends_on'?",
+    "options": ["Increase CPU", "Hardcode a 30s sleep", "Use a health check/wait-for-it script", "Switch to H2"],
+    "answer": 2,
+    "explanation": "Docker's depends_on only tracks if a container has started, not if the service inside is ready. A health check ensures true readiness."
+  },
+  {
+    "id": 355,
+    "difficulty": "medium",
+    "category": "Frontend",
+    "question": "Which concept ensures UI components only re-render when state actually changes?",
+    "options": ["SQL Indexing", "Virtual DOM / Digest Cycle optimization", "Two-way data binding", "Shell Minification"],
+    "answer": 1,
+    "explanation": "The Virtual DOM (React) and optimized Digest Cycles (Angular) track changes to minimize expensive DOM updates."
+  },
+  {
+    "id": 356,
+    "difficulty": "medium",
+    "category": "Java Core",
+    "question": "How should a developer handle input validation for an array at the Service Layer?",
+    "options": ["PostgreSQL trigger", "Increase Redis size", "JSR-303/380 @NotEmpty on the DTO", "Change the algorithm"],
+    "answer": 2,
+    "explanation": "Bean Validation (JSR-303/380) allows declarative validation before data reaches business logic."
+  },
+  {
+    "id": 357,
+    "difficulty": "medium",
+    "category": "Security",
+    "question": "What HTTP status code should be returned if a User lacks permission for an Admin endpoint?",
+    "options": ["401 Unauthorized", "403 Forbidden", "404 Not Found", "500 Server Error"],
+    "answer": 1,
+    "explanation": "403 Forbidden specifically means the identity is known, but access is refused due to lack of roles."
+  },
+  {
+    "id": 358,
+    "difficulty": "medium",
+    "category": "Infrastructure",
+    "question": "What is the primary benefit of Redis in an AI scaling scenario?",
+    "options": ["Replace SQL Server", "Store large CSVs", "Cache prediction results for identical inputs", "Minify CSS"],
+    "answer": 2,
+    "explanation": "Caching expensive AI model outputs in memory prevents redundant and slow re-calculation for the same data."
+  },
+  {
+    "id": 359,
+    "difficulty": "easy",
+    "category": "Tools",
+    "question": "Which tool is used to test SOAP envelope structures before Java integration?",
+    "options": ["SoapUI", "Next.js", "Pandas", "Unix Shell"],
+    "answer": 0,
+    "explanation": "SoapUI is specifically designed for inspecting and testing WSDL/SOAP and RESTful web services."
+  },
+  {
+    "id": 360,
+    "difficulty": "medium",
+    "category": "React",
+    "question": "What is the risk of calling an API inside useEffect without a dependency array?",
+    "options": ["Encryption", "DB Crash", "Infinite loop of API calls", "Accuracy drop"],
+    "answer": 2,
+    "explanation": "Without a dependency array, useEffect runs on every render. If it updates state, it triggers a new render, creating a loop."
+  },
+  {
+    "id": 361,
+    "difficulty": "hard",
+    "category": "Spring Boot",
+    "question": "Which propagation type requires an existing transaction or throws an exception?",
+    "options": ["REQUIRED", "REQUIRES_NEW", "MANDATORY", "SUPPORTS"],
+    "answer": 2,
+    "explanation": "MANDATORY propagation ensures that a method must be called within an existing transaction context."
+  },
+  {
+    "id": 362,
+    "difficulty": "medium",
+    "category": "React",
+    "question": "Which hook ensures a calculation only runs when its inputs change?",
+    "options": ["useMemo", "useCallback", "useEffect", "useContext"],
+    "answer": 0,
+    "explanation": "useMemo caches (memoizes) the result of a calculation to avoid expensive re-computation during every render."
+  },
+  {
+    "id": 363,
+    "difficulty": "medium",
+    "category": "Node.js",
+    "question": "Where should next() be called in a logging middleware?",
+    "options": ["At the end of the file", "After setup but before logging logic ends", "In a catch block only", "Before app.use()"],
+    "answer": 1,
+    "explanation": "Calling next() moves the request to the next middleware. Wrapping it allows the logger to capture the full request duration."
+  },
+  {
+    "id": 364,
+    "difficulty": "medium",
+    "category": "Database",
+    "question": "Which command is best for linking tables in a many-to-many relationship?",
+    "options": ["CROSS JOIN", "UNION ALL", "INNER JOIN", "OUTER APPLY"],
+    "answer": 2,
+    "explanation": "INNER JOIN is the standard and most efficient way to correlate rows between tables based on shared keys."
+  },
+  {
+    "id": 365,
+    "difficulty": "medium",
+    "category": "Unix",
+    "question": "Which command combination follows a file in real-time and filters for keywords?",
+    "options": ["tail -f file | grep 'KEY'", "cat file | find 'KEY'", "sed 's/A/B/' file", "ls -al > grep"],
+    "answer": 0,
+    "explanation": "tail -f streams the file updates, and piping it to grep filters the output as it arrives."
+  },
+  {
+    "id": 366,
+    "difficulty": "easy",
+    "category": "AngularJS",
+    "question": "Which directive disables a button based on a boolean expression?",
+    "options": ["ng-show", "ng-if", "ng-disabled", "ng-bind"],
+    "answer": 2,
+    "explanation": "ng-disabled evaluates an expression and sets the HTML disabled attribute accordingly."
+  },
+  {
+    "id": 367,
+    "difficulty": "easy",
+    "category": "Web API",
+    "question": "What is the semantically correct REST URI for fetching a specific order?",
+    "options": ["/getOrderByID?id=1", "/orders/1", "/orders/delete/1", "/api/all/id"],
+    "answer": 1,
+    "explanation": "REST patterns use nouns for collections and path parameters for specific resources (e.g., /orders/{id})."
+  },
+  {
+    "id": 368,
+    "difficulty": "hard",
+    "category": "Frontend",
+    "question": "Which technique prevents DOM lag when displaying thousands of rows?",
+    "options": ["SSR", "Inline styles", "Windowing / Virtual Scrolling", "Redux Thunk"],
+    "answer": 2,
+    "explanation": "Windowing renders only the items currently in the user's viewport, drastically reducing the total DOM node count."
+  },
+  {
+    "id": 369,
+    "difficulty": "medium",
+    "category": "Spring Boot",
+    "question": "Which class is standard for client-side SOAP communication in Spring?",
+    "options": ["JdbcTemplate", "WebServiceTemplate", "SoapClientFactory", "JacksonConverter"],
+    "answer": 1,
+    "explanation": "WebServiceTemplate provides a high-level abstraction for sending and receiving SOAP messages."
+  },
+  {
+    "id": 370,
+    "difficulty": "medium",
+    "category": "AI/ML",
+    "question": "Why normalize features before feeding them into an AI model?",
+    "options": ["To convert to HTML", "To prevent large ranges from dominating weights", "Because Postgres requires it", "To reduce image size"],
+    "answer": 1,
+    "explanation": "Normalization ensures that features with different units or scales are treated equally by the mathematical model."
+  },
+  {
+    "id": 371,
+    "difficulty": "medium",
+    "category": "Node.js",
+    "question": "What does package-lock.json ensure in a CI/CD pipeline?",
+    "options": ["Stores env variables", "Compiles JS", "Guarantees exact dependency versions", "Acts as a primary key"],
+    "answer": 2,
+    "explanation": "The lock file records the exact version of every dependency, ensuring consistent builds across different machines."
+  },
+  {
+    "id": 372,
+    "difficulty": "easy",
+    "category": "Web API",
+    "question": "Which HTTP method is best for updating a single field of a resource?",
+    "options": ["PUT", "POST", "PATCH", "OPTIONS"],
+    "answer": 2,
+    "explanation": "PATCH is used for partial updates, whereas PUT is traditionally used for replacing the entire resource."
+  },
+  {
+    "id": 373,
+    "difficulty": "easy",
+    "category": "Docker",
+    "question": "In Docker Compose, what does 'depends_on' guarantee?",
+    "options": ["Automatic retries", "Start order only", "Shared IP addresses", "Completion of AI tasks"],
+    "answer": 1,
+    "explanation": "It controls the order in which containers start, but not whether the application inside is fully 'ready'."
+  },
+  {
+    "id": 374,
+    "difficulty": "medium",
+    "category": "React",
+    "question": "What is the best way to handle a 500 error in an Axios call?",
+    "options": ["Auto-refresh page", "Ignore it", "Catch block with user message", "Log password"],
+    "answer": 2,
+    "explanation": "Using try/catch or .catch() allows the app to stay stable and inform the user of server failures."
+  },
+  {
+    "id": 375,
+    "difficulty": "medium",
+    "category": "Unix",
+    "question": "Which command sets permissions to owner: execute, others: read?",
+    "options": ["chown admin file", "chmod 744 file", "chmod +x *", "grep 744 file"],
+    "answer": 1,
+    "explanation": "7 (rwx) for owner, 4 (r) for group, and 4 (r) for others."
+  },
+  {
+    "id": 376,
+    "difficulty": "easy",
+    "category": "Frontend",
+    "question": "Which native JS object is best for locale-aware currency formatting?",
+    "options": ["JSON.stringify", "Math.round", "Intl.NumberFormat", "Number.parseInt"],
+    "answer": 2,
+    "explanation": "Intl.NumberFormat provides robust, native support for currency and number formatting based on locale."
+  },
+  {
+    "id": 377,
+    "difficulty": "medium",
+    "category": "Spring Boot",
+    "question": "Which interface clears a cache immediately after Spring starts?",
+    "options": ["ApplicationRunner", "Serializable", "Cloneable", "ResponseBody"],
+    "answer": 0,
+    "explanation": "The ApplicationRunner interface provides a run method that executes after the app context is fully loaded."
+  },
+  {
+    "id": 378,
+    "difficulty": "medium",
+    "category": "Architecture",
+    "question": "What is the primary benefit of a 'Service Layer'?",
+    "options": ["Smaller Docker image", "DB backups", "Separation of concerns / DRY", "FastAPI requirement"],
+    "answer": 2,
+    "explanation": "A service layer decouples business logic from transport logic (API), making code reusable and testable."
+  },
+  {
+    "id": 379,
+    "difficulty": "medium",
+    "category": "Spring Boot",
+    "question": "How do you externalize credentials for Dev/Prod environments?",
+    "options": ["Hardcode in Java", "Spring Profiles", "Store in package.json", "Unix echo"],
+    "answer": 1,
+    "explanation": "Profiles (e.g., application-prod.properties) allow different configurations for different environments."
+  },
+  {
+    "id": 380,
+    "difficulty": "medium",
+    "category": "React",
+    "question": "What is the purpose of returning a function from useEffect?",
+    "options": ["Train AI", "Save to LocalStorage", "Cleanup (listeners/requests)", "Page refresh"],
+    "answer": 2,
+    "explanation": "The return function in useEffect acts as a cleanup mechanism to prevent memory leaks and redundant listeners."
+  },
+  {
+    "id": 381,
+    "difficulty": "medium",
+    "category": "Unix",
+    "question": "Which command recursively searches for content while ignoring a folder?",
+    "options": ["ls -R | grep", "grep -r 'KEY' . --exclude-dir=node_modules", "cat * > KEY", "find node_modules"],
+    "answer": 1,
+    "explanation": "Grep's --exclude-dir flag allows skipping heavy or irrelevant folders during content searches."
+  },
+  {
+    "id": 382,
+    "difficulty": "hard",
+    "category": "Security",
+    "question": "What is the recommended way to store passwords in a DB?",
+    "options": ["AES-256 encryption", "Base64 encoding", "Strong hashing (Argon2/BCrypt) with salt", "Hidden SQL table"],
+    "answer": 2,
+    "explanation": "Hashing with a salt is a one-way process that protects passwords even if the database is leaked."
+  },
+  {
+    "id": 383,
+    "difficulty": "medium",
+    "category": "Database",
+    "question": "A query on a 5M row table is slow. What is the first thing to check?",
+    "options": ["Monitor refresh rate", "SELECT * usage", "Indices on JOIN/WHERE columns", "Delete half the rows"],
+    "answer": 2,
+    "explanation": "Indices are critical for performance on large tables to avoid expensive full table scans."
+  },
+  {
+    "id": 384,
+    "difficulty": "medium",
+    "category": "Java Core",
+    "question": "What is the role of a 'Filter' in the Servlet lifecycle?",
+    "options": ["Connect to Canvas", "Compile Shell scripts", "Intercept requests/responses for processing", "Primary key generation"],
+    "answer": 2,
+    "explanation": "Filters allow developers to execute logic (like logging or auth) before or after a request hits a servlet."
+  },
+  {
+    "id": 385,
+    "difficulty": "medium",
+    "category": "Docker",
+    "question": "What is a major benefit of Docker internal networks?",
+    "options": ["Faster internet speed", "Service communication by name", "Disk encryption", "License replacement"],
+    "answer": 1,
+    "explanation": "Internal networks provide a DNS that lets services communicate using stable service names instead of dynamic IPs."
+  },
+  {
+    "id": 386,
+    "difficulty": "easy",
+    "category": "Web API",
+    "question": "Which header indicates the body format being sent by the client?",
+    "options": ["Accept", "Content-Type", "User-Agent", "Host"],
+    "answer": 1,
+    "explanation": "Content-Type (e.g., application/json) informs the server how to parse the incoming request body."
+  },
+  {
+    "id": 387,
+    "difficulty": "medium",
+    "category": "Frontend",
+    "question": "What is a downside of React Inline Styles?",
+    "options": ["Transparent backgrounds", "DB slowdown", "No pseudo-class support (:hover)", "Compile errors"],
+    "answer": 2,
+    "explanation": "Standard inline styles in JS don't support pseudo-classes like :hover or :active directly."
+  },
+  {
+    "id": 388,
+    "difficulty": "medium",
+    "category": "Database",
+    "question": "What is Data Normalization?",
+    "options": ["Organizing data to reduce redundancy", "Uppercase conversion", "Archiving old records", "Server migration"],
+    "answer": 0,
+    "explanation": "Normalization is the structural design process to minimize data duplication and improve integrity."
+  },
+  {
+    "id": 389,
+    "difficulty": "easy",
+    "category": "Unix",
+    "question": "What is a 'dry run' of a script?",
+    "options": ["Turning off fans", "Simulation without changes", "Rewriting from memory", "Printer execution"],
+    "answer": 1,
+    "explanation": "A dry run allows you to verify logic and output without affecting the actual file system or database."
+  },
+  {
+    "id": 390,
+    "difficulty": "medium",
+    "category": "AngularJS",
+    "question": "In AngularJS, how is a service() different from a factory()?",
+    "options": ["Service uses 'new', factory returns object", "SQL vs HTML purpose", "React hooks replacement", "They are aliases"],
+    "answer": 0,
+    "explanation": "service() is a constructor function (called with new), while factory() is a function that returns a value/object."
+  },
+  {
+    "id": 391,
+    "difficulty": "medium",
+    "category": "Node.js",
+    "question": "Which tool takes a Heap Snapshot for Node.js memory leaks?",
+    "options": ["SoapUI", "Chrome DevTools", "SQL Developer", "rm -rf"],
+    "answer": 1,
+    "explanation": "By using the --inspect flag, you can use Chrome's memory profiling tools to find leaks in Node.js applications."
+  },
+  {
+    "id": 392,
+    "difficulty": "easy",
+    "category": "Java Core",
+    "question": "In SOLID, what does the 'S' stand for?",
+    "options": ["Single Responsibility Principle", "Static Source Protocol", "Sequential Logic", "SQL Interface"],
+    "answer": 0,
+    "explanation": "The Single Responsibility Principle states that a class should have one, and only one, reason to change."
+  },
+  {
+    "id": 393,
+    "difficulty": "medium",
+    "category": "React",
+    "question": "Which React feature avoids 'prop drilling' for global data?",
+    "options": ["Context API", "Env variables", "Section tags", "@Component"],
+    "answer": 0,
+    "explanation": "The Context API allows you to share data through the component tree without passing props manually."
+  },
+  {
+    "id": 394,
+    "difficulty": "medium",
+    "category": "Database",
+    "question": "Which SQL command deletes all table records quickly without logging individual rows?",
+    "options": ["DROP", "REMOVE", "TRUNCATE", "UPDATE"],
+    "answer": 2,
+    "explanation": "TRUNCATE is a DDL operation that resets a table by deallocating pages, making it much faster than DELETE."
+  },
+  {
+    "id": 395,
+    "difficulty": "easy",
+    "category": "Unix",
+    "question": "What is the 'shebang' (#! /bin/bash) for?",
+    "options": ["Encryption", "Comment for computer", "Specifies the interpreter", "Java compilation"],
+    "answer": 2,
+    "explanation": "The shebang tells the operating system which program should be used to parse the rest of the script file."
+  },
+  {
+    "id": 396,
+    "difficulty": "medium",
+    "category": "Security",
+    "question": "Why is CORS needed between localhost:3000 and localhost:8000?",
+    "options": ["Different languages", "Port 8000 is for Oracle", "Browser security (Same-Origin Policy)", "Unix Firewall"],
+    "answer": 2,
+    "explanation": "Browsers restrict requests to different origins (different ports count as different origins) for security."
+  },
+  {
+    "id": 397,
+    "difficulty": "easy",
+    "category": "Spring Boot",
+    "question": "What does the @Value annotation do?",
+    "options": ["Calculates stock price", "Injects property values", "Makes variable final", "Converts JSON to SOAP"],
+    "answer": 1,
+    "explanation": "@Value is used to inject externalized property values from files into Java beans."
+  },
+  {
+    "id": 398,
+    "difficulty": "easy",
+    "category": "Frontend",
+    "question": "What is the primary purpose of Tailwind CSS?",
+    "options": ["DB Schema management", "AI training", "Utility-first design", "Replace React"],
+    "answer": 2,
+    "explanation": "Tailwind provides low-level utility classes to build custom UI designs directly within the markup."
+  },
+  {
+    "id": 399,
+    "difficulty": "hard",
+    "category": "AI/ML",
+    "question": "What is the main purpose of feature scaling?",
+    "options": ["Convert to float", "Faster storage", "Equalize feature influence on the model", "Encryption"],
+    "answer": 2,
+    "explanation": "Feature scaling (normalization/standardization) prevents features with naturally larger values from biasing the model."
+  },
+  {
+    "id": 400,
+    "difficulty": "medium",
+    "category": "Architecture",
+    "question": "What does 'Separation of Concerns' mean in full stack development?",
+    "options": ["One file for everything", "Dividing into distinct sections (API, Service, DB)", "Using multiple browsers", "Deleting unused code"],
+    "answer": 1,
+    "explanation": "It refers to organizing software so that each part addresses a separate concern, simplifying maintenance and testing."
+  }, 
 ];
 
-// --- TOP 100 INTERVIEW INDICES ---
+// --- TOP 150 INTERVIEW INDICES ---
 // These indices point to unique, high-value questions from the bank for rapid interview prep.
-// Covering: Java Core (17/21), Spring Boot 3, Microservices, Security, and JPA.
+// Covering: Java Core, Spring Boot 3, Microservices, Security, JPA and Full stack (50)
 const hotsQuestions = [
     // 1. Java Core & Modern Features (0-14) - 15 indices
     // Includes Records, Sealed Classes, and new Java 21 features (340-343)
@@ -4695,5 +5145,13 @@ const hotsQuestions = [
     // Includes Strings, Collections, JVM Memory, and Performance
     10, 11, 12, 13, 16, 17, 18, 19, 28, 29, 
     30, 31, 32, 33, 39, 42, 48, 50, 54, 55, 
-    58, 62, 64, 65, 66, 151, 152, 190, 217, 349
+    58, 62, 64, 65, 66, 151, 152, 190, 217, 349,
+
+    // 7. Full stack questions
+    351, 352, 353, 354, 355, 356, 357, 358, 359, 
+    360, 361, 362, 363, 364, 365, 366, 367, 368, 
+    369, 370, 371, 372, 373, 374, 375, 376, 377, 
+    378, 379, 380, 381, 382, 383, 384, 385, 386, 
+    387, 388, 389, 390, 391, 392, 393, 394, 395, 
+    396, 397, 398, 399, 400
 ];
