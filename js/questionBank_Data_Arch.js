@@ -896,7 +896,6 @@ ADVANCED DATA ARCHITECTURE MIGRATION & MODERNIZATION
     explanation: "Kafka brokers use Producer IDs and sequence numbers to identify and discard duplicate requests caused by producer retries after a network error."
   },
 ];
-];
 
 // --- TOP 100 INTERVIEW INDICES ---
 // These indices point to unique, high-value questions from the bank for rapid interview prep.
