@@ -752,6 +752,150 @@ explanation:"Petabyte-scale architectures rely on distributed event streaming pl
     answer: 1,
     explanation: "The elastic resources of the public cloud are essential for handling petabytes of data efficiently."
   },  
+  /* ======================================================
+ADVANCED DATA ARCHITECTURE MIGRATION & MODERNIZATION
+====================================================== */
+  {
+    id: 71,
+    difficulty: "hard",
+    category: "migration",
+    question: "When migrating from Apache Hive to Apache Iceberg, which 'in-place' mechanism creates a new table without rewriting data files?",
+    options: [
+      "Iceberg 'Snapshot' procedure",
+      "Iceberg 'Migrate' procedure",
+      "Hive Metastore 'Sync' command",
+      "Iceberg 'Import' function"
+    ],
+    answer: 1,
+    explanation: "The 'Migrate' procedure replaces the Hive table with an Iceberg table by mapping existing data files into a new Iceberg manifest list without data duplication."
+  },
+  {
+    id: 72,
+    difficulty: "hard",
+    category: "architecture",
+    question: "In a Data Mesh architecture, what is the 'Architectural Quantum' used to define a Data Product?",
+    options: [
+      "A single SQL view",
+      "A centralized data warehouse cluster",
+      "An autonomous unit containing data, code, and infrastructure",
+      "A shared metadata repository"
+    ],
+    answer: 2,
+    explanation: "Data Mesh defines a Data Product as an encapsulated unit (quantum) that includes its own data, the code to process it, and the infrastructure needed to serve it."
+  },
+  {
+    id: 73,
+    difficulty: "medium",
+    category: "performance",
+    question: "Which factor most heavily influences the physical design of an Apache HBase Row Key for high-throughput streaming?",
+    options: [
+      "Third Normal Form (3NF) requirements",
+      "The number of Kafka partitions",
+      "Prevention of region server 'hotspotting'",
+      "The size of the Java Heap"
+    ],
+    answer: 2,
+    explanation: "HBase stores data lexicographically; row keys must be designed (often using hashing or salting) to distribute writes evenly across region servers and avoid hotspotting."
+  },
+  {
+    id: 74,
+    difficulty: "medium",
+    category: "mlops",
+    question: "In an MLOps pipeline, what is the primary cause of 'Training-Serving Skew'?",
+    options: [
+      "Slow network latency",
+      "Inconsistent feature logic between batch training and real-time inference",
+      "Low GPU utilization",
+      "Using different versions of Python"
+    ],
+    answer: 1,
+    explanation: "Skew occurs when the data preprocessing logic used for model training differs from the logic applied during real-time scoring in production."
+  },
+  {
+    id: 75,
+    difficulty: "hard",
+    category: "data-modelling",
+    question: "Which step is critical when translating a Logical Data Model into a Physical Model for a NoSQL database like HBase or Cassandra?",
+    options: [
+      "Ensuring all tables are in 5th Normal Form",
+      "Modelling tables based on specific query access patterns",
+      "Eliminating all data redundancy",
+      "Using only integer-based primary keys"
+    ],
+    answer: 1,
+    explanation: "Unlike relational databases, NoSQL physical models are 'query-first,' meaning tables are structured specifically to optimize for the exact queries the application will run."
+  },
+  {
+    id: 76,
+    difficulty: "medium",
+    category: "streaming",
+    question: "What is the role of the 'Lily HBase Indexer' in an architecture using Apache Solr?",
+    options: [
+      "Compressing HBase HFiles",
+      "Managing Kafka offsets",
+      "Asynchronously updating Solr indices based on HBase Write-Ahead Logs (WAL)",
+      "Translating SQL into HBase Get operations"
+    ],
+    answer: 2,
+    explanation: "The Lily Indexer provides near real-time search capabilities by listening to HBase replication logs and automatically updating Solr collections."
+  },
+  {
+    id: 77,
+    difficulty: "hard",
+    category: "lakehouse",
+    question: "Which Apache Iceberg feature allows users to query a table as it existed at a specific point in time?",
+    options: [
+      "Schema Evolution",
+      "Partition Pruning",
+      "Time Travel (Snapshot Reads)",
+      "File Compaction"
+    ],
+    answer: 2,
+    explanation: "Iceberg maintains immutable snapshots of the table state, allowing users to query 'as of' a specific timestamp or snapshot ID."
+  },
+  {
+    id: 78,
+    difficulty: "medium",
+    category: "dataops",
+    question: "In DataOps, what is the 'Strangler Fig' pattern used for during legacy migrations?",
+    options: [
+      "Deleting all legacy data immediately",
+      "Gradually replacing legacy system components with new services until the old system is retired",
+      "Increasing the compression ratio of Parquet files",
+      "Automatically fixing data quality errors"
+    ],
+    answer: 1,
+    explanation: "The Strangler Fig pattern reduces migration risk by incrementally moving traffic/functionality to the new architecture while keeping the legacy system operational."
+  },
+  {
+    id: 79,
+    difficulty: "hard",
+    category: "governance",
+    question: "In a decentralized Data Mesh, who is responsible for the 'Quality' of a specific Data Product?",
+    options: [
+      "The Central IT Team",
+      "The Data Platform Team",
+      "The Domain Data Product Owner",
+      "The Chief Security Officer"
+    ],
+    answer: 2,
+    explanation: "Data Mesh shifts accountability to the domain; the business unit producing the data owns the quality and SLA of that specific data product."
+  },
+  {
+    id: 80,
+    difficulty: "medium",
+    category: "streaming",
+    question: "How does Apache Kafka ensure 'Idempotency' for producers during a network retry?",
+    options: [
+      "By deleting duplicate messages in the consumer",
+      "By assigning unique Producer IDs and Sequence Numbers to every batch of messages",
+      "By increasing the number of replicas",
+      "By using SSL encryption"
+    ],
+    answer: 1,
+    explanation: "Kafka brokers use Producer IDs and sequence numbers to identify and discard duplicate requests caused by producer retries after a network error."
+  },
+];
 ];
 
 // --- TOP 100 INTERVIEW INDICES ---
@@ -771,5 +915,8 @@ const hotsQuestions = [
     50, 51, 52, 53, 54, 55, 56, 57, 58, 59, // Offline Feature Stores, Backpressure, Activity Schema, Data Skew, Semantic Gap, Column-based
 
     // Specialized Scale & Strategy (Indices 60-69)
-    60, 61, 62, 63, 64, 65, 66, 67, 68, 69  // Data Mesh, OLAP, Hubs, Data Stewards, S3/ADLS, Windowing, Cube/dbt, Z-Order, Petabyte Scale
+    60, 61, 62, 63, 64, 65, 66, 67, 68, 69,  // Data Mesh, OLAP, Hubs, Data Stewards, S3/ADLS, Windowing, Cube/dbt, Z-Order, Petabyte Scale
+
+    // Advanced data architecture - migration and modernization 
+    70, 71, 72, 73, 74, 75, 76, 77, 78, 79
 ];
