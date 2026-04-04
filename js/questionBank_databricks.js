@@ -6781,6 +6781,48 @@ PYSPARK DATAFRAME API & SPARK SQL OPERATIONS
     correctAnswer: "C",
     explanation: "Standard Python UDFs suffer from high serialization overhead between JVM and Python processes and process data one row at a time. Pandas UDFs use Apache Arrow to process data in vectorized batches, leading to massive speedups."
   }, 
+  {
+    id: 434,
+    difficulty: "medium",
+    category: "performance",
+    question: "According to the Tungsten execution engine Phase 2 in Apache Spark, where is intermediate data placed to achieve an order of magnitude reduction in the number of cycles required to obtain it?",
+    options: [
+      "Off-heap memory",
+      "CPU registers",
+      "JVM heap memory",
+      "Local disk storage"
+    ],
+    answer: 1,
+    explanation: "Tungsten Phase 2 places intermediate data directly into CPU registers instead of memory, which results in a massive reduction in the number of cycles to obtain data."
+  },
+  {
+    id: 435,
+    difficulty: "medium",
+    category: "performance",
+    question: "Standard Python User-Defined Functions (UDFs) typically slow down Spark execution. What is a primary reason for this highlighted in the tuning guide?",
+    options: [
+      "They process data on a row-by-row basis and cannot be analyzed or optimized by the Catalyst optimizer",
+      "They can only operate on data that has been written to disk",
+      "They enforce an strict schema on read that reduces operation flexibility",
+      "They force the cluster to downscale automatically to a single node"
+    ],
+    answer: 0,
+    explanation: "Standard UDFs process one row at a time, preventing columnar operations. Furthermore, Spark's Catalyst optimizer cannot evaluate or perform execution plan improvements inside a UDF."
+  },
+  {
+    id: 436,
+    difficulty: "hard",
+    category: "performance",
+    question: "Which configuration setting in Apache Spark controls whether Adaptive Query Execution (AQE) dynamically combines small partitions after a shuffle exchange?",
+    options: [
+      "spark.sql.adaptive.enabled",
+      "spark.sql.adaptive.skewJoin.enabled",
+      "spark.sql.adaptive.coalescePartitions.enabled",
+      "spark.sql.autoBroadcastJoinThreshold"
+    ],
+    answer: 2,
+    explanation: "Setting 'spark.sql.adaptive.coalescePartitions.enabled' to true informs Spark to merge smaller tasks after a shuffle, saving on task setup and scheduling overheads."
+  },
 ];  
 
 // --- TOP 100 INTERVIEW INDICES ---
@@ -6814,5 +6856,5 @@ const hotsQuestions = [
     14, 17, 70, 80, 85, 88, 100, 334, 357, 421,
 
     // 8. Spark Performance 
-    430, 431, 432,
+    430, 431, 432, 433, 434, 435,
 ];
