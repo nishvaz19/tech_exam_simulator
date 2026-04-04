@@ -1361,6 +1361,48 @@ ADVANCED DATA ARCHITECTURE MIGRATION & MODERNIZATION
     correctAnswer: "B",
     explanation: "Delta Lake natively supports ACID transactions and Time Travel out of the box. However, running a VACUUM command deletes old data files no longer referenced by the current transaction log. To look back 30 days, the VACUUM retention period must be configured to retain at least 30 days of history, otherwise, time travel will fail for those older states."
    },
+   {
+    id: 125,
+    difficulty: "medium",
+    category: "architecture",
+    question: "A Data Architect is designing a processing pipeline for unstructured data streams (such as video or raw text) where schema enforcement is not required. Which Spark core construct does the material recommend for this specific scenario?",
+    options: [
+      "DataFrames",
+      "Datasets",
+      "Resilient Distributed Datasets (RDDs)",
+      "Spark SQL Tables"
+    ],
+    answer: 2,
+    explanation: "According to the reading material, RDDs are useful in scenarios handling unstructured data and where strict schema enforcement isn’t necessary."
+   },
+   {
+    id: 126,
+    difficulty: "hard",
+    category: "performance",
+    question: "To optimize a complex join between two enormous tables where broadcasting is not feasible due to cluster memory limits, which technique can Spark leverage to filter out non-matching rows early and reduce the volume of shuffled data?",
+    options: [
+      "Broadcast Hash Joins",
+      "Bloom Filter Joins",
+      "Cartesian Product Joins",
+      "Vectorized Python Joins"
+    ],
+    answer: 1,
+    explanation: "The material outlines that Spark can employ Bloom filters to reduce shuffled rows during joins by filtering out non-matching rows early when broadcasting isn't feasible."
+   },
+   {
+    id: 127,
+    difficulty: "medium",
+    category: "performance",
+    question: "A Data Architect is analyzing storage levels to balance memory footprints against read efficiency. If they choose 'MEMORY_ONLY_SER' for dataset persistence, what is the primary architectural trade-off highlighted?",
+    options: [
+      "It makes data faster to read but occupies twice as much JVM heap space",
+      "It writes all overflow partitions directly to hard disks",
+      "It is more space-efficient than storing deserialized objects but becomes more CPU-intensive to read",
+      "It limits the execution to Scala tasks only"
+    ],
+    answer: 2,
+    explanation: "According to the material, 'MEMORY_ONLY_SER' is generally more space-efficient than deserialized objects, but it is more CPU-intensive to read because of serialization overhead."
+   },
 ];
 
 // --- TOP 100 INTERVIEW INDICES ---
@@ -1390,5 +1432,5 @@ const hotsQuestions = [
     // Hbase questions 
     110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120,
     // Spark Performance 
-    121, 122, 123
+    121, 122, 123, 124, 125, 126,
 ];
