@@ -1325,6 +1325,42 @@ ADVANCED DATA ARCHITECTURE MIGRATION & MODERNIZATION
     answer: 1,
     explanation: "HBase uses an LSM-tree architecture. Deletes are handled by writing a 'Tombstone' marker; the data is only physically removed during a Major Compaction."
    },
+   {
+    id: 122,
+    question: "As a Data Architect, you are designing a daily batch pipeline that joins a massive 10TB clickstream table with a 500GB user dimension table on 'user_id'. Both tables are frequently used in other downstream workloads. Which storage strategy yields the best architectural outcome for performance?",
+    options: [
+      "A) Rely on Broadcast Joins by increasing the broadcast threshold to 600GB on the executors.",
+      "B) Bucket both tables by 'user_id' with the same number of buckets during initial ingestion to enable collocated joins without shuffles.",
+      "C) Keep both tables as standard Delta tables and let Spark's default sort-merge join handle the shuffle operations daily.",
+      "D) Denormalize the data at the Bronze layer to eliminate the need for any Silver layer joins."
+    ],
+    correctAnswer: "B",
+    explanation: "For recurring joins between two massive tables on a consistent key, pre-bucketing both tables on that key ('user_id') with the exact same number of buckets eliminates the shuffle step during joins. This is much more reliable than trying to broadcast a massive 500GB table, which would likely cause Out Of Memory (OOM) errors."
+   },
+   {
+    id: 123,
+    question: "When designing a Delta Lake Medallion Architecture, a developer proposes Z-Ordering the Silver tables on 'ingestion_date' and Partitioning them by 'user_id'. Why might you reject this design as an Architect?",
+    options: [
+      "A) You cannot combine Z-Ordering and Partitioning on Delta Lake; it's a hard engine limitation.",
+      "B) Partitioning by high-cardinality columns like 'user_id' leads to a 'tiny file problem' and degrades metadata performance; 'user_id' is better suited for Z-Ordering instead.",
+      "C) 'Ingestion_date' is a low-cardinality column and is a perfect candidate for physical directory partitioning.",
+      "D) Both B and C are correct."
+    ],
+    correctAnswer: "D",
+    explanation: "Partitioning should be reserved for low-cardinality columns (like a date or region) to avoid creating thousands of small directories/files. High-cardinality columns (like unique user IDs) are terrible for partitioning but are perfect for Z-Ordering, which arranges data efficiently within the files themselves without metadata bloat."
+   },
+   {
+    id: 124,
+    question: "A financial organization is migrating on-premises Hadoop workloads to Databricks. They require strict ACID compliance and the ability to time-travel back to data states from 30 days ago. Which combination should you recommend as the Architect?",
+    options: [
+      "A) Parquet format with external custom checkpointing logic.",
+      "B) Delta Lake tables with a VACUUM retention period set to at least 30 days.",
+      "C) Delta Lake tables with an aggressive daily VACUUM to keep storage costs low.",
+      "D) Standard RDD structures written directly to AWS S3 buckets to maintain control over execution."
+    ],
+    correctAnswer: "B",
+    explanation: "Delta Lake natively supports ACID transactions and Time Travel out of the box. However, running a VACUUM command deletes old data files no longer referenced by the current transaction log. To look back 30 days, the VACUUM retention period must be configured to retain at least 30 days of history, otherwise, time travel will fail for those older states."
+   },
 ];
 
 // --- TOP 100 INTERVIEW INDICES ---
@@ -1353,4 +1389,6 @@ const hotsQuestions = [
     100, 101, 102, 103, 104, 105, 106, 107, 108, 109,
     // Hbase questions 
     110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120,
+    // Spark Performance 
+    121, 122, 123
 ];
