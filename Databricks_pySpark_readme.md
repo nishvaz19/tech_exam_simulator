@@ -206,7 +206,15 @@ VACUUM table_name;
 * **Switching to Kryo Serialization:** By default, Spark uses Java serialization, which is slow and produces large objects. Switching to Kryo serialization (`spark.serializer = org.apache.spark.serializer.KryoSerializer`) drastically reduces network transfer sizes and memory usage.
 * **Garbage Collection (GC) Tuning:** Long pause times during execution are often GC overhead. Moving to the G1GC garbage collector (`-XX:+UseG1GC`) and adjusting `spark.memory.fraction` helps keep tasks running instead of waiting for the JVM to clean up after itself.
 * **Delta Lake Z-Ordering:** Unlike partitioning, Z-Ordering co-locates related information in the same files based on a specific set of columns, making range queries highly performant without creating thousands of tiny files.
-
+* **Prefer DataFrames/Datasets over RDDs**: Leverage Spark’s internal Catalyst engine and Tungsten execution engine to take advantage of advanced features like memory hierarchy exploitation, code generation, and off-heap memory management.
+* **Optimize Data Partitioning**: Distribute data evenly to ensure executors handle similar amounts of work, minimizing execution bottlenecks and data skew.
+* **Use `coalesce()` for Partition Reduction**: When reducing the number of partitions, use `coalesce()` to collapse partitions and minimize data movement instead of doing a full shuffle with `repartition()`.
+* **Prioritize Built-In Functions Over UDFs**: Built-in functions avoid the costs of row-by-row processing, can operate on entire columns via vectorized operations, and fully interact with the Catalyst optimizer.
+* **Employ UDF Optimizations**: When custom logic is required, mitigate performance costs by using Pandas UDFs for vectorized execution, SQL UDFs to execute in the JVM, or broadcast variables for lookups.
+* **Implement Adaptive Query Execution (AQE)**: Benefit from on-the-fly execution plan optimizations such as dynamic join strategy switching, post-shuffle partition coalescing, and skewed task splitting.
+* **Optimize Small-Table Joins with Broadcasting**: For equi-joins involving a smaller table that can fit in executor memory, use broadcast joins to bypass expensive data shuffle operations.
+* **Utilize Bloom Filters for Larger Joins**: In conditions where broadcasting is not feasible, use Bloom filters to early eliminate non-matching rows and minimize the overhead of data shuffling.
+ 
 ---
 
 # 🧠 High-Probability Interview Topics
