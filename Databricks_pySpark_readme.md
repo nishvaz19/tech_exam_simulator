@@ -198,6 +198,15 @@ OPTIMIZE table_name;
 VACUUM table_name;
 ```
 
+## Additional Spark Performance Tuning Points
+
+* **Bucketing:** While partitioning physically separates data into folders based on a column, bucketing distributes data into a fixed number of files (buckets) based on a hash of a column. This is incredibly useful for avoiding massive shuffles on frequently joined or grouped large tables.
+* **Data Salting to Fix Skew:** When a specific key has way more data than others (e.g., a null value or a massive client), it causes data skew where one task takes forever. "Salting" adds a random integer to the key to split it across multiple partitions, forcing parallel processing.
+* **Dynamic File Pruning (DFP):** Spark can dynamically skip reading files in a large fact table by using the filter results from a small dimension table during a join. It's like predicate pushdown, but calculated on the fly.
+* **Switching to Kryo Serialization:** By default, Spark uses Java serialization, which is slow and produces large objects. Switching to Kryo serialization (`spark.serializer = org.apache.spark.serializer.KryoSerializer`) drastically reduces network transfer sizes and memory usage.
+* **Garbage Collection (GC) Tuning:** Long pause times during execution are often GC overhead. Moving to the G1GC garbage collector (`-XX:+UseG1GC`) and adjusting `spark.memory.fraction` helps keep tasks running instead of waiting for the JVM to clean up after itself.
+* **Delta Lake Z-Ordering:** Unlike partitioning, Z-Ordering co-locates related information in the same files based on a specific set of columns, making range queries highly performant without creating thousands of tiny files.
+
 ---
 
 # 🧠 High-Probability Interview Topics
