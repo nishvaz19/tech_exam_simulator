@@ -21,20 +21,32 @@
             line-height: 1.6;
         }
         .md-body {
-            scroll-behavior: smooth;
+            color: #1e293b;
         }
-        .md-body {
-           color: #1e293b; /* force dark readable text */
-        }
-        .ant-modal-body {
-          color: rgba(0, 0, 0, 0.88);
-         } 
-        .md-body p,
-        .md-body li,
-        .md-body span,
-        .md-body div {
-            color: #1e293b !important;
-        }
+
+.md-body pre {
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 12px;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.md-body code {
+  background: rgba(241, 245, 249, 0.8);
+  color: #0f172a;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.md-body pre code {
+  background: transparent;
+  color: inherit;
+}
+        .md-modal-content {
+            background: #ffffff;
+            color: #1e293b;
+         }
         .md-header {
             position: sticky;
             top: 0;
