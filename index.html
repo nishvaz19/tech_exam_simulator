@@ -44,9 +44,17 @@
   color: inherit;
 }
         .md-modal-content {
-            background: #ffffff;
-            color: #1e293b;
-         }
+  background: #fdf6e3; /* cream */
+  margin: 5% auto;
+  width: 85%;
+  max-width: 900px;
+  height: 80%;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
         .md-header {
             position: sticky;
             top: 0;
@@ -100,9 +108,23 @@ pre, code {
 .wb-defi { background: #059669; }       /* Emerald - DeFi/Tokenomics */
 .wb-tooling { background: #4f46e5; }    /* Violet - Dev Tooling */
 .wb-zkp { background: #7c3aed; }  /* Purple - Zero Knowledge */
-        
+.md-body pre {
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 12px;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+.md-body code {
+  background: #e2e8f0;
+  color: #0f172a;
+  padding: 2px 6px;
+  border-radius: 4px;
+}       
 .md-body.loading {
-  opacity: 0.5;
+  opacity: 0.85;
+  filter: blur(0.3px);
 }
 pre {
   background: #1e1e1e !important;
