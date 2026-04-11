@@ -72,8 +72,12 @@
             text-decoration: underline;
             opacity: 0.8;
         }
-pre, code {
-  color: white !important;
+.md-body pre code {
+  color: inherit;
+}
+
+.md-body pre {
+  color: #e2e8f0;
 }
 @keyframes fadeIn {
   from { transform: translateY(20px); opacity: 0; }
@@ -277,8 +281,8 @@ code {
         .workspace { background: #0ea5e9; }
         .az-compute { background: #0078d4; }
         
-        //.az-compute { background: #10b981 } /* (Green) */
-        //.az-data { background: #f59e0b }    /* (Amber) */
+        /*.az-compute { background: #10b981 } *//* (Green) */ 
+        /*.az-data { background: #f59e0b }*/    /* (Amber) */
 
         .az-data { background: #5ea0ef; }
         .az-identity { background: #323130; }
@@ -309,9 +313,6 @@ code {
 <body>
     
 <script>
-document.querySelectorAll(".doc-header").forEach(h => {
-  h.classList.add("active-doc");
-});    
 document.body.classList.add("loading");
 </script>
 
@@ -547,6 +548,7 @@ const docMap = {
 };
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".doc-header").forEach(header => {
+    header.classList.add("active-doc");  
     header.addEventListener("click", () => {
       const key = header.dataset.doc;
       const doc = docMap[key];
@@ -1090,7 +1092,7 @@ const eaKeywords = [
 }
 
 .md-modal-content {
-  background: #ffffff;
+  background: #fdf6e3;  
   margin: 5% auto;
   width: 85%;
   max-width: 900px;
