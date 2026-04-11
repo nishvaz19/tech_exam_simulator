@@ -20,10 +20,30 @@
             padding: 15px;
             line-height: 1.6;
         }
+        .md-body {
+            scroll-behavior: smooth;
+        }
+        .md-header {
+            position: sticky;
+            ntop: 0;
+            z-index: 10;
+        }
         .mg-atlas { background: #13aa52; } /* MongoDB Green */
         .mg-perf { background: #00684a; }  /* Deep Green */
         /* Optimized Backgrounds for White Text Contrast */
+        bv.md-modal-content {
+            animation: fadeIn 0.25s ease;
+        }
+        .active-doc {
+            text-decoration: underline;
+            opacity: 0.8;
+        }
 
+@keyframes fadeIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+        
 /* Snowflake Domains */
 .sn-core { background: #4682B4; }     /* Steel Blue */
 .sn-compute { background: #005685; }
@@ -224,7 +244,8 @@
 <body>
     
 <script>
-body.classList.add("loading");
+header.classList.add("active-doc");    
+document.body.classList.add("loading");
 </script>
 
 <div class="container">
@@ -412,8 +433,13 @@ body.classList.add("loading");
     </div>
 </div>
 
-<script>   
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>    
+<script>
+window.onclick = function(event) {
+  const modal = document.getElementById("mdModal");
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+}    
 const docMap = {
   "react-cloud": {
     file: "docs/python_test_readme.md",
@@ -450,24 +476,27 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });        
 // Load marked.js (Markdown parser)
-const script = document.createElement("script");
+/*const script = document.createElement("script");
 script.src = "https://cdn.jsdelivr.net/npm/marked/marked.min.js";
-document.head.appendChild(script);
+document.head.appendChild(script);*/
 
 // Open modal and load markdown
 async function openMarkdown(filePath, title) {
     const modal = document.getElementById("mdModal");
     const body = document.getElementById("mdBody");
+    document.body.style.overflow = "hidden";
 
     modal.style.display = "block";
     document.getElementById("mdTitle").textContent = title;
 
-    body.innerHTML = "Loading...";
+    body.classList.add("loading");
+    body.innerHTML = "Loading documentation...
 
     try {
         const res = await fetch(filePath, { cache: "no-store" });
 
         if (!res.ok) {
+            body.classList.remove("loading");
             throw new Error("File not found");
         }
 
@@ -482,7 +511,7 @@ async function openMarkdown(filePath, title) {
                 hljs.highlightElement(el);
             });
         }
-
+        body.classList.remove("loading");
     } catch (err) {
         body.innerHTML = `
           <div style="color:red">
@@ -494,6 +523,7 @@ async function openMarkdown(filePath, title) {
 }
 
 function closeModal() {
+    document.body.style.overflow = "auto";
     document.getElementById("mdModal").style.display = "none";
 }   
 // --- DATASETS ---
@@ -1039,7 +1069,7 @@ const eaKeywords = [
 }
 </style>    
 <script>
-body.classList.remove("loading");
+document.body.classList.add("loading");    
 </script>       
 </body>
 </html>
