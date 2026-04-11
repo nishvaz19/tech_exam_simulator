@@ -255,13 +255,17 @@
 </div>
 
 <div id="react-cloud" class="cloud-section" style="background: #20232a; color: white;">
-    <h2 style="color: #61dafb;">React Frontend Cloud</h2>
+    <h2 class="doc-header" data-doc="react-cloud" style="color: #61dafb; cursor:pointer;">
+  React Frontend Cloud 📘
+</h2>
     <div class="search-box"><input id="rSearch" placeholder="Search React..."></div>
     <div class="cloud-display" id="rCloud"></div>
 </div>
 
     <div id="databricks-cloud" class="cloud-section" style="background: #f4f6f8;">
-        <h2 style="color: #ff3621;">Databricks Lakehouse Cloud</h2>
+        <h2 class="doc-header" data-doc="databricks-cloud" style="color: #ff3621; cursor:pointer;">
+  Databricks Lakehouse Cloud 📘
+</h2>
         <div class="search-box"><input id="dbSearch" placeholder="Search Databricks..."></div>
         <div class="cloud-display" id="dbCloud"></div>
         <div class="legend">
@@ -396,7 +400,58 @@
 </div>
 
 <script>
-    // --- DATASETS ---
+const docMap = {
+  "react-cloud": {
+    file: "../python_test_readme.md",
+    title: "React Frontend Documentation"
+  },
+  "mongodb-cloud": {
+    file: "../mongodb_readme.md",
+    title: "MongoDB Atlas Docs"
+  },
+  "databricks-cloud": {
+    file: "../Databricks_pySpark_readme.md",
+    title: "Databricks Lakehouse Guide"
+  },
+  "ai-cloud": {
+    file: "../ai_llm_readme.md",
+    title: "AI & LLM Architecture"
+  },
+  "azure-cloud": {
+    file: "../azure_readme.md",
+    title: "Azure Solutions Guide"
+  },
+  "aws-cloud": {
+    file: "../aws_readme.md",
+    title: "AWS Solutions Guide"
+  }
+};   
+// Load marked.js (Markdown parser)
+const script = document.createElement("script");
+script.src = "https://cdn.jsdelivr.net/npm/marked/marked.min.js";
+document.head.appendChild(script);
+
+// Open modal and load markdown
+function openMarkdown(filePath, title) {
+    document.getElementById("mdModal").style.display = "block";
+    document.getElementById("mdTitle").textContent = title;
+    document.getElementById("mdBody").innerHTML = "Loading...";
+
+    fetch(filePath)
+        .then(res => res.text())
+        .then(md => {
+            document.getElementById("mdBody").innerHTML = marked.parse(md);
+        })
+        .catch(err => {
+            document.getElementById("mdBody").innerHTML = 
+              "<p style='color:red'>Failed to load markdown</p>";
+        });
+}
+
+function closeModal() {
+    document.getElementById("mdModal").style.display = "none";
+}   
+// --- DATASETS ---
 const dbKeywords = [
   // --- Delta Lake & Storage ---
   {word:"Delta Lake",freq:5,domain:"delta",desc:"Open-source storage layer enabling ACID transactions on data lakes"},
@@ -852,5 +907,91 @@ const eaKeywords = [
         bindSearch("web3BlockChainSearch", "web3BlockChainCloud", web3BlockChainKeywords, "web3_blockchain");    
     });
 </script>
+<!-- Markdown Popup Modal -->
+<div id="mdModal" class="md-modal">
+  <div class="md-modal-content">
+    
+    <div class="md-header">
+      <span id="mdTitle">Documentation</span>
+      <button class="md-close" onclick="closeModal()">✕</button>
+    </div>
+
+    <div id="mdBody" class="md-body">
+      Loading...
+    </div>
+
+  </div>
+</div>
+
+<style>
+.md-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+}
+
+.md-modal-content {
+  background: #ffffff;
+  margin: 5% auto;
+  width: 85%;
+  max-width: 900px;
+  height: 80%;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.md-header {
+  padding: 15px 20px;
+  background: #1e293b;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+}
+
+.md-close {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.md-body {
+  padding: 20px;
+  overflow-y: auto;
+  font-family: system-ui;
+  line-height: 1.6;
+}
+
+/* Markdown Styling */
+.md-body h1, .md-body h2, .md-body h3 {
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 6px;
+}
+
+.md-body code {
+  background: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.md-body pre {
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 12px;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+</style>    
 </body>
 </html>
