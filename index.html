@@ -24,6 +24,13 @@
             color: #1e293b;
         }
 
+.md-body code {
+  background: #f1f5f9;
+  color: #0f172a;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
 .md-body pre {
   background: #0f172a;
   color: #e2e8f0;
@@ -32,18 +39,11 @@
   overflow-x: auto;
 }
 
-.md-body code {
-  background: rgba(241, 245, 249, 0.8);
-  color: #0f172a;
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-
 .md-body pre code {
   background: transparent;
   color: inherit;
 }
-        .md-modal-content {
+.md-modal-content {
   background: #fdf6e3; /* cream */
   margin: 5% auto;
   width: 85%;
@@ -72,12 +72,24 @@
             text-decoration: underline;
             opacity: 0.8;
         }
-.md-body pre code {
-  color: inherit;
+.md-body code {
+  background: #f1f5f9;
+  color: #0f172a;
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 
 .md-body pre {
+  background: #0f172a;
   color: #e2e8f0;
+  padding: 12px;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.md-body pre code {
+  background: transparent;
+  color: inherit;
 }
 @keyframes fadeIn {
   from { transform: translateY(20px); opacity: 0; }
@@ -112,36 +124,43 @@
 .wb-defi { background: #059669; }       /* Emerald - DeFi/Tokenomics */
 .wb-tooling { background: #4f46e5; }    /* Violet - Dev Tooling */
 .wb-zkp { background: #7c3aed; }  /* Purple - Zero Knowledge */
+.md-body code {
+  background: #f1f5f9;
+  color: #0f172a;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.md-body code {
+  background: #f1f5f9;
+  color: #0f172a;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
 .md-body pre {
   background: #0f172a;
   color: #e2e8f0;
   padding: 12px;
-  border-radius: 6px;
+  border-radius: 8px;
   overflow-x: auto;
 }
 
-.md-body code {
-  background: #e2e8f0;
-  color: #0f172a;
-  padding: 2px 6px;
-  border-radius: 4px;
-}       
+.md-body pre code {
+  background: transparent;
+  color: inherit;
+}
 .md-body.loading {
   opacity: 0.85;
   filter: blur(0.3px);
 }
 pre {
   background: #1e1e1e !important;
-  color: #f5f5f5 !important;
+  color: #f5f5f5 !important;  
   padding: 12px;
   border-radius: 8px;
   overflow-x: auto;
 }        
-
-code {
-  color: #f5f5f5 !important;
-  background: transparent;
-}       
 
 .ant-modal-content,
 .ant-modal-body {
@@ -1137,6 +1156,7 @@ const eaKeywords = [
 
 .md-body code {
   background: #f1f5f9;
+  color: #0f172a;
   padding: 2px 6px;
   border-radius: 4px;
 }
@@ -1145,8 +1165,13 @@ const eaKeywords = [
   background: #0f172a;
   color: #e2e8f0;
   padding: 12px;
-  border-radius: 6px;
+  border-radius: 8px;
   overflow-x: auto;
+}
+
+.md-body pre code {
+  background: transparent;
+  color: inherit;
 }
 </style>    
 <script>
