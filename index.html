@@ -456,7 +456,7 @@ document.body.classList.add("loading");
 </div>   
 
  <div id="data_architect-cloud" class="cloud-section" style="background:#232f3e; color: white;">
-    <h2 class="doc-header" data-doc="data_architect-cloud style="color:#ff9900;cursor:pointer;">Data Architect Platform</h2>
+    <h2 class="doc-header" data-doc="data_architect-cloud" style="color:#ff9900;cursor:pointer;">Data Architect Platform</h2>
 
     <div class="search-box">
         <input id="daSearch" placeholder="Search Architecture (Lakehouse, SCD, CDC...)">
@@ -474,7 +474,7 @@ document.body.classList.add("loading");
 </div>
     
 <div id="web3_BlockChain-cloud" class="cloud-section" style="background:#0f172a; color: black;">
-    <h2 style="color:#29b5e8;">Web3 BlockChain Platform</h2>
+    <h2 class="doc-header" data-doc="web3_BlockChain-cloud"  style="color:#29b5e8;">Web3 BlockChain Platform</h2>
 
     <div class="search-box">
         <input id="web3BlockChainSearch" placeholder="Search Web3, BlockChain, ...">
@@ -540,6 +540,10 @@ const docMap = {
     file: "docs/Databricks_pySpark_readme.md",
     title: "Databricks Lakehouse Guide"
   },
+    "snowflake-cloud": {
+    file: "docs/snowflake_readme.md",
+    title: "Snowflake Guide"
+  },  
   "ai-cloud": {
     file: "docs/Solution_Architect_readme.md", // or ai_llm_readme.md if you create later
     title: "AI & LLM Architecture"
