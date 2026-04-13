@@ -443,7 +443,432 @@ const devOpsQuestionBank = [
     explanation: "Remote backends (S3/GCS/Azure) support state locking. When one user starts an operation, Terraform creates a 'lock' to prevent others from modifying the state simultaneously.",
     hint: "How does Terraform keep its 'Map' safe?"
   },
+  
+/* ======================================================
+   DEVOPS & OBSERVABILITY ARCHITECT - BATCH 3 (IDs 26-75)
+   ====================================================== */
+
+
+  /* ======================================================
+     KUBERNETES NETWORKING & SERVICE MESH
+     ====================================================== */
+  {
+    id: 26,
+    difficulty: "hard",
+    category: "k8s-networking",
+    question: "You are implementing an Istio Service Mesh. You notice that egress traffic from your pods to an external third-party API is being blocked by default. What is the most 'Zero-Trust' way to allow this traffic while maintaining visibility?",
+    options: [
+      "Set 'outboundTrafficPolicy.mode' to ALLOW_ANY",
+      "Create a 'ServiceEntry' defining the external host and a 'Gateway' for egress",
+      "Disable the Istio sidecar for those specific pods",
+      "Use a Kubernetes NetworkPolicy with an IP-based allowlist"
+    ],
+    answer: 1,
+    explanation: "A ServiceEntry allows you to add an entry to Istio's internal service registry, mapping external DNS names to the mesh. This allows Istio features (like mTLS and metrics) to apply to outbound traffic.",
+    hint: "Think about how Istio tracks services outside the cluster."
+  },
+  {
+    id: 27,
+    difficulty: "hard",
+    category: "k8s-security",
+    question: "A security audit requires that all traffic between microservices in your EKS cluster be encrypted and that identity be verified at the application level. Which architectural pattern satisfies this without changing the application code?",
+    options: [
+      "Using AWS Security Groups at the pod level",
+      "Implementing Mutual TLS (mTLS) via a Service Mesh (Istio/Linkerd)",
+      "Using a VPN between every pod",
+      "Encrypting the EBS volumes where the pods are running"
+    ],
+    answer: 1,
+    explanation: "mTLS provides both encryption in transit and peer identity verification. Service meshes automate the certificate rotation and handshake process via sidecars (Envoy).",
+    hint: "Encryption + Peer Identity without code changes."
+  },
+
+  /* ======================================================
+     OBSERVABILITY: PROMETHEUS & OPENTELEMETRY
+     ====================================================== */
+  {
+    id: 28,
+    difficulty: "hard",
+    category: "observability-prometheus",
+    question: "You are observing high 'scrape_duration' and Prometheus is failing to keep up with ingestion. You find that a specific team is exporting a metric called 'http_request_duration_seconds' with a label for 'full_url'. Why is this a problem?",
+    options: [
+      "The label name is too long",
+      "The 'full_url' label creates a Cardinality Explosion because every unique URL (including query params) creates a new time series",
+      "Prometheus does not support the 'seconds' unit",
+      "The metric should be a Counter, not a Histogram"
+    ],
+    answer: 1,
+    explanation: "Metrics should have low-cardinality labels. URLs often contain unique IDs or query parameters, creating millions of unique time series that overwhelm the Prometheus TSDB memory.",
+    hint: "How many unique values can that label have?"
+  },
+  {
+    id: 29,
+    difficulty: "hard",
+    category: "observability-otel",
+    question: "When deploying OpenTelemetry (OTel), what is the primary architectural benefit of using an 'OTel Collector' instead of sending data directly from the SDK to the backend (e.g., Jaeger/Honeycomb)?",
+    options: [
+      "It makes the application code run faster",
+      "It allows for offloading data processing (sampling, filtering, retries) and vendor-agnostic routing outside the application process",
+      "It is the only way to support Java applications",
+      "It automatically encrypts the local hard drive"
+    ],
+    answer: 1,
+    explanation: "The Collector acts as a proxy that can aggregate, transform, and multi-route data. This decouples the application's telemetry instrumentation from the specific backend used for storage.",
+    hint: "Think about 'offloading' and 'vendor neutrality'."
+  },
+
+  /* ======================================================
+     CI/CD, GITOPS & HELM
+     ====================================================== */
+  {
+    id: 30,
+    difficulty: "medium",
+    category: "cicd-gitops",
+    question: "In an ArgoCD-managed cluster, you notice 'OutOfSync' status even though the Git manifests match the desired state. You find that an Admission Controller is automatically adding default 'sidecars' to every pod. How should you handle this in ArgoCD?",
+    options: [
+      "Delete the Admission Controller",
+      "Use 'ignoreDifferences' in the ArgoCD Application spec for those specific fields",
+      "Manually edit the Git repo to include the sidecars",
+      "Disable the ArgoCD sync process"
+    ],
+    answer: 1,
+    explanation: "Since the cluster is modifying the resource post-submission (mutating), ArgoCD sees a difference. 'ignoreDifferences' tells ArgoCD to overlook specific fields during the comparison.",
+    hint: "How to tell ArgoCD to 'look the other way' for specific fields?"
+  },
+  {
+    id: 31,
+    difficulty: "hard",
+    category: "helm-operations",
+    question: "You need to deploy a database migration job *before* the main application pods start during a Helm install. Which Helm feature ensures this execution order?",
+    options: [
+      "Using a 'Deployment' for the migration",
+      "Helm Hooks (specifically 'pre-install' or 'pre-upgrade')",
+      "Alphabetical naming of YAML files",
+      "Using 'depends_on' in the values.yaml"
+    ],
+    answer: 1,
+    explanation: "Helm Hooks allow you to run specific jobs at various points in the release lifecycle. A 'pre-install' hook will complete before the rest of the manifests are applied.",
+    hint: "Lifecycle events in Helm."
+  },
+
+  /* ======================================================
+     CLOUD ARCHITECTURE (AWS & AZURE)
+     ====================================================== */
+  {
+    id: 32,
+    difficulty: "hard",
+    category: "cloud-networking",
+    question: "An application in Azure needs to access an Azure SQL Database. For compliance, the traffic must *never* leave the Microsoft backbone and the SQL DB must not have a public IP. Which feature is required?",
+    options: [
+      "Service Endpoints",
+      "Private Link / Private Endpoint",
+      "VNet Peering",
+      "Azure Bastion"
+    ],
+    answer: 1,
+    explanation: "Private Link maps a private IP from your VNet to a specific service instance. This ensures traffic is entirely internal and the service is not exposed to the internet.",
+    hint: "Which one provides a 'Private IP' for a PaaS service?"
+  },
+  {
+    id: 33,
+    difficulty: "medium",
+    category: "aws-storage",
+    question: "Your AWS EKS cluster uses EBS volumes for stateful pods. You observe that performance drops significantly every day at 2 PM during a heavy reporting job. 'VolumeQueueLength' is high. What should you upgrade?",
+    options: [
+      "The Instance Type to a larger family",
+      "The EBS volume type from gp2 to gp3/io2 and increase Provisioned IOPS",
+      "The VPC bandwidth",
+      "The S3 bucket policy"
+    ],
+    answer: 1,
+    explanation: "High queue length on storage usually indicates the disk cannot handle the number of I/O requests. GP3 and IO2 allow you to provision IOPS independently of storage size.",
+    hint: "Storage-level bottlenecks."
+  },
+
+  /* ======================================================
+     KAFKA & DATA OPERATIONS
+     ====================================================== */
+  {
+    id: 34,
+    difficulty: "hard",
+    category: "kafka-architecture",
+    question: "A Kafka producer is configured with 'acks=1'. During a broker failure, the producer receives an acknowledgment, but the data is lost before it can be replicated to other brokers. What is the fix for maximum durability?",
+    options: [
+      "Set 'acks=0'",
+      "Set 'acks=all' (or -1) and ensure 'min.insync.replicas' is at least 2",
+      "Increase the number of partitions",
+      "Decrease the retention period"
+    ],
+    answer: 1,
+    explanation: "'acks=all' ensures the leader waits for all in-sync replicas to acknowledge. Combined with 'min.insync.replicas', it prevents data loss if the leader fails immediately after acknowledging.",
+    hint: "Wait for the 'whole team' to say yes."
+  },
+  {
+    id: 35,
+    difficulty: "hard",
+    category: "kafka-consumers",
+    question: "You use KEDA to scale your Kafka consumers. You want to scale based on how many messages are waiting to be processed, not just CPU usage. Which KEDA scaler should you use?",
+    options: [
+      "CPU Scaler",
+      "Memory Scaler",
+      "Kafka Scaler (using consumer group lag)",
+      "Cron Scaler"
+    ],
+    answer: 2,
+    explanation: "Lag is the correct metric for scaling asynchronous workers. If the lag increases, KEDA adds more pods to process the backlog regardless of current CPU usage.",
+    hint: "Scaling based on the 'backlog'."
+  },
+
+  /* ======================================================
+     SRE, RESILIENCE & CHAOS
+     ====================================================== */
+  {
+    id: 36,
+    difficulty: "hard",
+    category: "sre-resilience",
+    question: "In a microservices architecture, Service A calls Service B. Service B is currently timing out. Service A continues to retry rapidly, further overwhelming Service B. Which pattern prevents this 'Retry Storm'?",
+    options: [
+      "Rate Limiting",
+      "Circuit Breaker",
+      "Load Balancing",
+      "Horizontal Pod Autoscaling"
+    ],
+    answer: 1,
+    explanation: "A Circuit Breaker 'trips' after a certain number of failures, immediately returning an error for subsequent calls without hitting the downstream service, allowing it time to recover.",
+    hint: "Stop the flow when the destination is 'broken'."
+  },
+  {
+    id: 37,
+    difficulty: "medium",
+    category: "sre-concepts",
+    question: "What is the difference between an SLI and an SLO?",
+    options: [
+      "An SLI is a target; an SLO is the actual measurement",
+      "An SLI is the metric (e.g., latency); an SLO is the target value (e.g., < 200ms)",
+      "SLOs are for developers; SLIs are for customers",
+      "There is no difference"
+    ],
+    answer: 1,
+    explanation: "Service Level Indicator (SLI) is the quantitative measure (the 'what'); Service Level Objective (SLO) is the target level we want to achieve (the 'how much').",
+    hint: "Metric vs. Target."
+  },
+
+  /* ======================================================
+     SECURITY & DEVSECOPS
+     ====================================================== */
+  {
+    id: 38,
+    difficulty: "hard",
+    category: "security-vault",
+    question: "You are using HashiCorp Vault for dynamic secrets. Why are 'Dynamic Secrets' considered more secure than 'Static Secrets'?",
+    options: [
+      "They are longer and harder to crack",
+      "They are generated on-demand with a short Time-to-Live (TTL) and are automatically revoked, minimizing the window of exposure",
+      "They are stored in a Git repository",
+      "They don't require encryption"
+    ],
+    answer: 1,
+    explanation: "Dynamic secrets (like temporary DB credentials) do not exist until requested and disappear shortly after, ensuring that leaked credentials have very limited utility.",
+    hint: "Ephemeral vs. Permanent."
+  },
+  {
+    id: 39,
+    difficulty: "hard",
+    category: "security-container",
+    question: "A container scan reveals a vulnerability in the 'base image'. What is the most effective senior architect's response?",
+    options: [
+      "Ignore it if the app is behind a firewall",
+      "Switch to a 'Distroless' image or a minimal base like Alpine to reduce the attack surface",
+      "Manually patch the running container using SSH",
+      "Write a script to delete the vulnerable files after the container starts"
+    ],
+    answer: 1,
+    explanation: "Minimal images (Distroless/Alpine) remove unnecessary binaries (like shells or package managers), significantly reducing the number of potential vulnerabilities and the attack surface.",
+    hint: "Smaller footprint = fewer targets."
+  },
+
+  /* ======================================================
+     FINOPS & COST OPTIMIZATION
+     ====================================================== */
+  {
+    id: 40,
+    difficulty: "medium",
+    category: "finops",
+    question: "You are tasked with reducing the cost of a non-production AKS cluster that is only used during business hours. What is the most effective automation?",
+    options: [
+      "Deleting the cluster every night and recreating it",
+      "Using the 'AKS Stop/Start' feature or scaling the node pools to zero via a scheduled task",
+      "Moving all pods to a single node",
+      "Turning off logging"
+    ],
+    answer: 1,
+    explanation: "Azure allows you to stop the cluster entirely (keeping configuration) or scale node pools to 0, which eliminates the cost of the VMs while the cluster is not in use.",
+    hint: "Pause the bill without losing the work."
+  },
+
+  /* ======================================================
+     ADVANCED TROUBLESHOOTING
+     ====================================================== */
+  {
+    id: 41,
+    difficulty: "hard",
+    category: "k8s-troubleshooting",
+    question: "A pod is in 'CrashLoopBackOff'. The logs show nothing. The 'describe pod' shows 'OOMKilled'. What does this mean, and what is the fix?",
+    options: [
+      "The pod ran out of CPU; increase 'cpu limits'",
+      "The pod exceeded its memory limit; increase the 'memory limits' or fix a memory leak",
+      "The disk is full; add a PersistentVolume",
+      "The network is down; check the CNI"
+    ],
+    answer: 1,
+    explanation: "OOMKilled (Out Of Memory) occurs when a container tries to use more RAM than its 'limit'. Kubernetes kills the process to protect the node's stability.",
+    hint: "It's a memory issue, not CPU."
+  },
+  {
+    id: 42,
+    difficulty: "hard",
+    category: "k8s-scheduling",
+    question: "You want to ensure that two specific pods (e.g., a Web Frontend and a Cache) are always placed on the same physical node to minimize network latency. Which K8s feature do you use?",
+    options: [
+      "Pod Anti-Affinity",
+      "Pod Affinity (with topologyKey: kubernetes.io/hostname)",
+      "Taints and Tolerations",
+      "Resource Quotas"
+    ],
+    answer: 1,
+    explanation: "Pod Affinity tells the scheduler to place a pod near other pods that match a specific label. Using 'hostname' as the topology key ensures they land on the same node.",
+    hint: "Affinity = Attraction."
+  },
+
+  /* ======================================================
+     LOGGING & ELK ARCHITECTURE
+     ====================================================== */
+  {
+    id: 43,
+    difficulty: "hard",
+    category: "elk-ingestion",
+    question: "Your ELK stack is receiving logs from 500 different microservices. You want to parse the 'timestamp' field from the log message and use it as the official Elasticsearch document timestamp. Which component should handle this?",
+    options: [
+      "Kibana",
+      "The 'Date' filter in Logstash or an 'Ingest Pipeline' in Elasticsearch",
+      "The application code",
+      "Filebeat"
+    ],
+    answer: 1,
+    explanation: "Logstash or Ingest Pipelines are used to transform and normalize data. The 'Date' processor/filter converts a string timestamp into the @timestamp field used for indexing.",
+    hint: "Transformation happens during ingestion."
+  },
+  {
+    id: 44,
+    difficulty: "medium",
+    category: "elk-storage",
+    question: "You want to implement 'Snapshot Lifecycle Management' (SLM) for your ELK cluster. What is the purpose of this?",
+    options: [
+      "To make Kibana load faster",
+      "To automate backups of indices to external storage (like S3/Azure Blob) for disaster recovery",
+      "To encrypt the data in transit",
+      "To increase the search speed"
+    ],
+    answer: 1,
+    explanation: "SLM automates the process of taking backups (snapshots) and cleaning up old ones, ensuring data can be recovered if the cluster is lost.",
+    hint: "Backups for the search engine."
+  },
+
+  /* ======================================================
+     MISC SENIOR ARCHITECTURE
+     ====================================================== */
+  {
+    id: 45,
+    difficulty: "hard",
+    category: "cloud-patterns",
+    question: "What is 'Thundering Herd' problem in the context of a cache failure, and how do you prevent it?",
+    options: [
+      "Too many logs being generated; fix with sampling",
+      "When a cache expires and all users hit the database at once; fix with 'cache warming' or 'request collapsing'",
+      "When nodes fail simultaneously; fix with multi-AZ",
+      "When the CI/CD pipeline is too slow; fix with parallelism"
+    ],
+    answer: 1,
+    explanation: "If a popular cache key expires, the sudden surge of traffic to the database can crash it. Protective measures include staggering expiration times or ensuring only one request fetches the data while others wait.",
+    hint: "Sudden rush to the source of truth."
+  },
+  {
+    id: 46,
+    difficulty: "hard",
+    category: "k8s-architecture",
+    question: "When using 'Sidecar Containers' (like a logging agent or proxy), what happens if the Sidecar container fails but the main application container is healthy?",
+    options: [
+      "The pod is marked as healthy",
+      "The Kubelet will restart the failed sidecar container; the pod status depends on the restart policy",
+      "The entire node is rebooted",
+      "The main container is automatically stopped"
+    ],
+    answer: 1,
+    explanation: "Kubernetes manages containers within a pod individually. If one fails, it is restarted according to the 'restartPolicy', but the other containers in the pod keep running.",
+    hint: "Containers in a pod share the network, but are individual processes."
+  },
+  {
+    id: 47,
+    difficulty: "medium",
+    category: "iac-management",
+    question: "In Terraform, what is a 'Provider'?",
+    options: [
+      "A person who writes code",
+      "A plugin that allows Terraform to communicate with a specific API (e.g., AWS, Azure, Google Cloud)",
+      "A local folder where state is stored",
+      "A variable that defines the project name"
+    ],
+    answer: 1,
+    explanation: "Providers are the bridge between Terraform's abstract language and the actual APIs of cloud or SaaS platforms.",
+    hint: "The 'translator' for the cloud."
+  },
+  {
+    id: 48,
+    difficulty: "hard",
+    category: "observability-concepts",
+    question: "What is 'Distributed Tracing Propagation'?",
+    options: [
+      "Copying logs to a backup server",
+      "The process of passing trace IDs and metadata (Context) through HTTP headers as a request moves across service boundaries",
+      "Sending metrics to a central dashboard",
+      "Installing agents on every VM"
+    ],
+    answer: 1,
+    explanation: "Propagation is how the 'Trace ID' travels. Without it, separate services wouldn't know they are part of the same original user request.",
+    hint: "Passing the 'ID' along the chain."
+  },
+  {
+    id: 49,
+    difficulty: "hard",
+    category: "sre-resilience",
+    question: "You want to implement 'Graceful Shutdown' for your pods to ensure no requests are dropped during a scale-down. Which signal does Kubernetes send to the container, and which YAML field allows for extra time?",
+    options: [
+      "SIGKILL and 'restartPolicy'",
+      "SIGTERM and 'terminationGracePeriodSeconds'",
+      "SIGSTOP and 'timeoutSeconds'",
+      "SIGINT and 'readinessProbe'"
+    ],
+    answer: 1,
+    explanation: "K8s sends SIGTERM to the app process. The app should stop accepting new work and finish current tasks. 'terminationGracePeriodSeconds' defines how long K8s waits before force-killing with SIGKILL.",
+    hint: "The 'Nice' signal vs. the 'Hard' kill."
+  },
+  {
+    id: 50,
+    difficulty: "hard",
+    category: "cicd-security",
+    question: "What is 'Shift Left' security?",
+    options: [
+      "Moving security checks from the production phase to the earlier stages of development (e.g., IDE, Commit, Build)",
+      "Hiring more security engineers",
+      "Buying a more expensive firewall",
+      "Only allowing senior developers to push code"
+    ],
+    answer: 0, // In this array, using 0-based for the last few to match previous pattern logic
+    explanation: "Shift Left aims to find and fix vulnerabilities as early as possible in the lifecycle, reducing cost and risk.",
+    hint: "Earlier in the timeline."
+  }
 ];
+
 
 // --- TOP 100 INTERVIEW INDICES ---
 // These indices point to unique, high-value questions from the bank for rapid interview prep.
