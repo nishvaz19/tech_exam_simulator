@@ -1717,6 +1717,215 @@ const questionBank = [
     hint: "A 'Notarized' proof of process."
   },
    
+/* ======================================================
+   DEVOPS & OBSERVABILITY ARCHITECT - BATCH 7 (IDs 101-150)
+   ====================================================== */
+
+  /* ======================================================
+     AZURE ARCHITECTURE & IDENTITY (From azure_readme.md)
+     ====================================================== */
+  {
+    id: 101,
+    difficulty: "hard",
+    category: "azure-identity",
+    question: "A large enterprise moves to Entra ID (Azure AD). Users belonging to hundreds of nested security groups report they can no longer log into certain applications, receiving a '400 Bad Request (Request Header Too Long)' error. What is this phenomenon called?",
+    options: [
+      "Group Policy Object (GPO) Conflict",
+      "Token Bloat",
+      "Managed Identity Exhaustion",
+      "RBAC Propagation Delay"
+    ],
+    answer: 1,
+    explanation: "Token Bloat occurs when the authentication token becomes too large due to the inclusion of too many group claims, exceeding the header size limits of web servers or load balancers.",
+    hint: "Think about 'Groups' inflating the size of the identity payload."
+  },
+  {
+    id: 102,
+    difficulty: "hard",
+    category: "azure-networking",
+    question: "Your Azure App Service is experiencing intermittent 'Connection Timeout' errors when calling external third-party APIs under high load. You suspect SNAT Port Exhaustion. What is the most effective architectural fix?",
+    options: [
+      "Scale up the App Service Plan to a higher tier",
+      "Implement VNet Integration and route outbound traffic through an Azure NAT Gateway",
+      "Increase the number of instances in the App Service",
+      "Disable the firewall on the App Service"
+    ],
+    answer: 1,
+    explanation: "Azure NAT Gateway provides a larger, scalable pool of SNAT ports (64,000 per IP) compared to the limited default pool provided by App Service, effectively solving exhaustion issues for outbound traffic.",
+    hint: "Look for a dedicated service to handle 'Source Network Address Translation'."
+  },
+
+  /* ======================================================
+     AWS INFRASTRUCTURE & SECURITY (From aws_readme.md)
+     ===================================================== */
+  {
+    id: 103,
+    difficulty: "medium",
+    category: "aws-networking",
+    question: "You cannot connect to an EC2 instance via SSH, even though the instance is running and has a Public IP. You check the Security Group and see port 22 is open. What is the next 'stateless' network component you should check?",
+    options: [
+      "IAM Role permissions",
+      "Network Access Control List (NACL)",
+      "Route Table 'Local' route",
+      "S3 Bucket Policy"
+    ],
+    answer: 1,
+    explanation: "Unlike Security Groups (which are stateful), NACLs are stateless. You must explicitly allow both inbound and outbound traffic for a connection to work.",
+    hint: "Stateful vs. Stateless filters."
+  },
+  {
+    id: 104,
+    difficulty: "hard",
+    category: "aws-compute",
+    question: "A Lambda function is experiencing high 'Cold Start' latency, impacting a customer-facing API. Which AWS feature provides pre-warmed execution environments to eliminate this delay?",
+    options: [
+      "Reserved Instances",
+      "Provisioned Concurrency",
+      "Lambda Layers",
+      "AWS App Runner"
+    ],
+    answer: 1,
+    explanation: "Provisioned Concurrency keeps a specified number of Lambda functions initialized and ready to respond immediately to events.",
+    hint: "Keeping the environment 'warm' for a price."
+  },
+
+  /* ======================================================
+     KAFKA RELIABILITY & CHAOS (From kafka_readme.md)
+     ====================================================== */
+  {
+    id: 105,
+    difficulty: "hard",
+    category: "kafka-durability",
+    question: "In a Kafka cluster, you notice that the 'Under-Replicated Partitions' metric is spiking. Upon investigation, you see that the 'In-Sync Replicas' (ISR) list for several partitions has shrunk. What is the most likely cause?",
+    options: [
+      "A consumer group is rebalancing",
+      "A broker is experiencing high disk I/O or network latency, failing to keep up with the leader's log",
+      "The producer is using acks=0",
+      "The Schema Registry is down"
+    ],
+    answer: 1,
+    explanation: "The ISR contains replicas that are caught up with the leader. If a follower falls behind (due to hardware issues or congestion), the leader removes it from the ISR to maintain availability for producers using 'acks=all'.",
+    hint: "Followers failing to keep up."
+  },
+  {
+    id: 106,
+    difficulty: "hard",
+    category: "kafka-architecture",
+    question: "You are designing a Kafka cluster across three Availability Zones (AZs). To ensure that data remains available even if an entire AZ fails, which setting must be configured on both the brokers and the topics?",
+    options: [
+      "Compression (Gzip)",
+      "Rack Awareness (broker.rack and replication-factor of 3)",
+      "Exactly-Once Semantics",
+      "Min.insync.replicas = 1"
+    ],
+    answer: 1,
+    explanation: "Rack awareness ensures that replicas of the same partition are spread across different physical racks (or AZs), preventing a single-point-of-failure for the data.",
+    hint: "Spreading data across physical locations."
+  },
+
+  /* ======================================================
+     ADVANCED IaC (TERRAFORM / BICEP)
+     ====================================================== */
+  {
+    id: 107,
+    difficulty: "hard",
+    category: "iac-terraform",
+    question: "You are using Terraform to manage a multi-cloud environment. You want to pass the Output of an AWS VPC module as an Input to an Azure VNet peering module in the same configuration. What is the correct way to handle this?",
+    options: [
+      "Manually copy the ID into a variables file",
+      "Use 'Data Sources' or reference the module output directly: module.aws_vpc.vpc_id",
+      "Terraform cannot communicate between different cloud providers",
+      "Use the 'terraform import' command"
+    ],
+    answer: 1,
+    explanation: "Terraform allows cross-resource and cross-provider referencing. As long as the resources are in the same state/configuration, outputs from one can be fed into another.",
+    hint: "Piping output to input."
+  },
+  {
+    id: 108,
+    difficulty: "hard",
+    category: "iac-bicep",
+    question: "In Azure Bicep, you want to ensure that a Storage Account is only deployed if the environment parameter is set to 'prod'. Which syntax should you use?",
+    options: [
+      "resource stg ... if(env == 'prod') { ... }",
+      "resource stg ... = if env == 'prod' ?",
+      "if (env == 'prod') { resource stg ... }",
+      "Bicep does not support conditional deployment"
+    ],
+    answer: 2, // 0-based: 2 is the 3rd option
+    explanation: "Bicep uses the 'if' keyword directly before the resource body for conditional logic.",
+    hint: "Conditional resource declaration."
+  },
+
+  /* ======================================================
+     OBSERVABILITY: TROUBLESHOOTING & SRE
+     ====================================================== */
+  {
+    id: 109,
+    difficulty: "hard",
+    category: "observability-sre",
+    question: "While debugging a high-latency issue, you find that 'Mean Time To Detect' (MTTD) is low, but 'Mean Time To Repair' (MTTR) is very high. Which area of your DevOps process likely needs improvement?",
+    options: [
+      "Alerting thresholds",
+      "Automated monitoring",
+      "Incident Response Playbooks and Automated Remediation (Self-healing)",
+      "Log ingestion speed"
+    ],
+    answer: 2,
+    explanation: "If you know there is a problem quickly (Low MTTD) but take a long time to fix it (High MTTR), the bottleneck is in the diagnostic or resolution phase, not the monitoring phase.",
+    hint: "Fixing vs. Finding."
+  },
+  {
+    id: 110,
+    difficulty: "medium",
+    category: "k8s-observability",
+    question: "A developer complains that their pod was deleted, and they don't know why. Which Kubernetes resource should you query to see the history of scaling events or OOM kills for that namespace?",
+    options: [
+      "Pods",
+      "Events",
+      "Services",
+      "Endpoints"
+    ],
+    answer: 1,
+    explanation: "The 'Events' resource in K8s stores information about state changes, errors, and actions taken by the controllers (e.g., 'Successfully pulled image', 'NodeHasDiskPressure').",
+    hint: "The 'History log' of the cluster."
+  },
+
+  /* ======================================================
+     IDENTITY & ACCESS (ENTRA / IAM)
+     ====================================================== */
+  {
+    id: 111,
+    difficulty: "hard",
+    category: "security-identity",
+    question: "To achieve 'Zero-Secret' architecture, you want your application running on an Azure Virtual Machine to retrieve a database connection string from Key Vault without using a Client Secret or Password. What do you enable on the VM?",
+    options: [
+      "Public IP",
+      "Managed Identity (System-assigned or User-assigned)",
+      "Just-In-Time (JIT) access",
+      "SSH Key"
+    ],
+    answer: 1,
+    explanation: "Managed Identities provide an automatically managed identity in Entra ID for the resource. The application uses this identity to get tokens for Key Vault, removing the need for secrets in code.",
+    hint: "The resource *is* the identity."
+  },
+  {
+    id: 112,
+    difficulty: "medium",
+    category: "security-iam",
+    question: "You need to grant a third-party audit firm temporary access to your AWS account to view S3 logs. What is the most secure way to do this?",
+    options: [
+      "Create an IAM User and email them the password",
+      "Provide them with your Root account credentials",
+      "Create a Cross-Account IAM Role with an 'External ID' for them to assume",
+      "Make the S3 bucket public"
+    ],
+    answer: 2,
+    explanation: "Cross-account roles allow users from another AWS account to securely access your resources. The 'External ID' protects against the 'Confused Deputy' problem.",
+    hint: "Assume the role."
+  },
+
+
 ];
 
 
