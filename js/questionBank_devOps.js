@@ -2147,7 +2147,443 @@ const questionBank = [
     explanation: "NodeSelectors and NodeAffinity allow you to constrain pods to nodes with specific hardware or logical labels.",
     hint: "Matching Pods to Node Labels."
   },
+  Continuing the **DevOps & Observability Architect Question Bank**. This batch (IDs 138–187) focuses on **Terraform State Lifecycle, Kubernetes Admission Controllers, Advanced Kafka Security, and Azure Governance.**
+Continuing the **DevOps & Observability Architect Question Bank**. This batch (IDs 126–162) focuses on **Service Mesh Security, Advanced GitOps, Kafka Cluster scaling, and Enterprise Cloud Governance.**
+
+/* ======================================================
+   DEVOPS & OBSERVABILITY ARCHITECT - BATCH 9 (IDs 126-162)
+   ====================================================== */
+
+  /* ======================================================
+     SERVICE MESH & ZERO TRUST
+     ====================================================== */
+  {
+    id: 126,
+    difficulty: "hard",
+    category: "istio-security",
+    question: "You want to implement 'AuthorizationPolicies' in Istio. What is the default behavior of Istio when you apply a single 'ALLOW' policy to a specific workload?",
+    options: [
+      "All other traffic is still allowed by default",
+      "All other traffic to that workload that doesn't match the ALLOW rule is implicitly denied (Whitelist approach)",
+      "The policy is ignored unless mTLS is set to STRICT",
+      "Istio will crash"
+    ],
+    answer: 1,
+    explanation: "Istio's AuthorizationPolicy follows a 'Default Deny' logic once a policy is applied. If you define one ALLOW rule, anything not matching that rule is blocked.",
+    hint: "Think 'Implicit Deny'."
+  },
+  {
+    id: 127,
+    difficulty: "hard",
+    category: "k8s-security",
+    question: "A security requirement states that pods should not be able to escalate their own privileges to 'root'. Which field in the PodSecurityContext or SecurityContext must be set to 'true'?",
+    options: [
+      "privileged: true",
+      "allowPrivilegeEscalation: false",
+      "runAsUser: 0",
+      "readOnlyRootFilesystem: true"
+    ],
+    answer: 1,
+    explanation: "Setting 'allowPrivilegeEscalation: false' prevents a process from gaining more privileges than its parent process (e.g., via setuid binaries).",
+    hint: "Stopping the 'sudo' climb."
+  },
+
+  /* ======================================================
+     ADVANCED GITOPS (ARGO / FLUX)
+     ====================================================== */
+  {
+    id: 128,
+    difficulty: "hard",
+    category: "gitops-operations",
+    question: "You are using ArgoCD and need to deploy a specific version of a Helm chart to 'Staging' and a different version to 'Production' using a single Git repository. What is the best pattern?",
+    options: [
+      "Create two separate Git repositories",
+      "Use a 'Helm Umbrella Chart' or 'Kustomize + Helm' to override the 'targetRevision' or 'chart version' per environment folder",
+      "Manually edit the ArgoCD UI for each environment",
+      "Use only the 'latest' tag for everything"
+    ],
+    answer: 1,
+    explanation: "GitOps best practice involves using a directory structure (e.g., /overlays/prod and /overlays/staging) where Kustomize or Helm values files provide environment-specific overrides while sharing the base manifests.",
+    hint: "Environment-specific overrides."
+  },
+  {
+    id: 129,
+    difficulty: "medium",
+    category: "gitops-security",
+    question: "How do you handle 'Secrets' in a GitOps repository where all manifests are public or shared?",
+    options: [
+      "Commit the secrets in plain text",
+      "Use a tool like 'Sealed Secrets' (Bitnami) or 'SOPS' (Mozilla) to encrypt secrets in Git, which are then decrypted by a controller inside the cluster",
+      "Don't use secrets; use ConfigMaps instead",
+      "Hardcode them in the Dockerfile"
+    ],
+    answer: 1,
+    explanation: "Secrets must never be in plain text in Git. Sealed Secrets and SOPS allow you to safely store encrypted values that only the cluster's private key can unlock.",
+    hint: "Encryption at rest in Git."
+  },
+
+  /* ======================================================
+     KAFKA: SCALING & DATA RETENTION
+     ====================================================== */
+  {
+    id: 130,
+    difficulty: "hard",
+    category: "kafka-scaling",
+    question: "You need to add 3 new brokers to an existing 3-broker Kafka cluster to handle increased load. Does adding the brokers automatically rebalance the existing data to the new nodes?",
+    options: [
+      "Yes, Kafka rebalances automatically",
+      "No, you must manually generate and execute a 'Partition Reassignment' plan to move existing data to the new brokers",
+      "Yes, but only if you restart the cluster",
+      "No, the new brokers will only accept new topics"
+    ],
+    answer: 1,
+    explanation: "Kafka does not automatically redistribute existing partitions when new brokers join. You must use the 'kafka-reassign-partitions' tool or a manager like Cruise Control.",
+    hint: "Data is 'heavy' and doesn't move on its own."
+  },
+  {
+    id: 131,
+    difficulty: "hard",
+    category: "kafka-performance",
+    question: "You notice high 'Consumer Lag' on a specific topic. You check the consumer metrics and see the pods are idle (low CPU/RAM). You want to add more consumers, but you already have 10 consumers for a topic with 10 partitions. Will adding an 11th consumer help?",
+    options: [
+      "Yes, it will share the load",
+      "No, in a single consumer group, each partition can only be assigned to one consumer. The 11th consumer will be idle.",
+      "Yes, if you use a Service Mesh",
+      "No, you must delete the topic first"
+    ],
+    answer: 1,
+    explanation: "The number of partitions is the upper limit for parallelism within a single consumer group. To scale further, you must increase the number of partitions for that topic.",
+    hint: "Partition Count = Max Consumer Count."
+  },
+
+  /* ======================================================
+     CLOUD NETWORKING & EGRESS
+     ====================================================== */
+  {
+    id: 132,
+    difficulty: "hard",
+    category: "azure-networking",
+    question: "In Azure, you have multiple VNets that need to connect to a single On-Premise data center via ExpressRoute. Instead of peering every VNet to the ExpressRoute gateway, what is the 'Hub' architecture component used for centralized connectivity?",
+    options: [
+      "Azure Bastion",
+      "Virtual WAN or a Hub VNet with a Gateway",
+      "Private Link",
+      "Traffic Manager"
+    ],
+    answer: 1,
+    explanation: "A Hub-and-Spoke model with Virtual WAN or a Central Hub VNet allows for transitive routing, simplifying connectivity and reducing costs for hybrid connections.",
+    hint: "Centralizing the 'Gateway'."
+  },
+  {
+    id: 133,
+    difficulty: "hard",
+    category: "aws-networking",
+    question: "You want to inspect all outbound traffic from your VPC to the internet for security threats (IDS/IPS). Which AWS service allows you to insert a firewall into the traffic flow transparently?",
+    options: [
+      "AWS WAF",
+      "AWS Network Firewall or Gateway Load Balancer (GWLB)",
+      "Security Groups",
+      "Inspector"
+    ],
+    answer: 1,
+    explanation: "GWLB allows you to deploy third-party virtual appliances and route traffic through them transparently at Layer 3. AWS Network Firewall provides native managed protection.",
+    hint: "Transparent inspection at the VPC level."
+  },
+
+  /* ======================================================
+     OBSERVABILITY: TRACING & CONTEXT
+     ====================================================== */
+  {
+    id: 134,
+    difficulty: "hard",
+    category: "observability-tracing",
+    question: "Your distributed trace is 'broken'—you see a trace for Service A and a separate trace for Service B, but they aren't linked even though A called B. What is the most likely technical failure?",
+    options: [
+      "The network is too slow",
+      "The 'TraceParent' or 'B3' HTTP headers were not propagated from Service A's outgoing request to Service B's incoming context",
+      "Service B doesn't have a database",
+      "The Trace ID is too long"
+    ],
+    answer: 1,
+    explanation: "Context Propagation is the mechanism of passing the TraceID through headers. If the application or proxy doesn't 'pass the baton,' the tracing system treats them as unrelated events.",
+    hint: "The 'Baton' was dropped in the middle."
+  },
+  {
+    id: 135,
+    difficulty: "medium",
+    category: "observability-concepts",
+    question: "What is 'Cardinality' in the context of time-series metrics?",
+    options: [
+      "The number of times a metric is scraped",
+      "The number of unique combinations of label values for a given metric",
+      "The speed of the database",
+      "The color of the dashboard"
+    ],
+    answer: 1,
+    explanation: "High cardinality (e.g., adding 'user_id' as a label) creates a massive number of unique series, which can crash monitoring systems like Prometheus.",
+    hint: "Unique label combinations."
+  },
+
+  /* ======================================================
+     SRE: INCIDENT MANAGEMENT
+     ====================================================== */
+  {
+    id: 136,
+    difficulty: "hard",
+    category: "sre-operations",
+    question: "During a major incident, what is the primary responsibility of the 'Incident Commander' (IC)?",
+    options: [
+      "Writing code to fix the bug",
+      "Managing the communication, delegating tasks, and ensuring the team stays focused on resolution rather than deep-diving into root cause during the outage",
+      "Talking to the press",
+      "Logging into the database to check rows"
+    ],
+    answer: 1,
+    explanation: "The IC is the 'Air Traffic Controller'. They don't fly the planes; they ensure no one crashes and that the right people are working on the right things.",
+    hint: "The 'Conductor' of the orchestra."
+  },
+  {
+    id: 137,
+    difficulty: "hard",
+    category: "sre-culture",
+    question: "What is the key characteristic of a 'Blame-Free Post-Mortem'?",
+    options: [
+      "No one is allowed to talk",
+      "Focusing on 'How' the system failed and what 'Guardrails' were missing, rather than 'Who' made the mistake",
+      "Deleting the logs of the incident",
+      "Firing the person who caused the bug in secret"
+    ],
+    answer: 1,
+    explanation: "Blame-free culture encourages honesty. If people fear being fired, they hide mistakes. Focusing on the system improves reliability for everyone.",
+    hint: "System failure vs. Human error."
+  },
+
+
+**Proceed to 138–162?** I will dive into **Terraform State Locking, Azure RBAC vs. Azure Policy, and Kubernetes Admission Controllers.**
+/* ======================================================
+   DEVOPS & OBSERVABILITY ARCHITECT - BATCH 10 (IDs 138-187)
+   ====================================================== */
+
+  /* ======================================================
+     INFRASTRUCTURE AS CODE: STATE & WORKFLOWS
+     ====================================================== */
+  {
+    id: 138,
+    difficulty: "hard",
+    category: "iac-terraform",
+    question: "You are running Terraform in a CI/CD pipeline. The pipeline fails halfway through an 'apply' because the runner was preempted. Now, every subsequent run fails with a 'State Locked' error. How do you safely resolve this?",
+    options: [
+      "Delete the Terraform state file and start over",
+      "Identify the Lock ID from the error message and run 'terraform force-unlock <LockID>'",
+      "Manually delete the resources in the Cloud Console",
+      "Disable the backend configuration"
+    ],
+    answer: 1,
+    explanation: "When using a remote backend with locking (like DynamoDB), Terraform creates a lock to prevent concurrent writes. If a process crashes, the lock remains. 'force-unlock' is the surgical way to release it.",
+    hint: "Don't delete the state; just break the 'lock'."
+  },
+  {
+    id: 139,
+    difficulty: "hard",
+    category: "iac-terraform",
+    question: "What is the primary purpose of 'Terraform Workspaces'?",
+    options: [
+      "To store different versions of the Terraform binary",
+      "To manage multiple distinct instances of the same configuration (e.g., dev, staging, prod) within the same state backend",
+      "To share code between different companies",
+      "To encrypt the source code"
+    ],
+    answer: 1,
+    explanation: "Workspaces allow you to use one set of configuration files to manage multiple parallel environments, each with its own state, without duplicating code.",
+    hint: "Parallel environments, one code base."
+  },
+
+  /* ======================================================
+     KUBERNETES: ADMISSION CONTROL & SCHEDULING
+     ====================================================== */
+  {
+    id: 140,
+    difficulty: "hard",
+    category: "k8s-internals",
+    question: "You want to automatically inject an environment variable into every pod deployed in a specific namespace. Which Kubernetes feature allows you to intercept and modify requests to the API server before the object is stored?",
+    options: [
+      "Validating Admission Webhook",
+      "Mutating Admission Webhook",
+      "Custom Resource Definition (CRD)",
+      "ConfigMap"
+    ],
+    answer: 1,
+    explanation: "Mutating webhooks can modify the submitted object (e.g., adding sidecars or env vars). Validating webhooks can only 'Approve' or 'Deny' the request.",
+    hint: "Intercept and 'Change'."
+  },
+  {
+    id: 141,
+    difficulty: "hard",
+    category: "k8s-scheduling",
+    question: "A 'Taint' is applied to a Node to repel pods. What must be added to a Pod's YAML to allow it to be scheduled on that specific node?",
+    options: [
+      "Affinity",
+      "Toleration",
+      "Selector",
+      "PriorityClass"
+    ],
+    answer: 1,
+    explanation: "Taints are applied to nodes; Tolerations are applied to pods. A pod will only land on a tainted node if it has a matching toleration.",
+    hint: "The node 'stinks' (Taint), the pod needs a 'mask' (Toleration)."
+  },
+
+  /* ======================================================
+     KAFKA: SECURITY & SCHEMA MANAGEMENT (From kafka_readme.md)
+     ====================================================== */
+  {
+    id: 142,
+    difficulty: "hard",
+    category: "kafka-security",
+    question: "You are implementing 'Disk Encryption' for Kafka. Which component is responsible for ensuring data is encrypted while 'At Rest' on the broker's physical drives?",
+    options: [
+      "mTLS",
+      "OS-level encryption (LUKS) or Cloud-provider managed encryption (EBS/Managed Disk encryption)",
+      "SASL/SCRAM",
+      "Kafka ACLs"
+    ],
+    answer: 1,
+    explanation: "Kafka itself does not encrypt data on disk. You must use underlying filesystem or block-storage encryption (like AWS KMS-encrypted EBS) to protect data at rest.",
+    hint: "Encryption below the application layer."
+  },
+  {
+    id: 143,
+    difficulty: "hard",
+    category: "kafka-schema",
+    question: "In a 'Breaking Change' scenario where a producer must change a field type (e.g., String to Integer), how should you migrate without crashing existing consumers?",
+    options: [
+      "Just update the schema and hope for the best",
+      "Create a new topic with the new schema, run both in parallel, and migrate consumers gradually",
+      "Delete the old schema from the Registry",
+      "Stop the entire cluster for maintenance"
+    ],
+    answer: 1,
+    explanation: "If a change is not backward or forward compatible, you cannot evolve the schema in place. A blue/green migration to a new topic is the safest architectural path.",
+    hint: "Side-by-side migration."
+  },
+
+  /* ======================================================
+     CLOUD GOVERNANCE & COST (From azure_readme.md / aws_readme.md)
+     ====================================================== */
+  {
+    id: 144,
+    difficulty: "medium",
+    category: "cloud-governance",
+    question: "What is 'Tagging Enforcement' and why is it critical for a DevOps Architect?",
+    options: [
+      "It makes the UI look better",
+      "Using policies to ensure every resource has 'Owner' and 'Environment' tags, enabling accurate cost allocation (FinOps) and automation",
+      "It speeds up the network",
+      "It is only for security purposes"
+    ],
+    answer: 1,
+    explanation: "Without tags, you cannot identify which team is spending money or which resources belong to 'Production' vs 'Dev'. Policies (Azure Policy / AWS SCP) can block resource creation if tags are missing.",
+    hint: "No tag, no resource."
+  },
+  {
+    id: 145,
+    difficulty: "hard",
+    category: "azure-governance",
+    question: "In Azure, what is the difference between Azure RBAC and Azure Policy?",
+    options: [
+      "RBAC is for users; Policy is for machines",
+      "RBAC controls 'Who' has access to do 'What'; Azure Policy controls the 'Properties' of the resources being created (e.g., 'No Public IPs allowed')",
+      "There is no difference",
+      "RBAC is more expensive"
+    ],
+    answer: 1,
+    explanation: "RBAC is about Identity/Permission. Policy is about Governance/Compliance. You can have permission to create a VM (RBAC), but Policy might block it if you try to create it in the wrong region.",
+    hint: "Permissions vs. Guardrails."
+  },
+
+  /* ======================================================
+     OBSERVABILITY: DATA PIPELINES
+     ====================================================== */
+  {
+    id: 146,
+    difficulty: "hard",
+    category: "observability-architecture",
+    question: "You are using 'Vector' or 'Fluentbit' as a log aggregator. What is the benefit of a 'Buffer' or 'Queue' in this pipeline?",
+    options: [
+      "It makes the logs smaller",
+      "It prevents data loss during downstream outages (e.g., if Elasticsearch is down) by temporarily storing logs in memory or on disk",
+      "It encrypts the logs",
+      "It automatically deletes errors"
+    ],
+    answer: 1,
+    explanation: "Backpressure and buffering are essential for reliability. If your log destination is slow or down, the buffer prevents the application from crashing or losing telemetry data.",
+    hint: "Shock absorbers for data."
+  },
+  {
+    id: 147,
+    difficulty: "medium",
+    category: "sre-concepts",
+    question: "What is an 'Error Budget Policy'?",
+    options: [
+      "A document that says how much money you can spend on bugs",
+      "A pre-agreed set of actions (like halting releases) that the team MUST take when an SLO is violated and the budget is exhausted",
+      "A tool that counts how many times the app crashed",
+      "A list of people to blame for an outage"
+    ],
+    answer: 1,
+    explanation: "A policy ensures that the SLO is not just a 'suggestion' but has teeth. It defines the social contract between Product and Engineering regarding stability.",
+    hint: "The 'Rules of Engagement' for failures."
+  },
+
+  /* ======================================================
+     NETWORKING: HYBRID & SECURITY
+     ====================================================== */
+  {
+    id: 148,
+    difficulty: "hard",
+    category: "cloud-networking",
+    question: "You are setting up an AWS Direct Connect. What is a 'Hosted Virtual Interface' (VIF)?",
+    options: [
+      "A physical cable",
+      "A logical connection that allows you to access VPC resources over a Direct Connect link owned by a partner",
+      "A type of firewall",
+      "A public IP address"
+    ],
+    answer: 1,
+    explanation: "Hosted VIFs allow third-party partners to share their physical Direct Connect capacity with your AWS account.",
+    hint: "Sharing the 'Pipe'."
+  },
+  {
+    id: 149,
+    difficulty: "hard",
+    category: "security-identity",
+    question: "What is 'Workload Identity Federation'?",
+    options: [
+      "Connecting two different companies",
+      "Allowing workloads running outside of a cloud (e.g., On-prem or GitHub Actions) to access cloud resources using short-lived tokens instead of long-lived secrets",
+      "A new type of password",
+      "Merging two Entra ID tenants"
+    ],
+    answer: 1,
+    explanation: "Federation allows you to trust an external OIDC provider (like GitHub) to vouch for an identity, so you don't have to store AWS/Azure keys in your CI/CD secrets.",
+    hint: "Trust-based access, no static keys."
+  },
+  {
+    id: 150,
+    difficulty: "hard",
+    category: "k8s-networking",
+    question: "What is the function of the 'CoreDNS' in a Kubernetes cluster?",
+    options: [
+      "To route external traffic to pods",
+      "To provide service discovery within the cluster by allowing pods to resolve service names (e.g., my-db.svc.cluster.local) to Cluster IPs",
+      "To encrypt network traffic",
+      "To manage node IP addresses"
+    ],
+    answer: 1,
+    explanation: "CoreDNS is the internal telephone book. It translates service names into IPs so pods can find each other without knowing hardcoded IP addresses.",
+    hint: "Internal Name Resolution."
+  },
 ];
+
 
 
 
