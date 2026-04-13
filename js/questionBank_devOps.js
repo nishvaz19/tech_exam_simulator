@@ -1924,9 +1924,232 @@ const questionBank = [
     explanation: "Cross-account roles allow users from another AWS account to securely access your resources. The 'External ID' protects against the 'Confused Deputy' problem.",
     hint: "Assume the role."
   },
+/* ======================================================
+   DEVOPS & OBSERVABILITY ARCHITECT - BATCH 8 (IDs 113-162)
+   ====================================================== */
 
 
+  /* ======================================================
+     PROMETHEUS & ALERTMANAGER (From Observability Specs)
+     ====================================================== */
+  {
+    id: 113,
+    difficulty: "hard",
+    category: "observability-alerts",
+    question: "You have an alert rule that triggers when CPU > 80%. During a rolling update, 20 new pods spark the alert simultaneously, flooding Slack. Which Alertmanager feature groups these into a single notification?",
+    options: [
+      "Inhibition",
+      "Gossip Protocol",
+      "Grouping (group_by: ['alertname', 'cluster'])",
+      "Silencing"
+    ],
+    answer: 2,
+    explanation: "Grouping categorizes alerts of a similar nature into a single notification. This prevents 'Alert Fatigue' by sending one message saying '20 pods have high CPU' instead of 20 individual messages.",
+    hint: "Aggregating multiple alerts into one."
+  },
+  {
+    id: 114,
+    difficulty: "hard",
+    category: "observability-alerts",
+    question: "You have a 'Critical' alert for 'DatabaseDown' and a 'Warning' alert for 'AppConnectionError'. When the Database is down, both trigger. How do you suppress the 'Warning' alert so only the 'Critical' one shows?",
+    options: [
+      "Delete the Warning alert",
+      "Alertmanager Inhibition Rules",
+      "Increase the 'for' duration of the Warning alert",
+      "Use a Recording Rule"
+    ],
+    answer: 1,
+    explanation: "Inhibition allows you to suppress a set of alerts if another set of alerts (the source) is already firing. This is key for root-cause clarity.",
+    hint: "Mute the 'Symptom' if the 'Root Cause' is already known."
+  },
+
+  /* ======================================================
+     KAFKA PRODUCER & CLUSTER INTERNALS (From kafka_readme.md)
+     ====================================================== */
+  {
+    id: 115,
+    difficulty: "hard",
+    category: "kafka-performance",
+    question: "A Kafka producer is experiencing high latency. You notice that 'linger.ms' is set to 0 and 'batch.size' is 16KB. What is the most likely cause of the latency and how do you fix it for better throughput?",
+    options: [
+      "The producer is sending too many small requests; increase 'linger.ms' to allow more messages to group into a single batch",
+      "The producer is too slow; set 'acks=0'",
+      "The network is down",
+      "Decrease the 'batch.size' to 1KB"
+    ],
+    answer: 0,
+    explanation: "With linger.ms=0, the producer sends messages immediately. Increasing it (e.g., to 5-10ms) allows the producer to wait and group more messages into one request, significantly increasing throughput and reducing overhead.",
+    hint: "Trade a tiny bit of latency for massive throughput."
+  },
+  {
+    id: 116,
+    difficulty: "hard",
+    category: "kafka-chaos",
+    question: "During a network partition, a Kafka partition has two leaders (Split Brain). How does KRaft/Zookeeper resolve this when the network is restored?",
+    options: [
+      "Both leaders stay active",
+      "The leader with the lower 'Epoch' or 'Term' number realizes it is stale and steps down in favor of the newer leader",
+      "The cluster deletes the topic",
+      "Manual intervention is required to delete the old leader"
+    ],
+    answer: 1,
+    explanation: "Kafka uses a 'Controller' and 'Epochs' (version numbers). When a partitioned node returns, it sees a higher Epoch in the cluster and realizes its leadership is no longer valid.",
+    hint: "Consensus via Versioning (Epochs)."
+  },
+
+  /* ======================================================
+     GITOPS & MULTI-CLUSTER (ARGO / FLUX)
+     ====================================================== */
+  {
+    id: 117,
+    difficulty: "hard",
+    category: "gitops-architecture",
+    question: "You are managing 50 Kubernetes clusters using ArgoCD. You want to avoid defining 50 individual 'Application' YAMLs. Which ArgoCD feature allows you to generate applications dynamically based on a list of clusters or a Git folder structure?",
+    options: [
+      "Argo Rollouts",
+      "ApplicationSet",
+      "AppProject",
+      "Argo Events"
+    ],
+    answer: 1,
+    explanation: "ApplicationSet provides a 'Generator' (like Git or Cluster generators) that automates the creation of many applications from a single template.",
+    hint: "Template-based scaling for ArgoCD."
+  },
+  {
+    id: 118,
+    difficulty: "medium",
+    category: "gitops-concepts",
+    question: "In a GitOps workflow, where is the 'Source of Truth' for the infrastructure state?",
+    options: [
+      "The running cluster (etcd)",
+      "The Git repository",
+      "The developer's laptop",
+      "The CI/CD build logs"
+    ],
+    answer: 1,
+    explanation: "The core tenet of GitOps is that the Git repository defines the desired state. If the cluster deviates, the GitOps operator (Argo/Flux) pulls it back to match Git.",
+    hint: "State is in the Code."
+  },
+
+  /* ======================================================
+     CLOUD DISASTER RECOVERY (From aws_readme.md & azure_readme.md)
+     ====================================================== */
+  {
+    id: 119,
+    difficulty: "hard",
+    category: "cloud-dr",
+    question: "You are implementing a 'Pilot Light' DR strategy. Which of the following best describes the state of your secondary region?",
+    options: [
+      "A full copy of the environment is running at 100% capacity",
+      "Only the data is replicated; no compute is running",
+      "The database is live/replicated, but compute resources (like ASGs or K8s clusters) are off or at minimal scale, ready to be scaled up during a failover",
+      "The secondary region is a backup on tape"
+    ],
+    answer: 2,
+    explanation: "Pilot Light keeps the 'fire' (data) going, but the 'house' (compute) is only built when needed. It is more cost-effective than a 'Warm Standby'.",
+    hint: "Data is ready, compute is scaled at zero."
+  },
+  {
+    id: 120,
+    difficulty: "hard",
+    category: "cloud-networking",
+    question: "To achieve multi-region failover for a web application, you use DNS-based routing. Which record type allows you to check if an endpoint is healthy before returning its IP?",
+    options: [
+      "Standard A Record",
+      "Alias Record with Health Checks (e.g., AWS Route 53 or Azure Traffic Manager)",
+      "CNAME",
+      "TXT Record"
+    ],
+    answer: 1,
+    explanation: "Global traffic managers use health probes to monitor endpoints. If 'Region A' fails its health check, the DNS stops returning that IP and directs users to 'Region B'.",
+    hint: "DNS with 'Eyes' on the service health."
+  },
+
+  /* ======================================================
+     ADVANCED K8S NETWORKING (CNI)
+     ====================================================== */
+  {
+    id: 121,
+    difficulty: "hard",
+    category: "k8s-networking",
+    question: "In Azure Kubernetes Service (AKS), what is the primary difference between 'Kubenet' and 'Azure CNI'?",
+    options: [
+      "Kubenet is faster",
+      "Azure CNI assigns every pod a real IP address from the VNet subnet, whereas Kubenet uses an internal overlay network with NAT",
+      "Kubenet doesn't support Linux",
+      "Azure CNI only works for Windows"
+    ],
+    answer: 1,
+    explanation: "Azure CNI provides better performance as there is no NAT/overlay overhead, but it requires much larger subnets as every pod consumes a VNet IP.",
+    hint: "Direct VNet IPs vs. Overlay NAT."
+  },
+  {
+    id: 122,
+    difficulty: "hard",
+    category: "k8s-security",
+    question: "A pod in your cluster needs to communicate with the Kubernetes API server to list other pods. What is the most secure way to authorize this?",
+    options: [
+      "Hardcode the admin token in the pod environment variables",
+      "Use RBAC (Role-Based Access Control) to bind a ServiceAccount to a Role with 'get/list' permissions for the 'pods' resource",
+      "Disable the API server firewall",
+      "Run the pod as 'privileged: true'"
+    ],
+    answer: 1,
+    explanation: "RBAC follows the principle of least privilege. You define exactly what the ServiceAccount can do and nothing more.",
+    hint: "Role + ServiceAccount + Binding."
+  },
+
+  /* ======================================================
+     REMAINING BATCH 8 PREVIEW (IDs 123-162)
+     ====================================================== */
+  {
+    id: 123,
+    difficulty: "medium",
+    category: "iac-terraform",
+    question: "You want to run a script on a VM immediately after it is created by Terraform. Which argument in 'aws_instance' or 'azurerm_linux_virtual_machine' do you use?",
+    options: [
+      "post_install",
+      "user_data (AWS) or custom_data (Azure)",
+      "script_block",
+      "provisioner_run"
+    ],
+    answer: 1,
+    explanation: "User-data/Custom-data is the cloud-init mechanism used to bootstrap instances during their first boot.",
+    hint: "Boot-time script."
+  },
+  {
+    id: 124,
+    difficulty: "hard",
+    category: "sre-concepts",
+    question: "What is 'Windowed SLO Error Budget Alerting'?",
+    options: [
+      "Alerting only during business hours",
+      "Alerting based on the consumption of the error budget over different time windows (e.g., 1 hour and 6 hours) to detect both fast and slow 'burns'",
+      "Closing the window when an alert triggers",
+      "Using Grafana to view alerts"
+    ],
+    answer: 1,
+    explanation: "Multi-window alerts catch sudden catastrophic failures (fast burn) as well as slow, creeping reliability issues (slow burn) that would eventually exhaust the budget.",
+    hint: "Detecting the 'Fire' vs the 'Leak'."
+  },
+  {
+    id: 125,
+    difficulty: "hard",
+    category: "k8s-scheduling",
+    question: "You have a node pool with high-cost SSDs and a node pool with low-cost HDDs. How do you ensure your 'Logging' pods only run on the HDD nodes?",
+    options: [
+      "Use NodeSelector or NodeAffinity matching a label like 'disktype=hdd'",
+      "Increase the CPU of the HDD nodes",
+      "Delete the SSD nodes",
+      "Use a ServiceMesh"
+    ],
+    answer: 0,
+    explanation: "NodeSelectors and NodeAffinity allow you to constrain pods to nodes with specific hardware or logical labels.",
+    hint: "Matching Pods to Node Labels."
+  },
 ];
+
+
 
 
 // --- TOP 100 INTERVIEW INDICES ---
