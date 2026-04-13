@@ -4,7 +4,7 @@
    Format: High-Order Thinking Skills (HOTS) / Scenario-Based
    ====================================================== */
 
-const devOpsQuestionBank = [
+const questionBank = [
   /* ======================================================
      KUBERNETES & CLUSTER GOVERNANCE (AKS/EKS focus)
      ====================================================== */
@@ -866,7 +866,216 @@ const devOpsQuestionBank = [
     answer: 0, // In this array, using 0-based for the last few to match previous pattern logic
     explanation: "Shift Left aims to find and fix vulnerabilities as early as possible in the lifecycle, reducing cost and risk.",
     hint: "Earlier in the timeline."
-  }
+  },
+ 
+/* ======================================================
+   DEVOPS & OBSERVABILITY ARCHITECT - BATCH 4 (IDs 51-100)
+   ====================================================== */
+
+  /* ======================================================
+     KUBERNETES: STATEFUL WORKLOADS & OPERATORS
+     ====================================================== */
+  {
+    id: 51,
+    difficulty: "hard",
+    category: "k8s-stateful",
+    question: "You are deploying a 3-node MongoDB cluster using a StatefulSet. Why is a 'Headless Service' (clusterIP: None) required for this architecture?",
+    options: [
+      "To provide a single load-balanced IP for all nodes",
+      "To allow the MongoDB nodes to discover each other's individual Pod DNS identities (pod-name.service-name) for replica set formation",
+      "To expose the database to the public internet",
+      "To disable networking for the database for security reasons"
+    ],
+    answer: 1,
+    explanation: "StatefulSets require a Headless Service to maintain the 'Network Identity' of each pod. This allows nodes to address each other directly (e.g., mongo-0, mongo-1) which is essential for clustering logic.",
+    hint: "Think about 'Direct Pod-to-Pod communication' vs. 'Load Balancing'."
+  },
+  {
+    id: 52,
+    difficulty: "hard",
+    category: "k8s-operator-design",
+    question: "An Operator's 'Reconciliation Loop' is constantly failing with 'Conflict' errors when updating a Custom Resource (CR). What is the standard architectural fix for this in Kubernetes development?",
+    options: [
+      "Increase the CPU of the Operator pod",
+      "Implement exponential backoff and use 'ResourceVersion' for optimistic concurrency control",
+      "Disable the API server's cache",
+      "Delete and recreate the CR on every loop"
+    ],
+    answer: 1,
+    explanation: "Kubernetes uses optimistic concurrency. If the resource has changed since the Operator last read it, the update will fail. Operators must catch this, re-read the latest version, and retry.",
+    hint: "How does K8s handle two people editing the same file?"
+  },
+
+  /* ======================================================
+     KAFKA: TRANSACTIONS & EXACTLY-ONCE
+     ====================================================== */
+  {
+    id: 53,
+    difficulty: "hard",
+    category: "kafka-durability",
+    question: "To achieve 'Exactly-Once Semantics' (EOS) in a Kafka-to-Kafka streaming application, which producer configuration is mandatory?",
+    options: [
+      "acks=1",
+      "enable.idempotence=true and transactional.id=some-unique-string",
+      "retries=0",
+      "compression.type=gzip"
+    ],
+    answer: 1,
+    explanation: "EOS requires idempotency (to prevent duplicates on retry) and transactions (to ensure atomic writes across multiple partitions).",
+    hint: "Atomic + Non-duplicating."
+  },
+  {
+    id: 54,
+    difficulty: "hard",
+    category: "kafka-rebalancing",
+    question: "A large Kafka consumer group is experiencing 'Rebalance Storms,' where consumers stop processing for several minutes during a rebalance. Which consumer configuration helps mitigate this by allowing consumers to keep their partitions if the rebalance is 'Cooperative'?",
+    options: [
+      "partition.assignment.strategy = CooperativeStickyAssignor",
+      "session.timeout.ms = 100",
+      "auto.offset.reset = earliest",
+      "heartbeat.interval.ms = 10000"
+    ],
+    answer: 0,
+    explanation: "The CooperativeStickyAssignor reduces the 'Stop-the-World' effect by only revoking partitions that actually need to move, rather than revoking all partitions from all consumers.",
+    hint: "Look for a strategy that is 'Sticky'."
+  },
+
+  /* ======================================================
+     NETWORKING: MULTI-REGION & HYBRID
+     ====================================================== */
+  {
+    id: 55,
+    difficulty: "hard",
+    category: "cloud-networking",
+    question: "You have a hybrid-cloud setup using a VPN. You notice that large file transfers fail, but small 'pings' work fine. You suspect an MTU (Maximum Transmission Unit) mismatch. What is the standard fix on the network interface?",
+    options: [
+      "Disable the firewall",
+      "Enable 'MSS Clamping' or reduce the MTU to account for the VPN overhead (typically to 1350 or 1400)",
+      "Increase the MTU to 9000 (Jumbo Frames)",
+      "Switch from UDP to TCP"
+    ],
+    answer: 1,
+    explanation: "VPN headers take up space. If the packet + VPN header exceeds the 1500-byte MTU of the underlying internet, the packet is dropped or fragmented. MSS clamping ensures the TCP handshake negotiates a smaller size.",
+    hint: "Think 'Packet size minus Header overhead'."
+  },
+  {
+    id: 56,
+    difficulty: "hard",
+    category: "azure-networking",
+    question: "You are designing a global Azure application. You need to route users to the nearest healthy region, but the application uses non-HTTP protocols (e.g., custom TCP). Which service should you use?",
+    options: [
+      "Azure Front Door",
+      "Azure Traffic Manager (DNS-based) or Azure Cross-Region Load Balancer",
+      "Application Gateway",
+      "Standard VNet Peering"
+    ],
+    answer: 1,
+    explanation: "Front Door is only for HTTP/S. For global TCP/UDP routing, Traffic Manager (via DNS) or the Global/Cross-Region Load Balancer is required.",
+    hint: "TCP support vs. HTTP-only."
+  },
+
+  /* ======================================================
+     OBSERVABILITY: FINOPS & SAMPLING
+     ====================================================== */
+  {
+    id: 57,
+    difficulty: "medium",
+    category: "observability-finops",
+    question: "Your Splunk/ELK costs have tripled. You find that 90% of your logs are 'HTTP 200 OK' traces. What architectural pattern reduces cost without losing 'Error' visibility?",
+    options: [
+      "Turning off logging entirely",
+      "Implementing 'Dynamic Sampling' (e.g., keep 1% of 200 OKs and 100% of 5xx Errors)",
+      "Increasing the log retention to 1 year",
+      "Compressing the logs on the server"
+    ],
+    answer: 1,
+    explanation: "Sampling allows you to maintain statistical confidence for successful requests while ensuring every failure is captured for debugging.",
+    hint: "Keep the bad, sample the good."
+  },
+  {
+    id: 58,
+    difficulty: "hard",
+    category: "observability-alerts",
+    question: "You are setting up an alert for a 'Long Tail' latency issue (P99). Why is it better to use a 'Histogram' bucket instead of a simple 'Average' (Mean)?",
+    options: [
+      "Averages are faster to calculate",
+      "Averages hide outliers; a small number of very slow requests won't significantly move the mean, but will show up in P99/P99.9 buckets",
+      "Histograms use less memory",
+      "K8s only supports Histograms"
+    ],
+    answer: 1,
+    explanation: "Averages mask the 'misery' of your unluckiest users. Histograms allow you to see the distribution and specifically target the 1% or 0.1% of worst-case latencies.",
+    hint: "Outliers vs. Medians."
+  },
+
+  /* ======================================================
+     RESILIENCE & FAILURE MODES
+     ====================================================== */
+  {
+    id: 59,
+    difficulty: "hard",
+    category: "sre-resilience",
+    question: "A 'Poison Pill' message is crashing your Kafka consumer repeatedly. Every time the consumer restarts, it reads the same bad message and crashes again. How do you break this cycle in production?",
+    options: [
+      "Restart the Kafka Broker",
+      "Manually advance the Consumer Offset past the poison pill or implement a Try/Catch with a Dead Letter Queue (DLQ)",
+      "Increase the RAM of the consumer",
+      "Delete the Kafka Topic"
+    ],
+    answer: 1,
+    explanation: "A DLQ allows the application to 'sideline' the problematic message and continue processing others. Alternatively, moving the offset is a manual 'emergency' fix.",
+    hint: "How to skip the 'bad' and move to the 'next'?"
+  },
+  {
+    id: 60,
+    difficulty: "hard",
+    category: "k8s-failure",
+    question: "Your cluster is using 'Spot Instances' (AWS) or 'Spot VMs' (Azure) to save costs. How should you configure your StatefulSet to handle the 2-minute eviction warning gracefully?",
+    options: [
+      "Spot instances cannot run StatefulSets",
+      "Use 'Pre-Stop Hooks' to trigger a backup or graceful shutdown and ensure replicas are spread across On-Demand nodes as well",
+      "Set replicas to 1",
+      "Increase the 'terminationGracePeriodSeconds' to 3600"
+    ],
+    answer: 1,
+    explanation: "Pre-stop hooks run when the eviction signal is received. For stateful workloads, you must assume nodes can disappear and use a mix of 'Spot' and 'On-Demand' to maintain quorum.",
+    hint: "What to do *before* the node dies?"
+  },
+
+  /* ======================================================
+     SECURITY & DEVSECOPS (IDs 61-100 preview)
+     ====================================================== */
+  {
+    id: 61,
+    difficulty: "medium",
+    category: "devsecops-cicd",
+    question: "You want to implement 'Static Application Security Testing' (SAST) in your pipeline. Where does this run?",
+    options: [
+      "On the running production environment",
+      "On the source code before it is compiled/packaged",
+      "Inside the database",
+      "On the developer's laptop only"
+    ],
+    answer: 1,
+    explanation: "SAST scans the source code for patterns indicating vulnerabilities (like SQL injection) without executing the code.",
+    hint: "Static = Not running."
+  },
+  {
+    id: 62,
+    difficulty: "hard",
+    category: "k8s-security",
+    question: "What is 'Runtime Security' in the context of Kubernetes (e.g., using Falco)?",
+    options: [
+      "Checking the YAML before deployment",
+      "Monitoring system calls and container activity for suspicious behavior (e.g., a shell being opened in a web pod) at execution time",
+      "Encrypting the hard drive",
+      "Setting up a password for the cluster"
+    ],
+    answer: 1,
+    explanation: "Runtime security detects threats after the pod is already running by looking for abnormal behavior in the OS kernel/syscalls.",
+    hint: "Detecting the 'Intruder' while they are inside."
+  },
+   
 ];
 
 
