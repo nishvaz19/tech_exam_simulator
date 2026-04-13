@@ -2147,9 +2147,7 @@ const questionBank = [
     explanation: "NodeSelectors and NodeAffinity allow you to constrain pods to nodes with specific hardware or logical labels.",
     hint: "Matching Pods to Node Labels."
   },
-  Continuing the **DevOps & Observability Architect Question Bank**. This batch (IDs 138–187) focuses on **Terraform State Lifecycle, Kubernetes Admission Controllers, Advanced Kafka Security, and Azure Governance.**
-Continuing the **DevOps & Observability Architect Question Bank**. This batch (IDs 126–162) focuses on **Service Mesh Security, Advanced GitOps, Kafka Cluster scaling, and Enterprise Cloud Governance.**
-
+  
 /* ======================================================
    DEVOPS & OBSERVABILITY ARCHITECT - BATCH 9 (IDs 126-162)
    ====================================================== */
@@ -2358,9 +2356,7 @@ Continuing the **DevOps & Observability Architect Question Bank**. This batch (I
     hint: "System failure vs. Human error."
   },
 
-
-**Proceed to 138–162?** I will dive into **Terraform State Locking, Azure RBAC vs. Azure Policy, and Kubernetes Admission Controllers.**
-/* ======================================================
+  /* ======================================================
    DEVOPS & OBSERVABILITY ARCHITECT - BATCH 10 (IDs 138-187)
    ====================================================== */
 
