@@ -80,7 +80,6 @@ List<Integer> result =        Stream.concat(list1.stream(),      list2.stream())
 System.out.println(result); // Output: [1, 2, 3, 4, 5, 6]
 
 //OR collect to a Set
-
 Set<Integer> uniqueResult = Stream.concat(list1.stream(), list2.stream())
      .collect(Collectors.toSet());
 
@@ -96,6 +95,221 @@ List<Employee> result = Stream.of(list1, list2)
 ```
 
 💡 Say: **"functional + readable but avoid in tight loops"**
+
+---
+
+# 🧩 Java Collections (with utility)
+
+## 1. **List (Ordered, allows duplicates)**
+
+* **Implementations:**
+
+  * `ArrayList`
+  * `LinkedList`
+  * `Vector` (legacy)
+
+**Utility:**
+
+* Maintains **insertion order**
+* Allows **duplicate elements**
+* Indexed access (fast in `ArrayList`)
+* Good for **ordered data / iteration**
+
+👉 Example use: storing user actions, logs, or items in a sequence
+
+---
+
+## 2. **Set (No duplicates)**
+
+* **Implementations:**
+
+  * `HashSet`
+  * `LinkedHashSet`
+  * `TreeSet`
+
+**Utility:**
+
+* Ensures **uniqueness**
+* No duplicate elements allowed
+* `TreeSet` → sorted order
+* `LinkedHashSet` → insertion order
+
+👉 Example use: storing unique IDs, tags, or emails
+
+---
+
+## 3. **Queue (FIFO structure)**
+
+* **Implementations:**
+
+  * `PriorityQueue`
+  * `LinkedList` (as Queue)
+
+**Utility:**
+
+* Processes elements in **FIFO (First-In-First-Out)**
+* Used in **task scheduling, buffering**
+
+👉 Example use: job queues, message processing
+
+---
+
+## 4. **Deque (Double-ended queue)**
+
+* **Implementations:**
+
+  * `ArrayDeque`
+  * `LinkedList`
+
+**Utility:**
+
+* Insert/remove from **both ends**
+* Works as **stack + queue**
+
+👉 Example use: sliding window algorithms, undo/redo
+
+---
+
+## 5. **Map (Key-Value pairs)**
+
+* **Implementations:**
+
+  * `HashMap`
+  * `LinkedHashMap`
+  * `TreeMap`
+  * `Hashtable` (legacy)
+
+**Utility:**
+
+* Stores data in **key → value** format
+* Fast lookup by key
+* Keys must be unique
+
+👉 Example use: caching, lookup tables, configs
+
+---
+
+# ⚠️ HashMap: Duplicate & Null Key Behavior
+
+## ✅ 1. Duplicate Keys
+
+```java
+Map<String, Integer> map = new HashMap<>();
+map.put("A", 1);
+map.put("A", 2);
+```
+
+👉 Result:
+
+```
+{A=2}
+```
+
+**Explanation:**
+
+* No exception thrown ❌
+* The **latest value replaces the old one**
+* Keys are **unique**
+
+---
+
+## ✅ 2. Null Keys
+
+```java
+map.put(null, 1);
+map.put(null, 2);
+```
+
+👉 Result:
+
+```
+{null=2}
+```
+
+**Explanation:**
+
+* `HashMap` allows **only ONE null key**
+* Duplicate null keys behave like normal duplicate keys → overwrite
+
+---
+
+## ✅ 3. Null Values
+
+```java
+map.put("A", null);
+map.put("B", null);
+```
+
+👉 Result:
+
+```
+{A=null, B=null}
+```
+
+**Explanation:**
+
+* Multiple null values are allowed ✔️
+
+---
+
+# ❗ When Do Exceptions Occur?
+
+### 1. `NullPointerException`
+
+Occurs in:
+
+* `TreeMap` (natural ordering)
+
+```java
+Map<String, Integer> map = new TreeMap<>();
+map.put(null, 1); // ❌ throws NullPointerException
+```
+
+👉 Why?
+
+* `TreeMap` uses **sorting (compareTo)** → null can't be compared
+
+---
+
+### 2. `ClassCastException`
+
+```java
+TreeMap map = new TreeMap();
+map.put(1, "A");
+map.put("B", "C"); // ❌ incompatible types
+```
+
+---
+
+### 3. `IllegalArgumentException`
+
+Rare, but may occur with custom comparators
+
+---
+
+# 🧠 Summary Table
+
+| Collection | Order     | Duplicates | Null Allowed           | Key Feature            |
+| ---------- | --------- | ---------- | ---------------------- | ---------------------- |
+| List       | Yes       | Yes        | Yes                    | Indexed access         |
+| Set        | Depends   | No         | 1 null (HashSet)       | Unique elements        |
+| Queue      | FIFO      | Yes        | Yes                    | Processing order       |
+| Deque      | Both ends | Yes        | Yes                    | Flexible insert/remove |
+| Map        | Key-based | No (keys)  | 1 null key (`HashMap`) | Fast lookup            |
+
+---
+
+# 🔥 Key Takeaway
+
+* `HashMap`:
+
+  * ✅ Allows **1 null key**
+  * ✅ Allows **multiple null values**
+  * ❌ No exception for duplicate keys → **overwrites**
+
+* `TreeMap`:
+
+  * ❌ No null keys → **throws NullPointerException**
 
 ---
 
