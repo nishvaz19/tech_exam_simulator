@@ -413,6 +413,15 @@ document.body.classList.add("loading");
         </div>
     </div>
 
+    <div id="java-cloud" class="cloud-section" style="background: #0f102a; color: white;">
+            <h2 class="doc-header" data-doc="java-cloud" style="color: #127df8;cursor:pointer;">Java Springboot Cloud</h2>
+        <div class="search-box"><input id="javaSearch" placeholder="Search Java (Entity, JPA...)" style="background: #1e293b; color: white;"></div>
+        <div class="cloud-display" id="javaCloud"></div>
+        <div class="legend">
+            <span class="batch">Batch</span><span class="infra">Infra</span>
+            <span class="optim">Optim</span><span class="agent" style="background: #f59e0b;">Agents</span>
+        </div>
+    </div>
     <div id="azure-cloud" class="cloud-section" style="background: #e2e8f0;">
             <h2 class="doc-header" data-doc="azure-cloud" style="color: #0078d4;cursor:pointer;">Azure Solutions Cloud</h2>
         <div class="search-box"><input id="azSearch" placeholder="Search Azure..."></div>
@@ -431,6 +440,7 @@ document.body.classList.add("loading");
     <div class="cloud-display" id="snCloud"></div>
     <div class="legend">
         <span class="sn-core">Core</span><span class="sn-compute">Compute</span>
+   
         <span class="sn-storage">Storage</span><span class="sn-services">Services</span>
     </div>
 </div>
@@ -573,6 +583,10 @@ const docMap = {
     file: "docs/Solution_Architect_readme.md", // or ai_llm_readme.md if you create later
     title: "AI & LLM Architecture"
   },
+  "java-cloud": {
+    file: "docs/java_Springboot_readme.md",
+    title: "Java Springboot"
+  },  
   "devOps-cloud": {
     file: "docs/Devops_And_Observability_readme.md",
     title: "DevOps Guide"
@@ -792,7 +806,103 @@ const aiKeywords = [
   {word:"Routing", freq:3, domain:"ops", desc:"Directing queries to cheaper or smarter models based on complexity"},
   {word:"cost", freq:3, domain:"cost", desc:"cost optimization"},  
 ];
-    
+
+const javaKeywords = [
+    // --- Core Spring Boot & Framework ---
+    { word: "Spring Boot", freq: 10, domain: "spring-core" },
+    { word: "Spring Framework", freq: 10, domain: "spring-core" },
+    { word: "Spring MVC", freq: 9, domain: "spring-web" },
+    { word: "Spring WebFlux", freq: 8, domain: "spring-reactive" },
+    { word: "Spring Beans", freq: 9, domain: "spring-core" },
+    { word: "Auto Configuration", freq: 9, domain: "spring-core" },
+    { word: "Starter Dependencies", freq: 8, domain: "spring-core" },
+
+    // --- Dependency Injection & AOP ---
+    { word: "IoC Container", freq: 10, domain: "spring-di" },
+    { word: "Dependency Injection", freq: 10, domain: "spring-di" },
+    { word: "@Autowired", freq: 9, domain: "spring-di" },
+    { word: "@Qualifier", freq: 8, domain: "spring-di" },
+    { word: "Spring AOP", freq: 9, domain: "spring-aop" },
+    { word: "AspectJ", freq: 7, domain: "spring-aop" },
+    { word: "Proxy-based AOP", freq: 7, domain: "spring-aop" },
+
+    // --- Data & Persistence ---
+    { word: "Spring Data JPA", freq: 10, domain: "spring-data" },
+    { word: "Hibernate", freq: 10, domain: "spring-data" },
+    { word: "EntityManager", freq: 8, domain: "spring-data" },
+    { word: "JPA Repositories", freq: 9, domain: "spring-data" },
+    { word: "CRUDRepository", freq: 8, domain: "spring-data" },
+    { word: "Transaction Management", freq: 9, domain: "spring-data" },
+    { word: "Lazy Loading", freq: 7, domain: "spring-data" },
+
+    // --- Microservices & Cloud ---
+    { word: "Spring Cloud", freq: 10, domain: "spring-cloud" },
+    { word: "Spring Cloud Config", freq: 9, domain: "spring-cloud" },
+    { word: "Spring Cloud Gateway", freq: 9, domain: "spring-cloud" },
+    { word: "Service Discovery", freq: 9, domain: "spring-cloud" },
+    { word: "Eureka", freq: 8, domain: "spring-cloud" },
+    { word: "Config Server", freq: 8, domain: "spring-cloud" },
+    { word: "Distributed Configuration", freq: 7, domain: "spring-cloud" },
+
+    // --- Resilience & Fault Tolerance ---
+    { word: "Resilience4j", freq: 9, domain: "spring-resilience" },
+    { word: "Circuit Breaker", freq: 10, domain: "spring-resilience" },
+    { word: "Retry", freq: 8, domain: "spring-resilience" },
+    { word: "Bulkhead", freq: 7, domain: "spring-resilience" },
+    { word: "Rate Limiter", freq: 7, domain: "spring-resilience" },
+    { word: "Fallback", freq: 8, domain: "spring-resilience" },
+
+    // --- Messaging & Event Streaming ---
+    { word: "Spring Kafka", freq: 10, domain: "spring-messaging" },
+    { word: "Kafka Streams", freq: 9, domain: "spring-messaging" },
+    { word: "Spring AMQP", freq: 8, domain: "spring-messaging" },
+    { word: "RabbitMQ", freq: 8, domain: "spring-messaging" },
+    { word: "Event-Driven", freq: 9, domain: "spring-arch" },
+    { word: "Event Sourcing", freq: 7, domain: "spring-arch" },
+
+    // --- Reactive & Async ---
+    { word: "Reactive Programming", freq: 9, domain: "spring-reactive" },
+    { word: "Project Reactor", freq: 9, domain: "spring-reactive" },
+    { word: "Mono/Flux", freq: 9, domain: "spring-reactive" },
+    { word: "Non-Blocking I/O", freq: 8, domain: "spring-reactive" },
+    { word: "Backpressure", freq: 7, domain: "spring-reactive" },
+
+    // --- API & Integration ---
+    { word: "REST APIs", freq: 10, domain: "spring-api" },
+    { word: "OpenAPI/Swagger", freq: 9, domain: "spring-api" },
+    { word: "Feign Client", freq: 9, domain: "spring-api" },
+    { word: "API Gateway", freq: 9, domain: "spring-api" },
+    { word: "DTO Mapping", freq: 8, domain: "spring-api" },
+
+    // --- Security ---
+    { word: "Spring Security", freq: 10, domain: "spring-security" },
+    { word: "OAuth2", freq: 9, domain: "spring-security" },
+    { word: "JWT", freq: 9, domain: "spring-security" },
+    { word: "Keycloak", freq: 8, domain: "spring-security" },
+    { word: "RBAC", freq: 8, domain: "spring-security" },
+    { word: "Method Security", freq: 7, domain: "spring-security" },
+
+    // --- Observability ---
+    { word: "Spring Boot Actuator", freq: 10, domain: "spring-obs" },
+    { word: "Micrometer", freq: 9, domain: "spring-obs" },
+    { word: "Distributed Tracing", freq: 9, domain: "spring-obs" },
+    { word: "Zipkin", freq: 8, domain: "spring-obs" },
+    { word: "Sleuth", freq: 8, domain: "spring-obs" },
+
+    // --- Testing ---
+    { word: "JUnit", freq: 10, domain: "spring-test" },
+    { word: "Mockito", freq: 9, domain: "spring-test" },
+    { word: "TestContainers", freq: 9, domain: "spring-test" },
+    { word: "@SpringBootTest", freq: 9, domain: "spring-test" },
+    { word: "Integration Testing", freq: 9, domain: "spring-test" },
+
+    // --- Build & Runtime ---
+    { word: "Maven", freq: 10, domain: "spring-build" },
+    { word: "Gradle", freq: 10, domain: "spring-build" },
+    { word: "Fat JAR", freq: 8, domain: "spring-build" },
+    { word: "Embedded Tomcat", freq: 9, domain: "spring-runtime" },
+    { word: "Externalized Config", freq: 9, domain: "spring-runtime" }
+];
 const awsKeywords = [
   {word:"Nitro", freq:5, domain:"aws-core", desc:"Underlying hardware acceleration for instances"},
   {word:"EventBridge", freq:5, domain:"aws-serverless", desc:"Serverless event bus for decoupled architectures"},
@@ -1153,6 +1263,7 @@ const eaKeywords = [
         // Render
         renderCloud("dbCloud", dbKeywords, "databricks");
         renderCloud("aiCloud", aiKeywords, "ai");
+        renderCloud("javaCloud", javaKeywords, "java");
         renderCloud("azCloud", azKeywords, "azure");
         renderCloud("awsCloud", awsKeywords, "aws");
         renderCloud("mgCloud", mgKeywords, "mongodb");
@@ -1176,6 +1287,7 @@ const eaKeywords = [
         // Search Binding
         bindSearch("dbSearch", "dbCloud", dbKeywords, "databricks");
         bindSearch("aiSearch", "aiCloud", aiKeywords, "ai");
+        bindSearch(javaSearch", "javaCloud", javaKeywords, "java");
         bindSearch("azSearch", "azCloud", azKeywords, "azure");
         bindSearch("awsSearch", "awsCloud", awsKeywords, "aws");
         bindSearch("mgSearch", "mgCloud", mgKeywords, "mongodb");
